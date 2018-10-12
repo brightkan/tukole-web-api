@@ -1,0 +1,48 @@
+---
+- name: Run the equivalent of "apt-get update" as a separate step
+  apt:
+    update_cache: yes
+
+- name: download setup_5.x file to tmp dir
+  get_url:
+    url: https://deb.nodesource.com/setup_8.x
+    dest: /tmp/
+    mode: 0755
+
+- command: sh setup_8.x
+  args:
+    chdir: /tmp/
+
+- name: Run the equivalent of "apt-get update" as a separate step
+  apt:
+    update_cache: yes
+
+- name: install node
+  apt: name={{ item }} state=present
+  with_items:
+    - nodejs
+
+- file: path=/home/inow/app/inow_frontend/ mode=0755 state=directory
+
+- name: checkout from bitbucket
+  git: repo={{frontend_repo}} dest=/home/inow/app/inow_frontend/ key_file=/home/{{ user }}/.ssh/inow_frontend accept_hostkey=true force=yes
+
+- name: Install "angular-cli" node.js package globally.
+  npm:
+    name: '@angular/cli'
+    global: yes
+
+- name: Install npm-install
+  become_user: root
+  npm:
+    path: /home/inow/app/inow_frontend/
+
+- file: path=/home/inow/app/inow_frontend/dist/ state=absent
+  become_user: root
+
+- command: 'npm run build --prod'
+  args:
+    chdir: /home/inow/app/inow_frontend/
+
+- file: path=/home/inow/app/inow_frontend/dist/ owner=www-data mode=0755 state=directory recurse=yes
+  become_user: root

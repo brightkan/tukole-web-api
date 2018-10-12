@@ -1,0 +1,19 @@
+---
+- apt: update_cache=yes cache_valid_time=3600
+
+
+- apt: name={{item}} state=absent
+  with_items:
+    - uwsgi-plugin-python
+
+- apt: name={{item}} state=present
+  with_items:
+    - uwsgi
+    - uwsgi-plugin-python3
+
+
+- template: src=app.uwsgi.j2 dest=/etc/uwsgi/apps-enabled/{{name}}.ini
+  become: yes
+
+- service: name=uwsgi state=restarted
+  become: yes

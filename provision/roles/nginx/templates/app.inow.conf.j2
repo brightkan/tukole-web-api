@@ -1,0 +1,35 @@
+server {
+    listen         80;
+    server_name    105.27.241.212;
+
+    charset utf-8;
+    access_log /var/log/nginx/{{name}}.access.log;
+    error_log /var/log/nginx/{{name}}.error.log;
+    client_max_body_size 1000M;   # adjust to taste
+
+
+     location / {
+        root /home/inow/app/inow_frontend/dist/;
+        try_files $uri $uri/ /index.html;
+    }
+
+    location /api {
+        proxy_connect_timeout 600;
+        proxy_send_timeout 600;
+        proxy_read_timeout 600;
+        send_timeout 600;
+        uwsgi_pass unix:/tmp/{{name}}.sock;
+        include uwsgi_params;
+    }
+
+
+    location /static {
+        alias   /home/inow/app/{{ name }}/assets/;
+
+    }
+
+    location /media  {
+        alias   /home/inow/app/{{ name }}/media/;
+    }
+
+}

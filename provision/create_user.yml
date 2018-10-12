@@ -1,0 +1,8 @@
+---
+- hosts: tukole
+  remote_user: root
+  roles:
+     - create_user
+
+  vars_files: [vars.yml]
+  gather_facts: true

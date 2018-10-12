@@ -1,0 +1,42 @@
+---
+- name: Run the equivalent of "apt-get update" as a separate step
+  apt:
+    update_cache: yes
+
+- apt: name={{ item }} state=present
+  with_items:
+    - python3-pip
+    - git
+    - python3-dev
+
+- pip: name={{ item }}
+  with_items:
+    - pipenv
+    - virtualenv
+    - psycopg2
+
+- name: create inow directory
+  file: path=/home/inow/app/{{ name }} mode=0755 state=directory
+
+- name: send key to remote deploy user
+  copy: src=keys/inow dest=/home/inow/.ssh/inow mode=0600
+
+- name: send key to remote deploy user
+  copy: src=keys/inow_frontend dest=/home/inow/.ssh/inow_frontend mode=0600
+
+- name: checkout from bitbucket
+  git: repo={{repo}} dest=/home/inow/app/{{ name }} key_file=/home/{{ user }}/.ssh/inow accept_hostkey=true force=yes
+
+- name: install pip requirements
+  pip: requirements=/home/inow/app/{{ name }}/requirements.txt virtualenv=/home/inow/app/{{ name }}venv
+
+- template: src=local_settings.py.j2 dest=/home/{{name}}/app/{{name}}/{{name}}/local_settings.py
+
+
+- command: /home/inow/app/{{ name }}venv/bin/python manage.py migrate --noinput
+  args:
+    chdir: /home/inow/app/{{ name }}
+
+- command: /home/inow/app/{{ name }}venv/bin/python manage.py collectstatic --noinput
+  args:
+    chdir: /home/inow/app/{{ name }}

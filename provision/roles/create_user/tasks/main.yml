@@ -1,0 +1,26 @@
+---
+- name: Run the equivalent of "apt-get update" as a separate step
+  apt:
+    update_cache: yes
+
+- user:
+    name: tukole
+    generate_ssh_key: yes
+    shell: /bin/bash
+    ssh_key_bits: 2048
+    groups: "sudo"
+    ssh_key_file: .ssh/id_rsa
+
+- name: Set authorized key took from file
+  authorized_key:
+    user: tukole
+    state: present
+    key: "{{ lookup('file', '../files/access.pub') }}"
+
+- name: adding passwordless sudo
+  lineinfile:
+      dest: /etc/sudoers
+      state: present
+      regexp: '^%sudo'
+      line: '%sudo	ALL=(ALL:ALL) NOPASSWD:ALL'
+      validate: visudo -cf %s

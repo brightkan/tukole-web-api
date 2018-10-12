@@ -8,6 +8,7 @@ django = "*"
 djangorestframework = "*"
 django-filter = "*"
 django-rest-swagger = "*"
+ansible = "*"
 
 [dev-packages]
 django-extensions = "*"

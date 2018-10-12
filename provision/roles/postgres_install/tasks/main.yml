@@ -1,0 +1,28 @@
+---
+- apt: update_cache=yes
+
+- name: send key to remote deploy user
+  copy: src=pgdg.list dest=/etc/apt/sources.list.d/pgdg.list
+
+- name: add key postgres key
+  apt_key: url=https://www.postgresql.org/media/keys/ACCC4CF8.asc state=present
+
+- apt: update_cache=yes cache_valid_time=3600
+
+- name: postgreql
+  apt: name={{ item }} state=present
+  with_items:
+    - python3-dev
+    - postgresql-9.6
+    - postgresql-contrib-9.6
+    - pgadmin3
+    - libpq-dev
+    - python3-psycopg2
+
+- service: name=postgresql state=started
+
+- postgresql_user: name={{name}} password={{ secret }}
+  become_user: postgres
+
+- postgresql_db: name=inow owner={{ name }} state=present
+  become_user: postgres
