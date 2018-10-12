@@ -30,6 +30,7 @@ ALLOWED_HOSTS = []
 
 THRID_PARTY_APPS = [
     'rest_framework',
+    'rest_framework_swagger',
 ]
 
 DJANGO_CORE_APPS = [
