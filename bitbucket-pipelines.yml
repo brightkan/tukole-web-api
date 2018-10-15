@@ -15,8 +15,11 @@ pipelines:
       - pipenv install
 
   - step:
+      - name: Deploy backend API
       caches:
       - pip
+      deployment: test
+      trigger: manual
       script:
       - pip install ansible
       - cd provision
