@@ -1,1 +1,1 @@
-ansible-playbook app_server.yml -i inventory/hosts.ini -vvvv
+ansible-playbook tukole.yml -i inventory/hosts.ini -vvvv
