@@ -13,15 +13,16 @@
   apt: name={{ item }} state=present
   with_items:
     - python3-dev
-    - postgresql-9.6
-    - postgresql-contrib-9.6
-    - pgadmin3
-    - libpq-dev
-    - python3-psycopg2
+    - postgresql-10
+    - python3-pip
+
+- pip: name={{ item }}
+  with_items:
+    - psycopg2
 
 - service: name=postgresql state=started
 
-- postgresql_user: name={{name}} password={{ secret }}
+- postgresql_user: name={{ name }} password={{ secret }}
   become_user: postgres
 
 - postgresql_db: name=inow owner={{ name }} state=present

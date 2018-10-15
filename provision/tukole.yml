@@ -1,0 +1,10 @@
+---
+- hosts: tukole
+  become: true
+  roles:
+     - postgres_install
+     - app
+     - nginx
+     - uwsgi
+
+  vars_files: [vars.yml]
