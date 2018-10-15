@@ -28,6 +28,9 @@
 - command: 'pipenv install'
   args:
     chdir: /home/{{name}}/app/{{name}}/
+  environment:
+    PIPENV_VENV_IN_PROJECT: 1
+
 
 - template: src=local_settings.py.j2 dest=/home/{{name}}/app/{{name}}/{{name}}/local_settings.py
 
