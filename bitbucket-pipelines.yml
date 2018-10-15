@@ -15,7 +15,7 @@ pipelines:
       - pipenv install
 
   - step:
-      - name: Deploy backend API
+      name: Deploy backend API
       caches:
       - pip
       deployment: test
