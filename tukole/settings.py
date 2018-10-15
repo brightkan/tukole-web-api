@@ -24,7 +24,7 @@ SECRET_KEY = 'ft-6el=#ltf&(p!t3s7+8ze87m()4a6ygdc5vv8#+wf4y)-74o'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['178.62.54.104']
+ALLOWED_HOSTS = ['178.62.54.104','127.0.0.1']
 
 # Application definition
 
