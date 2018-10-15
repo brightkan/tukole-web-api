@@ -12,7 +12,6 @@ pipelines:
       - pip
       script: # Modify the commands below to build your repository.
       - pip install pipenv --upgrade
-      - pipenv install
 
   - step:
       name: Deploy backend API
