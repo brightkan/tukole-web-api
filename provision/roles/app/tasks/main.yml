@@ -35,10 +35,10 @@
 - template: src=local_settings.py.j2 dest=/home/{{name}}/app/{{name}}/{{name}}/local_settings.py
 
 
-#- command: 'pipenv shell && python manage.py migrate --noinput'
-#  args:
-#    chdir: /home/{{name}}/app/{{ name }}
-#
-#- command: 'pipenv shell && python manage.py collectstatic --noinput'
-#  args:
-#    chdir: /home/{{name}}/app/{{ name }}
+- command: /home/{{name}}/app/{{ name }}/.venv/bin/python manage.py migrate --noinput
+  args:
+    chdir: /home/{{name}}/app/{{ name }}
+
+- command: /home/{{name}}/app/{{ name }}/.venv/bin/python manage.py collectstatic --noinput
+  args:
+    chdir: /home/{{name}}/app/{{ name }}
