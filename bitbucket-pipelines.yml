@@ -13,10 +13,11 @@ pipelines:
       script: # Modify the commands below to build your repository.
       - pip install pipenv --upgrade
       - pipenv install
-  branches:
-    deploy:
-    - step:
-        script:
-          - pip install ansible
-          - cd provision
-          - ./deploy_backend.sh
+
+  - step:
+      caches:
+      - pip
+      script:
+      - pip install ansible
+      - cd provision
+      - ./deploy_backend.sh
