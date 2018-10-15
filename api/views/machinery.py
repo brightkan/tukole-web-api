@@ -4,8 +4,8 @@ from django.shortcuts import render
 # Create your views here.
 
 from rest_framework import viewsets
-from api.models.machinerys import Machinery
-from api.serializers.machinerys import MachinerySerializer
+from api.models.machinery import Machinery
+from api.serializers.machinery import MachinerySerializer
 	
 # Create your views here.
 

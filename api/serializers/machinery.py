@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from api.models.machinerys import Machinery
+from api.models.machinery import Machinery
 
 class MachinerySerializer(serializers.ModelSerializer):
     class Meta:
