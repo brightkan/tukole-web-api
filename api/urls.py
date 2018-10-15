@@ -18,7 +18,7 @@ router.register(r'materials', MaterialViewSet, base_name='materials')
 
 router.register(r'fleet_types', myapp_fleet_types_views)
 router.register(r'fleets', myapp_fleets_views)
-router.register(r'machinerys', myapp_machinerys_views)
+router.register(r'machinery', myapp_machinerys_views)
 router.register(r'tools_types', myapp_tools_types_views)
 router.register(r'tools', myapp_tools_views)
 router.register(r'sites', myapp_sites_views)
