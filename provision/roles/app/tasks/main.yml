@@ -5,14 +5,14 @@
 
 - apt: name={{ item }} state=present
   with_items:
-    - python3-pip
-    - git
-    - python3-dev
+  - python3-pip
+  - git
+  - python3-dev
 
 - pip: name={{ item }}
   with_items:
-    - pipenv
-    - virtualenv
+  - pipenv
+  - virtualenv
 
 - name: create inow directory
   file: path=/home/{{name}}/app/{{ name }} mode=0755 state=directory
@@ -32,10 +32,10 @@
 - template: src=local_settings.py.j2 dest=/home/{{name}}/app/{{name}}/{{name}}/local_settings.py
 
 
-- command: /home/{{name}}/app/{{ name }}venv/bin/python manage.py migrate --noinput
-  args:
-    chdir: /home/{{name}}/app/{{ name }}
-
-- command: /home/{{name}}/app/{{ name }}venv/bin/python manage.py collectstatic --noinput
-  args:
-    chdir: /home/{{name}}/app/{{ name }}
+#- command: 'pipenv shell && python manage.py migrate --noinput'
+#  args:
+#    chdir: /home/{{name}}/app/{{ name }}
+#
+#- command: 'pipenv shell && python manage.py collectstatic --noinput'
+#  args:
+#    chdir: /home/{{name}}/app/{{ name }}

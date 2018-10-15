@@ -9,7 +9,7 @@ server {
 
 
      location / {
-        root /home/inow/app/inow_frontend/dist/;
+        root /home/tukole/app/tukole_frontend/dist/;
         try_files $uri $uri/ /index.html;
     }
 
@@ -24,12 +24,12 @@ server {
 
 
     location /static {
-        alias   /home/inow/app/{{ name }}/assets/;
+        alias   /home/tukole/app/{{ name }}/assets/;
 
     }
 
     location /media  {
-        alias   /home/inow/app/{{ name }}/media/;
+        alias   /home/tukole/app/{{ name }}/media/;
     }
 
 }

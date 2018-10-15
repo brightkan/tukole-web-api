@@ -5,5 +5,5 @@ socket=/tmp/{{name}}.sock
 chmod-socket=777
 processes=10
 chdir=/home/inow/app/{{ name }}
-virtualenv=/home/inow/app/{{ name }}venv
-wsgi-file=/home/inow/app/{{ name }}/{{name}}/wsgi.py
+virtualenv=/home/{{ name }}/app/{{ name }}venv
+wsgi-file=/home/{{ name }}/app/{{ name }}/{{name}}/wsgi.py

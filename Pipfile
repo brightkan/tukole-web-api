@@ -15,3 +15,6 @@ django-extensions = "*"
 
 [requires]
 python_version = "3.6"
+
+[environment]
+PIPENV_VENV_IN_PROJECT = "1"
