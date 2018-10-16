@@ -12,6 +12,7 @@ ansible = "*"
 django-model-utils = "*"
 django-cors-headers = "*"
 djangorestframework-simplejwt = "*"
+"psycopg2" = "*"
 
 [dev-packages]
 django-extensions = "*"
