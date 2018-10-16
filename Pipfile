@@ -10,6 +10,8 @@ django-filter = "*"
 django-rest-swagger = "*"
 ansible = "*"
 django-model-utils = "*"
+django-cors-headers = "*"
+djangorestframework-simplejwt = "*"
 
 [dev-packages]
 django-extensions = "*"
