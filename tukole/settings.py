@@ -166,3 +166,10 @@ USE_TZ = True
 STATIC_URL = '/djstatic/'
 
 STATIC_ROOT = "%s/assets" % (BASE_DIR)
+
+
+try:
+    from tukole.local_settings import *
+except ImportError:
+    pass
+
