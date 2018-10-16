@@ -7,7 +7,7 @@
     - nginx
     - nginx-extras
 
-- template: src=app.inow.conf.j2 dest=/etc/nginx/sites-enabled/{{name}}
+- template: src=app.tukole.conf.j2 dest=/etc/nginx/sites-enabled/{{name}}
   become_user: root
 
 - file: path=/etc/nginx/sites-available/default state=absent

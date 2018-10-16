@@ -1,6 +1,6 @@
 server {
     listen         80;
-    server_name    105.27.241.212;
+    server_name    178.62.54.104;
 
     charset utf-8;
     access_log /var/log/nginx/{{name}}.access.log;
@@ -9,7 +9,7 @@ server {
 
 
      location / {
-        root /home/tukole/app/tukole_frontend/dist/;
+        root /home/tukole/frontend/dist/;
         try_files $uri $uri/ /index.html;
     }
 
