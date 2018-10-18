@@ -2,6 +2,7 @@ from django.db import models
 from model_utils.models import TimeStampedModel
 
 from api.models.tools_types import Tools_types
+from api.models.workspaces import Workspace
 
 
 # Create your models here.
@@ -11,3 +12,7 @@ class Tools(TimeStampedModel):
     type = models.ForeignKey(Tools_types, on_delete=models.CASCADE)
     uuid = models.CharField(max_length=50, null=True)
     humanUuid = models.CharField(max_length=50, null=True)
+    workspace_id = models.ForeignKey(Workspace, on_delete=models.CASCADE, null=True,default=1)
+    created_at = models.DateField(null=True)
+    updated_at = models.DateField(null=True)
+    
