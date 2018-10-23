@@ -17,6 +17,7 @@ class Sites(TimeStampedModel):
     ackStatus = models.BooleanField(default=False)
     current_stage = models.IntegerField(default=0)
     archivedStatus = models.BooleanField(default=False)
-    workspace_id = models.ForeignKey(Workspace, on_delete=models.CASCADE, null=True,default=1)
+    workspace = models.ForeignKey(Workspace, on_delete=models.CASCADE, null=True, blank=True,
+                                  related_name="sites_workspace")
     created_at = models.DateField(null=True)
     updated_at = models.DateField(null=True)
