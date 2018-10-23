@@ -1,8 +1,7 @@
 from django.db import models
 from model_utils.models import TimeStampedModel
 
-from api.models.tools_types import Tools_types
-from api.models.workspaces import Workspace
+from api.models import Workspace, Tools_types
 
 
 # Create your models here.

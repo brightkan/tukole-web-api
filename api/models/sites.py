@@ -1,8 +1,7 @@
 from django.db import models
 from model_utils.models import TimeStampedModel
 
-from api.models.users import User
-from api.models.workspaces import Workspace
+from api.models import Workspace, User
 
 
 # Create your models here.
