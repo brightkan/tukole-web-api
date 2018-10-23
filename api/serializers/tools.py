@@ -1,9 +1,9 @@
 from rest_framework import serializers
 
-from api.models.tools import Tools
+from api.models.tools import Tool
 
 
-class ToolsSerializer(serializers.ModelSerializer):
+class ToolSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Tools
-        fields = ('id', 'name', 'type', 'uuid', 'humanUuid', 'workspace_id', 'created', 'updated')
+        model = Tool
+        fields = ('id', 'name', 'type', 'uuid', 'humanUuid', 'workspace_id', 'created', 'modified')

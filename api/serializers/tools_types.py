@@ -1,9 +1,9 @@
 from rest_framework import serializers
-from api.models.tools_types import Tools_types
-		
-##//////////////////
-class Tools_typesSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Tools_types
-        fields = ('id', 'type', 'description')
 
+from api.models.tools_types import ToolType
+
+
+class ToolTypesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ToolType
+        fields = ('id', 'type', 'description')

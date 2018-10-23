@@ -6,7 +6,7 @@ from api.models import Workspace, User
 
 # Create your models here.
 
-class Sites(TimeStampedModel):
+class Site(TimeStampedModel):
     site_name = models.CharField(max_length=50, null=True)
     location_lat = models.CharField(max_length=20, null=True)
     location_long = models.CharField(max_length=20, null=True)

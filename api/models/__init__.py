@@ -3,15 +3,15 @@ from api.models.users import User
 from api.models.fleets import Fleet
 from api.models.machinery import Machinery
 from api.models.materials import Material
-from api.models.sites import Sites
-from api.models.tools_types import Tools_types
+from api.models.sites import Site
+from api.models.tools_types import ToolType
 
 __all__ = [
     'Workspace',
     'User',
     'Fleet',
     'Machinery',
-    'Sites',
+    'Site',
     'Material',
-    'Tools_types'
+    'ToolType'
 ]
