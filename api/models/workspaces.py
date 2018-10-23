@@ -1,10 +1,8 @@
 from django.db import models
 
-
 # Create your models here.
+from model_utils.models import TimeStampedModel
 
-class Workspace(models.Model):
-    workspace_id = models.CharField(max_length=50, null=True)
-    workspace_name = models.CharField(max_length=50, null=True)
-    created_at = models.DateField(null=True)
-    updated_at = models.DateField(null=True)
+
+class Workspace(TimeStampedModel):
+    name = models.CharField(max_length=50, null=True)
