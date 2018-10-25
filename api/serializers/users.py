@@ -14,7 +14,9 @@ class UserSerializer(ModelSerializer):
 
     def get_user_workspace(self, obj):
         workspace = UserWorkSpace.objects.filter(user=obj).values_list('workspace', flat=True)
-        return workspace[0]
+        if workspace:
+            return workspace[0]
+        return ""
 
     def create(self, validated_data):
         all_data = deepcopy(validated_data)

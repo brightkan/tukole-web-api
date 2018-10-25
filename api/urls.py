@@ -10,6 +10,7 @@ from api.views.sites import SitesViewset as myapp_sites_views
 from api.views.tools import ToolsViewset as myapp_tools_views
 from api.views.tools_types import Tools_typesViewset as myapp_tools_types_views
 from api.views.users import UserViewSet
+from api.views.userworkspaces import UserWorkSpaceViewSet
 from api.views.workspaces import WorkspaceViewset as myapp_workspaces_views
 
 # router
@@ -17,6 +18,7 @@ router = routers.DefaultRouter()
 router.register(r'users', UserViewSet, base_name='users')
 router.register(r'materials', MaterialViewSet, base_name='materials')
 router.register(r'workspaces', myapp_workspaces_views)
+router.register(r'userworkspaces', UserWorkSpaceViewSet, base_name='user_workspaces')
 router.register(r'fleet_types', myapp_fleet_types_views)
 router.register(r'fleets', myapp_fleets_views)
 router.register(r'machinery', myapp_machinerys_views)
