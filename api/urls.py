@@ -13,6 +13,16 @@ from api.views.users import UserViewSet
 from api.views.userworkspaces import UserWorkSpaceViewSet
 from api.views.workspaces import WorkspaceViewset as myapp_workspaces_views
 
+from api.views.siteboqs import SiteboqViewSet as myapp_siteboqs_views
+from api.views.sitefleets import SitefleetViewSet as myapp_sitefleets_views
+from api.views.sitereports import SitereportViewSet as myapp_sitereports_views
+from api.views.siteroles import SiteroleViewSet as myapp_siteroles_views
+from api.views.sitestatuses import SitestatusViewSet as myapp_sitestatus_views
+from api.views.sitetools import SitetoolViewSet as myapp_sitetools_views
+
+
+
+
 # router
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet, base_name='users')
@@ -25,6 +35,14 @@ router.register(r'machinery', myapp_machinerys_views)
 router.register(r'tools_types', myapp_tools_types_views)
 router.register(r'tools', myapp_tools_views)
 router.register(r'sites', myapp_sites_views)
+
+router.register(r'siteboqs', myapp_siteboqs_views)
+router.register(r'sitefleets', myapp_sitefleets_views)
+router.register(r'sitereports', myapp_sitereports_views)
+router.register(r'siteroles', myapp_siteroles_views)
+router.register(r'sitestatus', myapp_sitestatus_views)
+router.register(r'sitetools', myapp_sitetools_views)
+
 
 # swagger_view
 schema_view = get_swagger_view(title='Tukole API')

@@ -6,4 +6,4 @@ from api.models.materials import Material
 class MaterialSerializer(ModelSerializer):
     class Meta:
         model = Material
-        fields = ('id', 'name', 'workspace')
+        fields = ('id', 'name', 'workspace', 'measurement', 'unit_cost')

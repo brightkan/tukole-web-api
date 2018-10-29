@@ -1,7 +1,8 @@
 from django.db import models
 from model_utils.models import TimeStampedModel
 
-from api.models import Workspace, User
+from api.models import User
+from api.models.workspaces import Workspace
 
 
 # Create your models here.
@@ -16,5 +17,5 @@ class Site(TimeStampedModel):
     ackStatus = models.BooleanField(default=False)
     current_stage = models.IntegerField(default=0)
     archivedStatus = models.BooleanField(default=False)
-    workspace = models.ForeignKey(Workspace, on_delete=models.CASCADE, null=True, blank=True,
-                                  related_name="sites_workspace")
+    workspace = models.ForeignKey(Workspace, on_delete=models.CASCADE, null=True, blank=True,related_name="sites_workspace")
+                                  
