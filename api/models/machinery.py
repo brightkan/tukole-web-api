@@ -11,7 +11,7 @@ from api.models.machinery_types import MachineryType
 
 class Machinery(TimeStampedModel):
     name = models.CharField(max_length=50, null=True)
-    type = models.ForeignKey(MachineryType, on_delete=models.CASCADE, null=True, blank=True,related_name="machinery_machinerytypes")
+    type = models.ForeignKey(MachineryType, on_delete=models.CASCADE, null=True, blank=True,related_name="machinery_types")
     uuid = models.CharField(max_length=50, null=True)
     humanUuid = models.CharField(max_length=50, null=True)
     status = models.CharField(max_length=50, null=True)

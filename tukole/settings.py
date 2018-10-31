@@ -34,6 +34,7 @@ THRID_PARTY_APPS = [
     'rest_framework',
     'rest_framework_swagger',
     'corsheaders',
+	'django_filters',
 ]
 
 DJANGO_CORE_APPS = [
@@ -49,6 +50,7 @@ DJANGO_CORE_APPS = [
 TUKOLE_APPS = [
     'api.apps.ApiConfig',
 ]
+
 
 INSTALLED_APPS = DJANGO_CORE_APPS + THRID_PARTY_APPS + TUKOLE_APPS
 
@@ -82,6 +84,8 @@ TEMPLATES = [
         },
     },
 ]
+
+
 
 WSGI_APPLICATION = 'tukole.wsgi.application'
 

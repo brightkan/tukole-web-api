@@ -14,4 +14,4 @@ class FleetViewset(viewsets.ModelViewSet):
     queryset = Fleet.objects.all()
     serializer_class = FleetSerializer
     filter_backends = (DjangoFilterBackend,)
-    filter_fields = ('workspace',)
+    filter_fields = ('workspace','vehicle_type')

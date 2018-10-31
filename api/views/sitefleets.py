@@ -10,4 +10,7 @@ class SitefleetViewSet(ModelViewSet):
     permission_classes = (IsAuthenticated,)
     serializer_class = SitefleetSerializer
     queryset = Sitefleet.objects.all()
+    filter_backends = (DjangoFilterBackend,)
+    filter_fields = ('site','fleet')
+
 
