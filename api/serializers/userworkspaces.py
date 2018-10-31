@@ -6,4 +6,4 @@ from api.models.users import UserWorkSpace
 class UserWorkSpaceSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserWorkSpace
-        fields = ('id', 'workspace')
+        fields = ('id', 'workspace', 'created')

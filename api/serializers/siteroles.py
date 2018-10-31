@@ -7,4 +7,4 @@ from api.models.siteroles import Siterole
 class SiteroleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Siterole
-        fields = ('id', 'site', 'user')
+        fields = ('id', 'site', 'user', 'created')

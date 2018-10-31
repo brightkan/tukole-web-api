@@ -19,7 +19,7 @@ from api.views.sitereports import SitereportViewSet as myapp_sitereports_views
 from api.views.siteroles import SiteroleViewSet as myapp_siteroles_views
 from api.views.sitestatuses import SitestatusViewSet as myapp_sitestatus_views
 from api.views.sitetools import SitetoolViewSet as myapp_sitetools_views
-
+from api.views.machinery_types import MachineryTypeViewset as myapp_machinery_types_views
 
 
 
@@ -42,6 +42,7 @@ router.register(r'sitereports', myapp_sitereports_views)
 router.register(r'siteroles', myapp_siteroles_views)
 router.register(r'sitestatus', myapp_sitestatus_views)
 router.register(r'sitetools', myapp_sitetools_views)
+router.register(r'machinery_types', myapp_machinery_types_views)
 
 
 # swagger_view
