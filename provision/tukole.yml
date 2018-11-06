@@ -4,7 +4,8 @@
   roles:
      - postgres_install
      - app
-     - nginx
-     - uwsgi
+     - systemd
+#     - nginx
+#     - uwsgi
 
   vars_files: [vars.yml]
