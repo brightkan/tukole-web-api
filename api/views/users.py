@@ -32,8 +32,10 @@ class UserViewSet(ModelViewSet):
         first_name = request.data['first_name']
         last_name = request.data['last_name']
         workspace = request.data['workspace']
+        type = request.data['type']
         user, created = User.objects.get_or_create(email=email,
-                                                   defaults={'first_name': first_name, 'last_name': last_name})
+                                                   defaults={'first_name': first_name, 'last_name': last_name,
+                                                             'type': type})
 
         signer = TimestampSigner()
         value = signer.sign(email)

@@ -63,6 +63,7 @@ class User(AbstractEmailUser, TimeStampedModel):
         ('admin', 'Admin'),
         ('super_admin', 'Super Admin'),
         ('employee', 'Employee'),
+        ('client', 'Client'),
     )
 
     contract_type_choices = (
@@ -70,7 +71,19 @@ class User(AbstractEmailUser, TimeStampedModel):
         ('temporary', 'temporary'),
 
     )
+    role_choices = (
+        ('isp', 'ISP'),
+        ('osp', 'OSP'),
+        ('quality', 'Quality'),
+        ('ofc', 'OFC'),
+        ('driver', 'Driver'),
+        ('surveyor', 'Surveyor'),
+        ('project_manager', 'Project Manager'),
+        ('fleet_manager', 'Fleet Manager'),
+
+    )
     type = models.CharField(max_length=150, choices=user_types)
+    role = models.CharField(max_length=150, choices=role_choices, null=True, blank=True)
     first_name = models.CharField(max_length=255, null=True, blank=True)
     last_name = models.CharField(max_length=255, null=True, blank=True)
     contract_type = models.CharField(max_length=150, choices=contract_type_choices)
