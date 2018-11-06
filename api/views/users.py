@@ -6,7 +6,7 @@ from rest_framework.status import HTTP_200_OK
 from rest_framework.viewsets import ModelViewSet
 
 from api.models import User
-from api.models.users import UserEmailActivation
+from api.models.users import UserEmailActivation, UserWorkSpace
 from api.serializers.users import UserSerializer, SimpleInviteUserSerializer
 from api.tasks import send_invite_email
 
@@ -31,6 +31,7 @@ class UserViewSet(ModelViewSet):
         email = request.data['email']
         first_name = request.data['first_name']
         last_name = request.data['last_name']
+        workspace = request.data['workspace']
         user, created = User.objects.get_or_create(email=email,
                                                    defaults={'first_name': first_name, 'last_name': last_name})
 
@@ -39,6 +40,10 @@ class UserViewSet(ModelViewSet):
         ttl = value.split(":")
         token = ('%s%s' % (ttl[1], ttl[2]))
         email_activation_, created = UserEmailActivation.objects.get_or_create(email=email, defaults={'token': token})
+        user_workspace, created = UserWorkSpace.objects.get_or_create(
+            workspace_id=workspace,
+            user_id=user.id
+        )
         send_invite_email.delay(user.id, token, self.request.user.id)
         return Response(data={"email": email, "invited": True}, status=HTTP_200_OK)
 

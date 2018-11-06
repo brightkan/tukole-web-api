@@ -20,9 +20,7 @@ class UserSerializer(ModelSerializer):
 
     def create(self, validated_data):
         all_data = deepcopy(validated_data)
-        print(all_data)
         workspace = all_data.pop('workspace')
-        print(workspace)
         user = User.objects.create_user(**all_data)
         user_workspace, created = UserWorkSpace.objects.get_or_create(
             workspace_id=workspace,
@@ -40,3 +38,4 @@ class SimpleInviteUserSerializer(serializers.Serializer):
     email = serializers.EmailField()
     first_name = serializers.CharField()
     last_name = serializers.CharField()
+    workspace = serializers.IntegerField()
