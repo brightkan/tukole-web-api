@@ -21,6 +21,9 @@ from api.views.sitestatuses import SitestatusViewSet as myapp_sitestatus_views
 from api.views.sitetools import SitetoolViewSet as myapp_sitetools_views
 from api.views.machinery_types import MachineryTypeViewset as myapp_machinery_types_views
 
+from api.views.surveys import SurveyViewset as myapp_surveys_views
+from api.views.notifications import NotificationViewset as myapp_notifications_views
+
 
 
 # router
@@ -35,7 +38,6 @@ router.register(r'machinery', myapp_machinerys_views)
 router.register(r'tools_types', myapp_tools_types_views)
 router.register(r'tools', myapp_tools_views)
 router.register(r'sites', myapp_sites_views)
-
 router.register(r'siteboqs', myapp_siteboqs_views)
 router.register(r'sitefleets', myapp_sitefleets_views)
 router.register(r'sitereports', myapp_sitereports_views)
@@ -43,6 +45,9 @@ router.register(r'siteroles', myapp_siteroles_views)
 router.register(r'sitestatus', myapp_sitestatus_views)
 router.register(r'sitetools', myapp_sitetools_views)
 router.register(r'machinery_types', myapp_machinery_types_views)
+router.register(r'surveys', myapp_surveys_views)
+router.register(r'notifications', myapp_notifications_views)
+
 
 
 # swagger_view
