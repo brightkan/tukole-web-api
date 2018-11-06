@@ -80,6 +80,15 @@ class User(AbstractEmailUser, TimeStampedModel):
         return "%s %s %s" % (self.id, self.first_name, self.last_name)
 
 
+class UserEmailActivation(TimeStampedModel):
+    email = models.EmailField()
+    token = models.CharField(max_length=255)
+    is_verified = models.BooleanField(default=False)
+
+    def __str__(self):
+        return "%s" % self.email
+
+
 class UserWorkSpace(TimeStampedModel):
     user = models.ForeignKey(to=User, related_name="user_workspace_user", on_delete=models.CASCADE, db_index=True)
     workspace = models.ForeignKey(to=Workspace, related_name="user_workspace_workspace", on_delete=models.CASCADE,

@@ -30,6 +30,8 @@ ALLOWED_HOSTS = ['178.62.54.104', '127.0.0.1']
 
 # Application definition
 
+SERVER_URL = "http://178.62.54.104"
+
 THRID_PARTY_APPS = [
     'rest_framework',
     'rest_framework_swagger',
@@ -146,6 +148,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+SENDGRID_API_KEY = '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'
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
@@ -167,9 +170,7 @@ STATIC_URL = '/djstatic/'
 
 STATIC_ROOT = "%s/assets" % (BASE_DIR)
 
-
 try:
     from tukole.local_settings import *
 except ImportError:
     pass
-

@@ -13,6 +13,8 @@ django-model-utils = "*"
 django-cors-headers = "*"
 djangorestframework-simplejwt = "*"
 "psycopg2" = "*"
+celery = "*"
+sendgrid = "*"
 
 [dev-packages]
 django-extensions = "*"

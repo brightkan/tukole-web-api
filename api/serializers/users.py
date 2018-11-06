@@ -34,3 +34,9 @@ class UserSerializer(ModelSerializer):
         model = User
         fields = ('id', 'first_name', 'last_name', 'email', 'type', 'contract_type',
                   'phone_number', 'workspace', 'password', 'user_workspace')
+
+
+class SimpleInviteUserSerializer(serializers.Serializer):
+    email = serializers.EmailField()
+    first_name = serializers.CharField()
+    last_name = serializers.CharField()
