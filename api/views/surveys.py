@@ -1,17 +1,19 @@
+	
 # Create your views here.
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
 
-from api.models.fleets import Fleet
-from api.serializers.fleets import FleetSerializer
+from api.models.surveys import Survey
+from api.serializers.surveys import SurveySerializer
 
 
 # Create your views here.
 
-class FleetViewset(viewsets.ModelViewSet):
+class SurveyViewset(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticated,)
-    queryset = Fleet.objects.all()
-    serializer_class = FleetSerializer
+    queryset = Survey.objects.all()
+    serializer_class = SurveySerializer
     filter_backends = (DjangoFilterBackend,)
-    filter_fields = ('workspace','vehicle_type')
+    filter_fields = ('creator','surveyor','ack_user')
+

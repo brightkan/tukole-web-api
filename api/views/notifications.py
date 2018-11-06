@@ -1,17 +1,19 @@
+	
 # Create your views here.
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
 
-from api.models.fleets import Fleet
-from api.serializers.fleets import FleetSerializer
+from api.models.notifications import Notification
+from api.serializers.notifications import NotificationSerializer
 
 
 # Create your views here.
 
-class FleetViewset(viewsets.ModelViewSet):
+class NotificationViewset(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticated,)
-    queryset = Fleet.objects.all()
-    serializer_class = FleetSerializer
+    queryset = Notification.objects.all()
+    serializer_class = NotificationSerializer
     filter_backends = (DjangoFilterBackend,)
-    filter_fields = ('workspace','vehicle_type')
+    filter_fields = ('user',)
+

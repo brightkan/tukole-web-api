@@ -14,4 +14,4 @@ class ToolsViewset(viewsets.ModelViewSet):
     queryset = Tool.objects.all()
     serializer_class = ToolSerializer
     filter_backends = (DjangoFilterBackend,)
-    filter_fields = ('workspace',)
+    filter_fields = ('workspace','type')

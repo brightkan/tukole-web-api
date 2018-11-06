@@ -14,4 +14,4 @@ class SitesViewset(viewsets.ModelViewSet):
     queryset = Site.objects.all()
     serializer_class = SiteSerializer
     filter_backends = (DjangoFilterBackend,)
-    filter_fields = ('workspace',)
+    filter_fields = ('workspace','survey_request','clientId')
