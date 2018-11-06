@@ -7,5 +7,5 @@ class SiteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Site
         fields = (
-            'id', 'site_name', 'location_lat', 'location_long', 'start_date', 'expected_end_date', 'archivedStatus',
+            'id', 'site_name', 'location_lat', 'location_long', 'start_date', 'survey_request','survey_date','expected_end_date', 'archivedStatus',
             'clientId', 'ackStatus', 'current_stage', 'archivedStatus', 'workspace', 'created', 'modified')
