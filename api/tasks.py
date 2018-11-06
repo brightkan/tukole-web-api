@@ -18,7 +18,8 @@ def send_invite_email(receiver_user_id, token, sender_user_id):
     ctx = {
         "receiver_name": "%s %s" % (receiver.first_name, receiver.last_name),
         "sender_name": "%s %s" % (sender.first_name, sender.last_name),
-        "server_url": "%s/%s/%s/" % (SERVER_URL, "users/accept", token)
+        "accept_link": "%s/%s/%s/" % (SERVER_URL, "users/accept", token),
+        "server_url": SERVER_URL
     }
     content = Content("text/html", get_template('email/invite_users.html').render(context=ctx))
     # message = get_template('email/meeting_confirmation.html').render(context=ctx)

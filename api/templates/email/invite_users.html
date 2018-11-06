@@ -37,14 +37,15 @@
 
     <div>
         <p>
-            {{ receiver_name }}
+            Hey {{ receiver_name }},
         </p>
-        <p>{{ sender_name }},has invited to a Tukole workspace.</p>
-        <p>Accept the invite <a href="{{ server_url }}">here</a></p>
+        <p>{{ sender_name }} has invited to a Tukole workspace.</p>
+        <p>Please accept the invite <a href="{{ accept_link }}">here</a></p>
 
 
         <p>At your service, </p>
         <p>Tukole</p>
+        <p>{{ server_url }}</p>
 
         <hr>
 
