@@ -23,6 +23,9 @@ from api.views.machinery_types import MachineryTypeViewset as myapp_machinery_ty
 
 from api.views.surveys import SurveyViewset as myapp_surveys_views
 from api.views.notifications import NotificationViewset as myapp_notifications_views
+from api.views.notifications import NotificationViewset as myapp_notifications_views
+from api.views.warehousematerials import WarehouseMaterialViewset as myapp_warehousematerials_views
+
 
 
 
@@ -47,7 +50,7 @@ router.register(r'sitetools', myapp_sitetools_views)
 router.register(r'machinery_types', myapp_machinery_types_views)
 router.register(r'surveys', myapp_surveys_views)
 router.register(r'notifications', myapp_notifications_views)
-
+router.register(r'warehousematerials', myapp_warehousematerials_views)
 
 
 # swagger_view
