@@ -10,7 +10,7 @@ from api.models.workspaces import Workspace
 
 class Site(TimeStampedModel):
     site_name = models.CharField(max_length=50, null=True)
-    site_deleted = models.BooleanField(default=False)
+    site_deleted = models.BooleanField(default=False, null=True)
     location_lat = models.CharField(max_length=20, null=True)
     location_long = models.CharField(max_length=20, null=True)
     start_date = models.DateField(null=True)
