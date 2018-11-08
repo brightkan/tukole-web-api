@@ -47,7 +47,8 @@ class UserViewSet(ModelViewSet):
             user_id=user.id
         )
         send_invite_email.delay(user.id, token, self.request.user.id)
-        return Response(data={"email": email, "invited": True}, status=HTTP_200_OK)
+        user_data = UserSerializer(data=user).data
+        return Response(data=user_data, status=HTTP_200_OK)
 
 
 """
