@@ -9,6 +9,9 @@ from api.serializers.notifications import NotificationSerializer
 
 
 # Create your views here.
+#from your_app_name.models import Dodavatel
+#p = Dodavatel(nazov='Petr', dostupnost=1)
+#p.save()
 
 class NotificationViewset(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticated,)
