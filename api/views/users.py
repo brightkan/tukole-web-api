@@ -41,8 +41,6 @@ class UserViewSet(ModelViewSet):
 
         signer = TimestampSigner()
         value = signer.sign(email)
-        print("oktkenalksdkashdklahslkdas dalksdhaklh token")
-        print(value)
         ttl = value.split(":")
         token = ('%s%s' % (ttl[1], ttl[2]))
         email_activation_, created = UserEmailActivation.objects.get_or_create(email=email, defaults={'token': token})
@@ -65,8 +63,6 @@ class UserViewSet(ModelViewSet):
 
         signer = TimestampSigner()
         email_hash = ("%s:%s:%s" % (email_activation_token.email, token_first_part, token_second_part))
-        print("as;dlja;ldjlasjd;ljas;d")
-        print(email_hash)
         try:
             unsigned_value = signer.unsign(email_hash, max_age=timedelta(days=3))
             if unsigned_value == email_activation_token.email:
