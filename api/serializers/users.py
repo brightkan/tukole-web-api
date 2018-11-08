@@ -35,6 +35,13 @@ class UserSerializer(ModelSerializer):
 
 
 class SimpleInviteUserSerializer(ModelSerializer):
+    workspace = serializers.CharField(required=True, write_only=True)
+    
     class Meta:
         model = User
         fields = ('first_name', 'last_name', 'email', 'type', 'workspace', 'contract_type', 'phone_number')
+
+
+class AcceptUserSerializer(serializers.Serializer):
+    token = serializers.CharField()
+    password = serializers.CharField()

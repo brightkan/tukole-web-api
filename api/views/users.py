@@ -1,3 +1,5 @@
+from datetime import timedelta
+
 from django.core.signing import TimestampSigner
 from rest_framework.decorators import action
 from rest_framework.permissions import AllowAny
@@ -7,7 +9,7 @@ from rest_framework.viewsets import ModelViewSet
 
 from api.models import User
 from api.models.users import UserEmailActivation, UserWorkSpace
-from api.serializers.users import UserSerializer, SimpleInviteUserSerializer
+from api.serializers.users import UserSerializer, SimpleInviteUserSerializer, AcceptUserSerializer
 from api.tasks import send_invite_email
 
 
@@ -39,6 +41,8 @@ class UserViewSet(ModelViewSet):
 
         signer = TimestampSigner()
         value = signer.sign(email)
+        print("oktkenalksdkashdklahslkdas dalksdhaklh token")
+        print(value)
         ttl = value.split(":")
         token = ('%s%s' % (ttl[1], ttl[2]))
         email_activation_, created = UserEmailActivation.objects.get_or_create(email=email, defaults={'token': token})
@@ -47,18 +51,35 @@ class UserViewSet(ModelViewSet):
             user_id=user.id
         )
         send_invite_email.delay(user.id, token, self.request.user.id)
-        user_data = UserSerializer(data=user).data
+        user_data = UserSerializer(user).data
         return Response(data=user_data, status=HTTP_200_OK)
 
+    @action(methods=['post'], detail=False, url_path='accept', url_name="accept-members",
+            serializer_class=AcceptUserSerializer)
+    def accept_users(self, request):
+        token = request.data['token']
+        password = request.data['password']
+        email_activation_token = UserEmailActivation.objects.filter(token=token).first()
+        token_first_part = token[:6]
+        token_second_part = token[6:]
 
-"""
-        token = str(request.GET['ttl'])
-                 signer = TimestampSigner()
-                 first_ = token[-6:]
-                 second_ = token[:-6]
-                 hash = ("%s:%s:%s" % ("LuGeLo510!!", first_, second_))
-         
+        signer = TimestampSigner()
+        email_hash = ("%s:%s:%s" % (email_activation_token.email, token_first_part, token_second_part))
+        print("as;dlja;ldjlasjd;ljas;d")
+        print(email_hash)
         try:
-                         signer.unsign(hash, max_age=timedelta(seconds=60 * 10))
+            unsigned_value = signer.unsign(email_hash, max_age=timedelta(days=3))
+            if unsigned_value == email_activation_token.email:
+                user = User.objects.filter(email=email_activation_token.email).first()
+                user.set_password(password)
+                user.save()
+                email_activation_token.is_verified = True
+                email_activation_token.save()
+                data = {'status': True, 'message': "User password sent successfully"}
+                return Response(data=data, status=HTTP_200_OK)
 
-"""
+        except Exception as e:
+            print(e)
+            data = {'status': False,
+                    'message': "User invite expired. Please have the admin reinvite you to the workspace"}
+            return Response(data=data, status=HTTP_200_OK)
