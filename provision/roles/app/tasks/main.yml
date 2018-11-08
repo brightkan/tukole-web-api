@@ -42,3 +42,10 @@
 - command: /home/{{name}}/app/{{ name }}/.venv/bin/python manage.py collectstatic --noinput
   args:
     chdir: /home/{{name}}/app/{{ name }}
+
+
+- service: name=uwsgi state=restarted
+  become: yes
+
+- service: name=nginx state=restarted
+  become: yes
