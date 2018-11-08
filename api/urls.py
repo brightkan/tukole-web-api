@@ -23,6 +23,9 @@ from api.views.users import UserViewSet
 from api.views.userworkspaces import UserWorkSpaceViewSet
 from api.views.warehousematerials import WarehouseMaterialViewset as myapp_warehousematerials_views
 from api.views.workspaces import WorkspaceViewset as myapp_workspaces_views
+from api.views.sitemachines import SiteMachinesViewSet as myapp_sitemachines_views
+from api.views.survey_results import SurveyResultViewSet as myapp_survey_results_views
+from api.views.survey_result_comments import SurveyResultCommentViewSet as myapp_survey_result_comments_views
 
 # router
 router = routers.DefaultRouter()
@@ -47,6 +50,9 @@ router.register(r'surveys', myapp_surveys_views)
 router.register(r'notifications', myapp_notifications_views)
 router.register(r'warehousematerials', myapp_warehousematerials_views)
 router.register(r'user_roles', myapp_user_roles_views)
+router.register(r'sitemachines', myapp_sitemachines_views)
+router.register(r'survey_results', myapp_survey_results_views)
+router.register(r'survey_result_comments', myapp_survey_result_comments_views)
 
 # swagger_view
 schema_view = get_swagger_view(title='Tukole API')
