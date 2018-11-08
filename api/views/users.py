@@ -51,7 +51,7 @@ class UserViewSet(ModelViewSet):
             workspace_id=workspace,
             user_id=user.id
         )
-        send_invite_email.delay(user.id, token, self.request.user.id)
+        send_invite_email.delay(user.id, token, self.request.user.id, workspace)
         user_data = UserSerializer(user).data
         return Response(data=user_data, status=HTTP_200_OK)
 
