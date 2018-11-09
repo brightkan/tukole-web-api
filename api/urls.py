@@ -54,6 +54,8 @@ router.register(r'sitemachines', myapp_sitemachines_views)
 router.register(r'survey_results', myapp_survey_results_views)
 router.register(r'survey_result_comments', myapp_survey_result_comments_views)
 
+
+
 # swagger_view
 schema_view = get_swagger_view(title='Tukole API')
 

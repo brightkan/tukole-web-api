@@ -4,10 +4,11 @@ from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
 
 from api.models.sites import Site
+from api.models.notifications import Notification
 from api.serializers.sites import SiteSerializer
 
 
-# Create your views here.
+# Create your views here. user=Site.clientId,
 
 class SitesViewset(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticated,)
@@ -15,3 +16,19 @@ class SitesViewset(viewsets.ModelViewSet):
     serializer_class = SiteSerializer
     filter_backends = (DjangoFilterBackend,)
     filter_fields = ('workspace','survey_request','clientId')
+    
+   
+         
+        
+    def get_context_data(self, **kwargs):
+        user = Site.objects.get(id=kwargs['user_id'])
+        p = Notification(notification=user)
+        p.save()        
+   
+               
+   
+    
+    
+    
+   
+    

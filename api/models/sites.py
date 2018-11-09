@@ -4,6 +4,7 @@ from model_utils.models import TimeStampedModel
 from api.models import User
 from api.models.surveys import Survey
 from api.models.workspaces import Workspace
+from api.models.notifications import Notification
 
 
 # Create your models here.
@@ -25,3 +26,8 @@ class Site(TimeStampedModel):
     ackStatus = models.BooleanField(default=False)
     ack_user= models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, related_name="site_ack_user")  
     ack_date = models.DateField(null=True)
+	
+    def __str__(self):
+        print( self.clientId )
+              
+     
