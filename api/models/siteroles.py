@@ -22,3 +22,4 @@ class Siterole(TimeStampedModel):
         print(note)        
         p = Notification(user=user,notification=note)
         p.save()
+        super(Siterole, self).save(*args, **kwargs)

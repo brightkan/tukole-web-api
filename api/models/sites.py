@@ -10,6 +10,7 @@ from api.models.notifications import Notification
 # Create your models here.
 
 class Site(TimeStampedModel):
+    id = models.AutoField(primary_key=True)
     site_name = models.CharField(max_length=50, null=True)
     site_deleted = models.BooleanField(default=False, null=True)
     location_lat = models.CharField(max_length=20, null=True)
@@ -30,11 +31,11 @@ class Site(TimeStampedModel):
     def save(self, *args, **kwargs):
         clientId = self.clientId
         ackStatus = self.ackStatus
-        note='Survey request was acknowledged'
         print(ackStatus)
-                
+        note='Survey request was acknowledged'       
         if ackStatus  == True:
             print(note)        
             p = Notification(user=clientId,notification=note)
             p.save()  
+            super(Site, self).save(*args, **kwargs)
      

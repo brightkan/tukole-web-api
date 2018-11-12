@@ -25,7 +25,8 @@ class SurveyResult(TimeStampedModel):
         if acceptStatus == None:
             print ("Pending Review")
             p = Notification(user=surveyor,notification=note1)
-            p.save()            
+            p.save()   
+            super(SurveyResult, self).save(*args, **kwargs)
     
     
         elif result == True: # shouldn't do this

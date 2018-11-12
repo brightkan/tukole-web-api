@@ -17,4 +17,6 @@ class SurveyResultComment(TimeStampedModel):
             note='There is a new comment on the uploaded survey resutls'
             print("There is a new comment on the uploaded survey resutls")        
             p = Notification(user=surveyor,notification=note)
-            p.save()    
+            p.save()  
+            super(SurveyResultComment, self).save(*args, **kwargs)
+            
