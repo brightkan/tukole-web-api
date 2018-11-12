@@ -27,7 +27,14 @@ class Site(TimeStampedModel):
     ack_user= models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, related_name="site_ack_user")  
     ack_date = models.DateField(null=True)
 	
-    def __str__(self):
-        print( self.clientId )
-              
+    def save(self, *args, **kwargs):
+        clientId = self.clientId
+        ackStatus = self.ackStatus
+        note='Survey request was acknowledged'
+        print(ackStatus)
+                
+        if ackStatus  == True:
+            print(note)        
+            p = Notification(user=clientId,notification=note)
+            p.save()  
      
