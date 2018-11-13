@@ -27,6 +27,7 @@ class Site(TimeStampedModel):
     ackStatus = models.BooleanField(default=False)
     ack_user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, related_name="site_ack_user")
     ack_date = models.DateField(null=True)
+    survay_time = models.TimeField(null=True)
 
     def save(self, *args, **kwargs):
         clientId = self.clientId
