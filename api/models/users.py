@@ -87,7 +87,7 @@ class User(AbstractEmailUser, TimeStampedModel):
     first_name = models.CharField(max_length=255, null=True, blank=True)
     last_name = models.CharField(max_length=255, null=True, blank=True)
     contract_type = models.CharField(max_length=150, choices=contract_type_choices)
-    phone_number = models.CharField(max_length=150)
+    phone_number = models.CharField(max_length=150, null=True, blank=True)
 
     def __str__(self):
         return "%s %s %s" % (self.id, self.first_name, self.last_name)
