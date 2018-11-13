@@ -25,16 +25,21 @@ class SurveyResult(TimeStampedModel):
         if acceptStatus == None:
             print ("Pending Review")
             p = Notification(user=surveyor,notification=note1)
-            p.save()   
+            p.save() 
             super(SurveyResult, self).save(*args, **kwargs)
+            
     
     
-        elif result == True: # shouldn't do this
+        elif acceptStatus == True: # shouldn't do this
             print ("survey_results_accepted")
             p = Notification(user=surveyor,notification=note2)
-            p.save()            
+            p.save() 
+            super(SurveyResult, self).save(*args, **kwargs)
     
         else:
             print ("Survey results were rejected" ) 
             p = Notification(user=surveyor,notification=note3)
-            p.save()    
+            p.save()
+            super(SurveyResult, self).save(*args, **kwargs)
+        
+				
