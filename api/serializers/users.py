@@ -30,13 +30,13 @@ class UserSerializer(ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('id', 'first_name', 'last_name', 'email', 'type', 'contract_type',
+        fields = ('id', 'first_name', 'last_name', 'email', 'type', 'contract_type', 'role',
                   'phone_number', 'workspace', 'password', 'user_workspace')
 
 
 class SimpleInviteUserSerializer(ModelSerializer):
     workspace = serializers.CharField(required=True, write_only=True)
-    
+
     class Meta:
         model = User
         fields = ('first_name', 'last_name', 'email', 'type', 'workspace', 'contract_type', 'phone_number')
