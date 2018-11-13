@@ -2,6 +2,7 @@ from django.db import models
 # Create your models here.
 from model_utils.models import TimeStampedModel
 
+from api.models.notifications import Notification
 from api.models.survey_results import SurveyResult
 from api.models import User
 
