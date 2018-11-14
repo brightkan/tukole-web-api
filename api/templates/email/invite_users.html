@@ -39,14 +39,17 @@
         <p>
             Hey {{ receiver_name }},
         </p>
-        <p>{{ sender_name }} has invited to a Tukole workspace called {{ workspace }}***Remember this will need this
-            workspace name to login later.</p>
+        <p>{{ sender_name }} has invited to a Tukole workspace called <strong>{{ workspace }}</strong>.
+            <br>
+            <em>Please take note of the workspace, you will need when logging in on the system.</em>
+        </p>
         <p>Please accept the invite <a href="{{ accept_link }}">here</a></p>
 
 
-        <p>At your service, </p>
-        <p>Tukole</p>
-        <p>{{ server_url }}</p>
+        <p>At your service,<br>
+            Tukole<br>
+            {{ server_url }}
+        </p>
 
         <hr>
 

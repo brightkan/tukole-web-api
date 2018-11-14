@@ -13,12 +13,19 @@ def send_invite_email(receiver_user_id, token, sender_user_id, workspace):
     receiver = User.objects.filter(id=receiver_user_id).first()
     workspace = Workspace.objects.filter(id=workspace).first()
     sg = sendgrid.SendGridAPIClient(apikey=SENDGRID_API_KEY)
-    from_email = Email("no-reply@tukole.co.ug")
+    from_email = Email(email="no-reply@tukole.co.ug", name="Tukole System")
     to_email = Email(receiver.email)
     subject = "Tukole Workspace invite"
+    sender_name = ""
+    if sender:
+        if sender.first_name and sender.last_name:
+            sender_name = "%s %s" % (sender.first_name, sender.last_name)
+    else:
+        sender_name = "A Tukole Admin"
+
     ctx = {
         "receiver_name": "%s %s" % (receiver.first_name, receiver.last_name),
-        "sender_name": "%s %s" % (sender.first_name, sender.last_name),
+        "sender_name": "%s" % sender_name,
         "accept_link": "%s/%s/%s/" % (SERVER_URL, "users/accept", token),
         "server_url": SERVER_URL,
         "workspace": workspace.name.lower()
