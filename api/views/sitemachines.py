@@ -1,4 +1,3 @@
-		
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import ModelViewSet
@@ -12,4 +11,4 @@ class SiteMachinesViewSet(ModelViewSet):
     serializer_class = SiteMachinesSerializer
     queryset = SiteMachines.objects.all()
     filter_backends = (DjangoFilterBackend,)
-    filter_fields = ('site','machine')
+    filter_fields = ('site', 'machine')

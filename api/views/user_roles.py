@@ -1,4 +1,3 @@
-
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import ModelViewSet
 
@@ -10,4 +9,3 @@ class UserRolesViewSet(ModelViewSet):
     permission_classes = (IsAuthenticated,)
     serializer_class = UserRolesSerializer
     queryset = UserRoles.objects.all()
-    

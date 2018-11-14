@@ -1,6 +1,8 @@
 from datetime import timedelta
 
 from django.core.signing import TimestampSigner
+from django_filters import rest_framework as filters
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.decorators import action
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
@@ -11,6 +13,19 @@ from api.models import User
 from api.models.users import UserEmailActivation, UserWorkSpace
 from api.serializers.users import UserSerializer, SimpleInviteUserSerializer, AcceptUserSerializer
 from api.tasks import send_invite_email
+
+
+class UserFilter(filters.FilterSet):
+    workspace = filters.NumberFilter(method='filter_workspace')
+
+    class Meta:
+        model = User
+        fields = ['workspace', ]
+
+    def filter_workspace(self, queryset, name, value):
+        user_ids = UserWorkSpace.objects.filter(workspace=value).values_list('user_id', flat=True)
+        users = User.objects.filter(id__in=user_ids)
+        return users
 
 
 class UserViewSet(ModelViewSet):
@@ -26,6 +41,8 @@ class UserViewSet(ModelViewSet):
     serializer_class = UserSerializer
     model = User
     queryset = User.objects.all()
+    filter_class = UserFilter
+    filter_backends = (DjangoFilterBackend,)
 
     @action(methods=['post'], detail=False, url_path='invite', url_name="invite-members",
             serializer_class=SimpleInviteUserSerializer)
