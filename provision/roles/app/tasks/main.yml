@@ -43,6 +43,10 @@
   args:
     chdir: /home/{{name}}/app/{{ name }}
 
+- name: start tukole service
+  systemd:
+    state: restarted
+    name: tukole
 
 - service: name=uwsgi state=restarted
   become: yes

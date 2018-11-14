@@ -2,9 +2,9 @@
 - hosts: tukole
   become: true
   roles:
-     - postgres_install
+#     - postgres_install
      - app
-     - systemd
+#     - systemd
 #     - nginx
 #     - uwsgi
 

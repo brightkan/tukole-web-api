@@ -6,5 +6,5 @@
 
 - name: start tukole service
   systemd:
-    state: started
+    state: restarted
     name: tukole
