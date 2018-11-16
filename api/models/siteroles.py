@@ -20,7 +20,7 @@ class Siterole(TimeStampedModel):
         user = self.user
         userrole = self.userrole
 
-        note = 'You have bean added to site' + site + 'as' + userrole
+        note = 'You have bean added to site' + site.site_name
         print(note)
         p = Notification(user=user, notification=note)
         p.save()
