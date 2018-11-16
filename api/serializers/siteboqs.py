@@ -9,22 +9,22 @@ class SiteboqSerializer(serializers.ModelSerializer):
     material_measurement = serializers.SerializerMethodField()
     material_unit_cost = serializers.SerializerMethodField()
 
-    def get_material_name(self):
-        material = Material.objects.filter(id=self.material).first()
+    def get_material_name(self, obj):
+        material = Material.objects.filter(id=obj.material).first()
         if material:
             return material.name
         else:
             return ""
 
-    def get_material_measurement(self):
-        material = Material.objects.filter(id=self.material).first()
+    def get_material_measurement(self, obj):
+        material = Material.objects.filter(id=obj.material).first()
         if material:
             return material.measurement
         else:
             return ""
 
-    def get_material_unit_cost(self):
-        material = Material.objects.filter(id=self.material).first()
+    def get_material_unit_cost(self, obj):
+        material = Material.objects.filter(id=obj.material).first()
         if material:
             return material.unit_cost
         else:
