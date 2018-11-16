@@ -45,3 +45,10 @@ class SimpleInviteUserSerializer(ModelSerializer):
 class AcceptUserSerializer(serializers.Serializer):
     token = serializers.CharField()
     password = serializers.CharField()
+
+
+class UserSiteRoleSerializer(serializers.Serializer):
+    user = serializers.CharField()
+    user_id = serializers.CharField()
+    site = serializers.CharField()
+    site_role = serializers.CharField()

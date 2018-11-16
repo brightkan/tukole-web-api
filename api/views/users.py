@@ -9,8 +9,10 @@ from rest_framework.response import Response
 from rest_framework.status import HTTP_200_OK
 from rest_framework.viewsets import ModelViewSet
 
-from api.models import User
+from api.models import User, Site
+from api.models.siteroles import Siterole
 from api.models.users import UserEmailActivation, UserWorkSpace
+from api.serializers.sites import SiteSerializer
 from api.serializers.users import UserSerializer, SimpleInviteUserSerializer, AcceptUserSerializer
 from api.tasks import send_invite_email
 
@@ -99,3 +101,14 @@ class UserViewSet(ModelViewSet):
             data = {'status': False,
                     'message': "User invite expired. Please have the admin reinvite you to the workspace"}
             return Response(data=data, status=HTTP_200_OK)
+
+    @action(methods=['post'], detail=True, url_path='sites', url_name="sites")
+    def users_site(self, request, pk):
+        user = User.objects.filter(id=pk).first()
+        if user:
+            users_sites_id = Siterole.objects.filter(user=user).values_list('site', flat=True)
+            sites = Site.objects.filter(id__in=users_sites_id)
+            data = SiteSerializer(sites, many=True).data
+        else:
+            data = {"error": "User is not attached to any site"}
+        return Response(data=data, status=HTTP_200_OK)
