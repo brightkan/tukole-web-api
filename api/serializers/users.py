@@ -39,7 +39,7 @@ class SimpleInviteUserSerializer(ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('first_name', 'last_name', 'email', 'type', 'workspace', 'contract_type', 'phone_number')
+        fields = ('first_name', 'last_name', 'email', 'type', 'workspace', 'contract_type', 'phone_number', 'role')
 
 
 class AcceptUserSerializer(serializers.Serializer):

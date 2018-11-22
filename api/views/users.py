@@ -56,10 +56,11 @@ class UserViewSet(ModelViewSet):
         contract_type = request.data['contract_type']
         phone_number = request.data['phone_number']
         type = request.data['type']
+        role = request.data['role']
         user, created = User.objects.get_or_create(email=email,
                                                    defaults={'first_name': first_name, 'last_name': last_name,
                                                              'type': type, 'contract_type': contract_type,
-                                                             'phone_number': phone_number})
+                                                             'phone_number': phone_number, 'role': role})
 
         signer = TimestampSigner()
         value = signer.sign(email)
