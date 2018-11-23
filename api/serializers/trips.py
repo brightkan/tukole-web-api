@@ -6,4 +6,4 @@ from api.models import Trip
 class TripSerializer(serializers.ModelSerializer):
     class Meta:
         model = Trip
-        fields = ('id', 'start', 'destination', 'site_fleet', 'reason')
+        fields = ('id', 'start_lat', 'start_long', 'destination_lat', 'destination_long', 'site_fleet', 'reason')
