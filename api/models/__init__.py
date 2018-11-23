@@ -6,6 +6,7 @@ from api.models.materials import Material
 from api.models.sites import Site
 from api.models.tools_types import ToolType
 from api.models.challenges import Challenge
+from api.models.trips import Trip
 
 __all__ = [
     'Workspace',
@@ -15,5 +16,6 @@ __all__ = [
     'Site',
     'Material',
     'ToolType',
-    'Challenge'
+    'Challenge',
+    'Trip'
 ]

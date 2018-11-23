@@ -22,6 +22,7 @@ from api.views.survey_results import SurveyResultViewSet as myapp_survey_results
 from api.views.surveys import SurveyViewset as myapp_surveys_views
 from api.views.tools import ToolsViewset as myapp_tools_views
 from api.views.tools_types import Tools_typesViewset as myapp_tools_types_views
+from api.views.trips import TripViewSet
 from api.views.user_roles import UserRolesViewSet as myapp_user_roles_views
 from api.views.users import UserViewSet
 from api.views.userworkspaces import UserWorkSpaceViewSet
@@ -47,6 +48,7 @@ router.register(r'sitereports', myapp_sitereports_views)
 router.register(r'siteroles', myapp_siteroles_views)
 router.register(r'sitestatus', myapp_sitestatus_views)
 router.register(r'sitetools', myapp_sitetools_views)
+router.register(r'trips', TripViewSet, base_name='trips')
 router.register(r'machinery_types', myapp_machinery_types_views)
 router.register(r'surveys', myapp_surveys_views)
 router.register(r'notifications', myapp_notifications_views)
