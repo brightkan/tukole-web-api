@@ -1,9 +1,9 @@
-from django_filters.rest_framework import DjangoFilterBackend		
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import ModelViewSet
 
-from api.models.sitefleets import Sitefleet
-from api.serializers.sitefleets import SitefleetSerializer
+from api.models.sitefleets import Sitefleet, UserSiteFleet
+from api.serializers.sitefleets import SitefleetSerializer, UserSitefleetSerializer
 
 
 class SitefleetViewSet(ModelViewSet):
@@ -11,6 +11,12 @@ class SitefleetViewSet(ModelViewSet):
     serializer_class = SitefleetSerializer
     queryset = Sitefleet.objects.all()
     filter_backends = (DjangoFilterBackend,)
-    filter_fields = ('site','fleet')
+    filter_fields = ('site', 'fleet')
 
 
+class UserSitefleetViewSet(ModelViewSet):
+    permission_classes = (IsAuthenticated,)
+    serializer_class = UserSitefleetSerializer
+    queryset = UserSiteFleet.objects.all()
+    filter_backends = (DjangoFilterBackend,)
+    filter_fields = ('user', 'site_fleet')

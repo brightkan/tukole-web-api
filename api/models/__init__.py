@@ -7,6 +7,7 @@ from api.models.sites import Site
 from api.models.tools_types import ToolType
 from api.models.challenges import Challenge
 from api.models.trips import Trip
+from api.models.sitefleets import UserSiteFleet
 
 __all__ = [
     'Workspace',
@@ -17,5 +18,7 @@ __all__ = [
     'Material',
     'ToolType',
     'Challenge',
-    'Trip'
+    'Trip',
+    'UserSiteFleet'
+
 ]

@@ -10,7 +10,7 @@ from api.views.machinery_types import MachineryTypeViewset as myapp_machinery_ty
 from api.views.materials import MaterialViewSet
 from api.views.notifications import NotificationViewset as myapp_notifications_views
 from api.views.siteboqs import SiteboqViewSet as myapp_siteboqs_views
-from api.views.sitefleets import SitefleetViewSet as myapp_sitefleets_views
+from api.views.sitefleets import SitefleetViewSet as myapp_sitefleets_views, UserSitefleetViewSet
 from api.views.sitemachines import SiteMachinesViewSet as myapp_sitemachines_views
 from api.views.sitereports import SitereportViewSet as myapp_sitereports_views
 from api.views.siteroles import SiteroleViewSet as myapp_siteroles_views
@@ -44,6 +44,7 @@ router.register(r'tools', myapp_tools_views)
 router.register(r'sites', myapp_sites_views)
 router.register(r'siteboqs', myapp_siteboqs_views)
 router.register(r'sitefleets', myapp_sitefleets_views)
+router.register(r'usersitefleets', UserSitefleetViewSet,base_name="user-site-fleet")
 router.register(r'sitereports', myapp_sitereports_views)
 router.register(r'siteroles', myapp_siteroles_views)
 router.register(r'sitestatus', myapp_sitestatus_views)
