@@ -1,6 +1,7 @@
 from django.db import models
 from model_utils.models import TimeStampedModel
 
+from api.models import User
 from api.models.fleets import Fleet
 from api.models.sites import Site
 
@@ -13,7 +14,7 @@ class Sitefleet(TimeStampedModel):
 
 
 class UserSiteFleet(TimeStampedModel):
-    user = models.ForeignKey(Site, on_delete=models.CASCADE, null=True, blank=True, related_name="driver_site_fleet")
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, related_name="driver_site_fleet")
     site_fleet = models.ForeignKey(Sitefleet, on_delete=models.CASCADE, null=True, blank=True,
                                    related_name="site_driver_site_fleet")
 
