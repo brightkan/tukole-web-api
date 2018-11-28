@@ -66,7 +66,7 @@ class UserViewSet(ModelViewSet):
         value = signer.sign(email)
         ttl = value.split(":")
         token = ('%s%s' % (ttl[1], ttl[2]))
-        email_activation_, created = UserEmailActivation.objects.get_or_create(email=email, defaults={'token': token})
+        email_activation_, created = UserEmailActivation.objects.get_or_create(email=email, token=token)
         user_workspace, created = UserWorkSpace.objects.get_or_create(
             workspace_id=workspace,
             user_id=user.id
