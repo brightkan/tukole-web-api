@@ -3,6 +3,7 @@ from rest_framework import routers
 from rest_framework_swagger.views import get_swagger_view
 
 from api.views.challenge import ChallengeViewset
+from api.views.comment import CommentViewSet
 from api.views.fleet_types import Fleet_typesViewset as myapp_fleet_types_views
 from api.views.fleets import FleetViewset as myapp_fleets_views
 from api.views.machinery import MachineryViewset as myapp_machinerys_views
@@ -34,6 +35,7 @@ router = routers.DefaultRouter()
 router.register(r'challenges', ChallengeViewset, base_name='challenges')
 router.register(r'users', UserViewSet, base_name='users')
 router.register(r'materials', MaterialViewSet, base_name='materials')
+router.register(r'comments', CommentViewSet, base_name='comments')
 router.register(r'workspaces', myapp_workspaces_views)
 router.register(r'userworkspaces', UserWorkSpaceViewSet, base_name='user_workspaces')
 router.register(r'fleet_types', myapp_fleet_types_views)
@@ -44,7 +46,7 @@ router.register(r'tools', myapp_tools_views)
 router.register(r'sites', myapp_sites_views)
 router.register(r'siteboqs', myapp_siteboqs_views)
 router.register(r'sitefleets', myapp_sitefleets_views)
-router.register(r'usersitefleets', UserSitefleetViewSet,base_name="user-site-fleet")
+router.register(r'usersitefleets', UserSitefleetViewSet, base_name="user-site-fleet")
 router.register(r'sitereports', myapp_sitereports_views)
 router.register(r'siteroles', myapp_siteroles_views)
 router.register(r'sitestatus', myapp_sitestatus_views)

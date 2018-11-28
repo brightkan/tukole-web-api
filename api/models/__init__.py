@@ -8,6 +8,7 @@ from api.models.tools_types import ToolType
 from api.models.challenges import Challenge
 from api.models.trips import Trip
 from api.models.sitefleets import UserSiteFleet
+from api.models.comments import Comment
 
 __all__ = [
     'Workspace',
@@ -19,6 +20,6 @@ __all__ = [
     'ToolType',
     'Challenge',
     'Trip',
-    'UserSiteFleet'
-
+    'UserSiteFleet',
+    'Comment'
 ]
