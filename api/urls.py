@@ -4,6 +4,7 @@ from rest_framework_swagger.views import get_swagger_view
 
 from api.views.challenge import ChallengeViewset
 from api.views.comment import CommentViewSet
+from api.views.distance import TrenchedDistanceViewSet
 from api.views.fleet_types import Fleet_typesViewset as myapp_fleet_types_views
 from api.views.fleets import FleetViewset as myapp_fleets_views
 from api.views.machinery import MachineryViewset as myapp_machinerys_views
@@ -59,6 +60,7 @@ router.register(r'machinery_types', myapp_machinery_types_views)
 router.register(r'manholes', ManHoleViewSet, base_name="man-holes")
 router.register(r'roadcrossing', RoadCrossingViewSet, base_name="road-crossing")
 router.register(r'reinstallation', ReInstallationViewSet, base_name="reinstallation")
+router.register(r'distance/trenched', TrenchedDistanceViewSet, base_name="distance-trenched")
 router.register(r'surveys', myapp_surveys_views)
 router.register(r'notifications', myapp_notifications_views)
 router.register(r'warehousematerials', myapp_warehousematerials_views)

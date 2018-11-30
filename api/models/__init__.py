@@ -11,6 +11,7 @@ from api.models.sitefleets import UserSiteFleet
 from api.models.comments import Comment
 from api.models.manholes import ManHole
 from api.models.roadcrossing import RoadCrossing
+from api.models.distance import TrenchedDistance
 
 __all__ = [
     'Workspace',
@@ -25,5 +26,6 @@ __all__ = [
     'UserSiteFleet',
     'Comment',
     'ManHole',
-    'RoadCrossing'
+    'RoadCrossing',
+    'TrenchedDistance'
 ]
