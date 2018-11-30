@@ -11,6 +11,7 @@ from api.views.machinery_types import MachineryTypeViewset as myapp_machinery_ty
 from api.views.manholes import ManHoleViewSet
 from api.views.materials import MaterialViewSet
 from api.views.notifications import NotificationViewset as myapp_notifications_views
+from api.views.roadcrossing import RoadCrossingViewSet
 from api.views.siteboqs import SiteboqViewSet as myapp_siteboqs_views
 from api.views.sitefleets import SitefleetViewSet as myapp_sitefleets_views, UserSitefleetViewSet
 from api.views.sitemachines import SiteMachinesViewSet as myapp_sitemachines_views
@@ -55,6 +56,7 @@ router.register(r'sitetools', myapp_sitetools_views)
 router.register(r'trips', TripViewSet, base_name='trips')
 router.register(r'machinery_types', myapp_machinery_types_views)
 router.register(r'manholes', ManHoleViewSet, base_name="man-holes")
+router.register(r'roadcrossing', RoadCrossingViewSet, base_name="road-crossing")
 router.register(r'surveys', myapp_surveys_views)
 router.register(r'notifications', myapp_notifications_views)
 router.register(r'warehousematerials', myapp_warehousematerials_views)

@@ -10,6 +10,7 @@ from api.models.trips import Trip
 from api.models.sitefleets import UserSiteFleet
 from api.models.comments import Comment
 from api.models.manholes import ManHole
+from api.models.roadcrossing import RoadCrossing
 
 __all__ = [
     'Workspace',
@@ -23,5 +24,6 @@ __all__ = [
     'Trip',
     'UserSiteFleet',
     'Comment',
-    'ManHole'
+    'ManHole',
+    'RoadCrossing'
 ]
