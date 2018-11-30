@@ -9,6 +9,7 @@ from api.models.challenges import Challenge
 from api.models.trips import Trip
 from api.models.sitefleets import UserSiteFleet
 from api.models.comments import Comment
+from api.models.manholes import ManHole
 
 __all__ = [
     'Workspace',
@@ -21,5 +22,6 @@ __all__ = [
     'Challenge',
     'Trip',
     'UserSiteFleet',
-    'Comment'
+    'Comment',
+    'ManHole'
 ]
