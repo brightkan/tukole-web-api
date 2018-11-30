@@ -12,6 +12,7 @@ from api.models.comments import Comment
 from api.models.manholes import ManHole
 from api.models.roadcrossing import RoadCrossing
 from api.models.distance import TrenchedDistance
+from api.models.cost import Cost
 
 __all__ = [
     'Workspace',
@@ -27,5 +28,6 @@ __all__ = [
     'Comment',
     'ManHole',
     'RoadCrossing',
-    'TrenchedDistance'
+    'TrenchedDistance',
+    'Cost'
 ]
