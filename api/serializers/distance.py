@@ -6,4 +6,4 @@ from api.models.distance import TrenchedDistance
 class TrenchedDistanceSerializer(serializers.ModelSerializer):
     class Meta:
         model = TrenchedDistance
-        fields = ('id', 'site', 'user', 'distance', 'depth')
+        fields = ('id', 'site', 'user', 'distance', 'depth', 'created')
