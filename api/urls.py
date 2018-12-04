@@ -8,6 +8,7 @@ from api.views.cost import CostViewSet
 from api.views.distance import TrenchedDistanceViewSet
 from api.views.fleet_types import Fleet_typesViewset as myapp_fleet_types_views
 from api.views.fleets import FleetViewset as myapp_fleets_views
+from api.views.incidents import IncidentViewSet
 from api.views.machinery import MachineryViewset as myapp_machinerys_views
 from api.views.machinery_types import MachineryTypeViewset as myapp_machinery_types_views
 from api.views.manholes import ManHoleViewSet
@@ -63,6 +64,7 @@ router.register(r'manholes', ManHoleViewSet, base_name="man-holes")
 router.register(r'roadcrossing', RoadCrossingViewSet, base_name="road-crossing")
 router.register(r'reinstallation', ReInstallationViewSet, base_name="reinstallation")
 router.register(r'distance/trenched', TrenchedDistanceViewSet, base_name="distance-trenched")
+router.register(r'incidents', IncidentViewSet, base_name="site-incident")
 router.register(r'surveys', myapp_surveys_views)
 router.register(r'notifications', myapp_notifications_views)
 router.register(r'warehousematerials', myapp_warehousematerials_views)

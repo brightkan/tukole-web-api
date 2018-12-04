@@ -109,3 +109,6 @@ class UserWorkSpace(TimeStampedModel):
 
     class Meta:
         unique_together = ('user', 'workspace',)
+
+    def __str__(self):
+        return "%s %s" % (self.user, self.workspace)

@@ -13,6 +13,7 @@ from api.models.manholes import ManHole
 from api.models.roadcrossing import RoadCrossing
 from api.models.distance import TrenchedDistance
 from api.models.cost import Cost
+from api.models.incidents import Incident
 
 __all__ = [
     'Workspace',
@@ -29,5 +30,6 @@ __all__ = [
     'ManHole',
     'RoadCrossing',
     'TrenchedDistance',
-    'Cost'
+    'Cost',
+    'Incident'
 ]
