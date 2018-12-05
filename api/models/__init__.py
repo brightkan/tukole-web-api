@@ -9,7 +9,7 @@ from api.models.challenges import Challenge
 from api.models.trips import Trip
 from api.models.sitefleets import UserSiteFleet
 from api.models.comments import Comment
-from api.models.manholes import ManHole
+from api.models.manholes import ManHole, ManHoleDuration
 from api.models.roadcrossing import RoadCrossing
 from api.models.distance import TrenchedDistance
 from api.models.cost import Cost
@@ -31,5 +31,6 @@ __all__ = [
     'RoadCrossing',
     'TrenchedDistance',
     'Cost',
-    'Incident'
+    'Incident',
+    'ManHoleDuration'
 ]
