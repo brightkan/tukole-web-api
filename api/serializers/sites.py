@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from api.models.sites import Site
+from api.models.sites import Site, SiteImage
 
 
 class SiteSerializer(serializers.ModelSerializer):
@@ -12,3 +12,9 @@ class SiteSerializer(serializers.ModelSerializer):
             'current_stage', 'archivedStatus', 'workspace', 'surveyor', 'ackStatus', 'ack_user',
             'ack_date', 'survay_time', 'created', 'modified'
         )
+
+
+class SiteImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = SiteImage
+        fields = ('id', 'site', 'image', 'status', 'created', 'modified')

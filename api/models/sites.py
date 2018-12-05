@@ -40,3 +40,13 @@ class Site(TimeStampedModel):
             print(note)
             p = Notification(user=clientId, notification=note)
             p.save()
+
+
+class SiteImage(TimeStampedModel):
+    status_choices = (
+        ('before', 'before'),
+        ('after', 'after'),
+    )
+    site = models.ForeignKey(to=Site, on_delete=models.CASCADE)
+    image = models.FileField(upload_to="siteimages")
+    status = models.CharField(choices=status_choices, max_length=255)

@@ -4,8 +4,8 @@ from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
 
 from api.models.notifications import Notification
-from api.models.sites import Site
-from api.serializers.sites import SiteSerializer
+from api.models.sites import Site, SiteImage
+from api.serializers.sites import SiteSerializer, SiteImageSerializer
 
 
 # Create your views here. user=Site.clientId,
@@ -21,3 +21,11 @@ class SitesViewset(viewsets.ModelViewSet):
         user = Site.objects.get(id=kwargs['user_id'])
         p = Notification(notification=user)
         p.save()
+
+
+class SiteImageViewSet(viewsets.ModelViewSet):
+    permission_classes = (IsAuthenticated,)
+    queryset = SiteImage.objects.all()
+    serializer_class = SiteImageSerializer
+    filter_backends = (DjangoFilterBackend,)
+    filter_fields = ('site',)
