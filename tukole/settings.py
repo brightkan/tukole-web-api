@@ -171,6 +171,9 @@ STATIC_URL = '/djstatic/'
 
 STATIC_ROOT = "%s/assets" % (BASE_DIR)
 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
 try:
     from tukole.local_settings import *
 except ImportError:
