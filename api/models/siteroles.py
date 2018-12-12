@@ -21,9 +21,9 @@ class Siterole(TimeStampedModel):
 
     )
 
-    site = models.ForeignKey(Site, on_delete=models.CASCADE, null=True, blank=True, related_name="siteroles_site")
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, related_name="siteroles_user")
-    role = models.CharField(max_length=150, choices=role_choices, null=True, blank=True)
+    site = models.ForeignKey(Site, on_delete=models.CASCADE, related_name="siteroles_site")
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="siteroles_user")
+    role = models.CharField(max_length=150, choices=role_choices)
 
     def save(self, *args, **kwargs):
         site = self.site
