@@ -80,6 +80,7 @@ class User(AbstractEmailUser, TimeStampedModel):
         ('surveyor', 'Surveyor'),
         ('project_manager', 'Project Manager'),
         ('fleet_manager', 'Fleet Manager'),
+        ('mechanic', 'Mechanic'),
 
     )
     type = models.CharField(max_length=150, choices=user_types)

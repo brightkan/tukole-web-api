@@ -18,6 +18,7 @@ class Siterole(TimeStampedModel):
         ('surveyor', 'Surveyor'),
         ('project_manager', 'Project Manager'),
         ('fleet_manager', 'Fleet Manager'),
+        ('mechanic', 'Mechanic'),
 
     )
 
