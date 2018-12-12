@@ -4,6 +4,7 @@ from django.contrib import admin
 from api.models import User, Fleet, Machinery, ToolType, Site, Workspace, Material
 from api.models.fleet_types import FleetType
 from api.models.siteboqs import Siteboq
+from api.models.siteroles import Siterole
 from api.models.tools import Tool
 from api.models.users import UserEmailActivation, UserWorkSpace
 
@@ -19,3 +20,4 @@ admin.site.register(Workspace)
 admin.site.register(Siteboq)
 admin.site.register(Material)
 admin.site.register(UserWorkSpace)
+admin.site.register(Siterole)
