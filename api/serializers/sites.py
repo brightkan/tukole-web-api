@@ -19,10 +19,9 @@ class SiteUserRoleSerializer(serializers.ModelSerializer):
     user_role = serializers.SerializerMethodField()
 
     def get_user_role(self, obj):
-        request = getattr(self.context, 'request', None)
-        if request:
-            user = request.user
-            site_role = Siterole.objects.filter(user=user, site=obj).first()
+        user = self.context.get('user', None)
+        if user:
+            site_role = Siterole.objects.filter(user_id=user, site=obj).first()
             if site_role:
                 return site_role.role
         else:

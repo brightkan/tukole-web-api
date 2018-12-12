@@ -46,9 +46,6 @@ class UserViewSet(ModelViewSet):
     filter_class = UserFilter
     filter_backends = (DjangoFilterBackend,)
 
-    def get_serializer_context(self):
-        return {'request': self.request}
-
     @action(methods=['post'], detail=False, url_path='invite', url_name="invite-members",
             serializer_class=SimpleInviteUserSerializer)
     def invite_members(self, request):
@@ -113,7 +110,7 @@ class UserViewSet(ModelViewSet):
             users_sites_id = Siterole.objects.filter(user=user).values_list('site', flat=True)
             sites = Site.objects.filter(id__in=users_sites_id)
 
-            data = SiteUserRoleSerializer(sites, many=True).data
+            data = SiteUserRoleSerializer(sites, context={'user': user.id}, many=True).data
         else:
             data = {"error": "User is not attached to any site"}
         return Response(data=data, status=HTTP_200_OK)
