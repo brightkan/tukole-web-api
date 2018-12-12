@@ -28,4 +28,4 @@ class SiteImageViewSet(viewsets.ModelViewSet):
     queryset = SiteImage.objects.all()
     serializer_class = SiteImageSerializer
     filter_backends = (DjangoFilterBackend,)
-    filter_fields = ('site',)
+    filter_fields = ('site','status')
