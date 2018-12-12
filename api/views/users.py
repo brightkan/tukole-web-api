@@ -12,7 +12,7 @@ from rest_framework.viewsets import ModelViewSet
 from api.models import User, Site
 from api.models.siteroles import Siterole
 from api.models.users import UserEmailActivation, UserWorkSpace
-from api.serializers.sites import SiteSerializer
+from api.serializers.sites import SiteUserRoleSerializer
 from api.serializers.users import UserSerializer, SimpleInviteUserSerializer, AcceptUserSerializer
 from api.tasks import send_invite_email
 
@@ -109,7 +109,7 @@ class UserViewSet(ModelViewSet):
         if user:
             users_sites_id = Siterole.objects.filter(user=user).values_list('site', flat=True)
             sites = Site.objects.filter(id__in=users_sites_id)
-            data = SiteSerializer(sites, many=True).data
+            data = SiteUserRoleSerializer(sites, many=True).data
         else:
             data = {"error": "User is not attached to any site"}
         return Response(data=data, status=HTTP_200_OK)
