@@ -14,6 +14,7 @@ from api.models.roadcrossing import RoadCrossing
 from api.models.distance import TrenchedDistance
 from api.models.cost import Cost
 from api.models.incidents import Incident
+from api.models.repairs import RepairHistory
 
 __all__ = [
     'Workspace',
@@ -34,6 +35,7 @@ __all__ = [
     'Incident',
     'ManHoleDuration',
     'SiteImage',
-    'SiteDocument'
-    'SitePIP'
+    'SiteDocument',
+    'SitePIP',
+    'RepairHistory'
 ]

@@ -15,6 +15,7 @@ from api.views.manholes import ManHoleViewSet
 from api.views.materials import MaterialViewSet
 from api.views.notifications import NotificationViewset as myapp_notifications_views
 from api.views.reinstallation import ReInstallationViewSet
+from api.views.repairs import RepairHistoryViewSet
 from api.views.roadcrossing import RoadCrossingViewSet
 from api.views.siteboqs import SiteboqViewSet as myapp_siteboqs_views
 from api.views.sitefleets import SitefleetViewSet as myapp_sitefleets_views, UserSitefleetViewSet
@@ -66,6 +67,7 @@ router.register(r'machinery_types', myapp_machinery_types_views)
 router.register(r'manholes', ManHoleViewSet, base_name="man-holes")
 router.register(r'roadcrossing', RoadCrossingViewSet, base_name="road-crossing")
 router.register(r'reinstallation', ReInstallationViewSet, base_name="reinstallation")
+router.register(r'repairhistory', RepairHistoryViewSet, base_name="repair-history")
 router.register(r'distance/trenched', TrenchedDistanceViewSet, base_name="distance-trenched")
 router.register(r'incidents', IncidentViewSet, base_name="site-incident")
 router.register(r'surveys', myapp_surveys_views)
