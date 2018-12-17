@@ -21,7 +21,7 @@ from api.views.sitefleets import SitefleetViewSet as myapp_sitefleets_views, Use
 from api.views.sitemachines import SiteMachinesViewSet as myapp_sitemachines_views
 from api.views.sitereports import SitereportViewSet as myapp_sitereports_views
 from api.views.siteroles import SiteroleViewSet as myapp_siteroles_views
-from api.views.sites import SitesViewset as myapp_sites_views, SiteImageViewSet
+from api.views.sites import SitesViewset as myapp_sites_views, SiteImageViewSet, SiteDocumentViewSet
 from api.views.sitestatuses import SitestatusViewSet as myapp_sitestatus_views
 from api.views.sitetools import SitetoolViewSet as myapp_sitetools_views
 from api.views.survey_result_comments import SurveyResultCommentViewSet as myapp_survey_result_comments_views
@@ -52,6 +52,7 @@ router.register(r'tools_types', myapp_tools_types_views)
 router.register(r'tools', myapp_tools_views)
 router.register(r'sites', myapp_sites_views)
 router.register(r'sitesimages', SiteImageViewSet, base_name='site-images')
+router.register(r'sitesdocuments', SiteDocumentViewSet, base_name='site-document')
 router.register(r'siteboqs', myapp_siteboqs_views)
 router.register(r'sitefleets', myapp_sitefleets_views)
 router.register(r'usersitefleets', UserSitefleetViewSet, base_name="user-site-fleet")

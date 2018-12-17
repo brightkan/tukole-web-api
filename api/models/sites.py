@@ -50,3 +50,9 @@ class SiteImage(TimeStampedModel):
     site = models.ForeignKey(to=Site, on_delete=models.CASCADE)
     image = models.FileField(upload_to="siteimages")
     status = models.CharField(choices=status_choices, max_length=255)
+
+
+class SiteDocument(TimeStampedModel):
+    site = models.ForeignKey(to=Site, on_delete=models.CASCADE)
+    file = models.FileField(upload_to="siteimages")
+    title = models.CharField(max_length=255, null=True, blank=True)
