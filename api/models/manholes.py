@@ -13,3 +13,8 @@ class ManHoleDuration(TimeStampedModel):
     manhole = models.ForeignKey(to=ManHole, on_delete=models.CASCADE)
     duration = models.IntegerField()
     user = models.ForeignKey(to=User, on_delete=models.CASCADE)
+
+
+class ManHoleAssignment(TimeStampedModel):
+    user = models.ForeignKey(to=User, on_delete=models.CASCADE)
+    manhole = models.ForeignKey(to=ManHole, on_delete=models.CASCADE)

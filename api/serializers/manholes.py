@@ -13,3 +13,8 @@ class ManHoleLoginSerializer(serializers.Serializer):
     manhole = serializers.CharField()
     duration = serializers.CharField()
     user = serializers.CharField()
+
+
+class ManHoleAssignmentSerializer(serializers.Serializer):
+    user = serializers.CharField()
+    manhole = serializers.CharField()

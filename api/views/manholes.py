@@ -5,8 +5,8 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.status import HTTP_200_OK
 
-from api.models import ManHole, User
-from api.serializers.manholes import ManHoleSerializer, ManHoleLoginSerializer
+from api.models import ManHole, User, ManHoleAssignment
+from api.serializers.manholes import ManHoleSerializer, ManHoleLoginSerializer, ManHoleAssignmentSerializer
 
 
 class ManHoleViewSet(viewsets.ModelViewSet):
@@ -33,4 +33,17 @@ class ManHoleViewSet(viewsets.ModelViewSet):
             data = ManHoleLoginSerializer(manhole=manhole_, duration=duration, user_=user).data
         else:
             data = {"error": "Error logging into manhole", "status": False}
+        return Response(data=data, status=HTTP_200_OK)
+
+    @action(methods=['post'], detail=True, url_path='assign', url_name="assign",
+            serializer_class=ManHoleAssignmentSerializer)
+    def manhole_assign(self, request, pk):
+        user_ = request.data['user']
+        manhole_ = request.data['manhole']
+        manhole_assignment = ManHoleAssignment.objects.create(user_id=user_, manhole_id=manhole_)
+        data = {
+            "user": manhole_assignment.user.id,
+            "manhole": manhole_assignment.manhole.id,
+
+        }
         return Response(data=data, status=HTTP_200_OK)
