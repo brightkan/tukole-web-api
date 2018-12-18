@@ -1,3 +1,5 @@
+from datetime import date, timedelta
+
 from django_filters import rest_framework as filters
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import viewsets
@@ -7,7 +9,8 @@ from rest_framework.response import Response
 from rest_framework.status import HTTP_200_OK
 
 from api.models import ManHole, User, ManHoleAssignment
-from api.serializers.manholes import ManHoleSerializer, ManHoleLoginSerializer, ManHoleAssignmentSerializer
+from api.serializers.manholes import ManHoleSerializer, ManHoleLoginSerializer, ManHoleAssignmentSerializer, \
+    ManHoleCreateAssignmentSerializer
 
 
 class ManHoleFilter(filters.FilterSet):
@@ -50,7 +53,7 @@ class ManHoleViewSet(viewsets.ModelViewSet):
         return Response(data=data, status=HTTP_200_OK)
 
     @action(methods=['post'], detail=True, url_path='assign', url_name="assign",
-            serializer_class=ManHoleAssignmentSerializer)
+            serializer_class=ManHoleCreateAssignmentSerializer)
     def manhole_assign(self, request, pk):
         user_ = request.data['user']
         manhole_ = request.data['manhole']
@@ -61,3 +64,17 @@ class ManHoleViewSet(viewsets.ModelViewSet):
 
         }
         return Response(data=data, status=HTTP_200_OK)
+
+
+class ManHoleAssignmentViewSet(viewsets.ModelViewSet):
+    permission_classes = (IsAuthenticated,)
+    queryset = ManHoleAssignment.objects.all()
+    serializer_class = ManHoleAssignmentSerializer
+    filter_backends = (DjangoFilterBackend,)
+    filter_fields = ('user', 'manhole')
+
+    def get_queryset(self):
+        today = date.today()
+        manhole_today = ManHoleAssignment.objects.filter(created__year=today.year, created__month=today.month,
+                                                         created__day=today.day)
+        return manhole_today

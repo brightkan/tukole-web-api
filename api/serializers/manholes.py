@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from api.models import ManHole
+from api.models import ManHole, ManHoleAssignment
 
 
 class ManHoleSerializer(serializers.ModelSerializer):
@@ -15,6 +15,12 @@ class ManHoleLoginSerializer(serializers.Serializer):
     user = serializers.CharField()
 
 
-class ManHoleAssignmentSerializer(serializers.Serializer):
+class ManHoleCreateAssignmentSerializer(serializers.Serializer):
     user = serializers.CharField()
     manhole = serializers.CharField()
+
+
+class ManHoleAssignmentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ManHoleAssignment
+        fields = ('id', 'user', 'manhole', 'created')
