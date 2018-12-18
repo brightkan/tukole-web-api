@@ -1,3 +1,4 @@
+from django_filters import rest_framework as filters
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import viewsets
 from rest_framework.decorators import action
@@ -9,12 +10,25 @@ from api.models import ManHole, User, ManHoleAssignment
 from api.serializers.manholes import ManHoleSerializer, ManHoleLoginSerializer, ManHoleAssignmentSerializer
 
 
+class ManHoleFilter(filters.FilterSet):
+    user = filters.NumberFilter(method='filter_user_manhole')
+
+    class Meta:
+        model = ManHole
+        fields = ['user', 'site', 'number']
+
+    def filter_user_manhole(self, queryset, name, value):
+        manhole_ids = ManHoleAssignment.objects.filter(user=value).values_list('manhole_id', flat=True)
+        manholes = ManHole.objects.filter(id__in=manhole_ids)
+        return manholes
+
+
 class ManHoleViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticated,)
     queryset = ManHole.objects.all()
     serializer_class = ManHoleSerializer
     filter_backends = (DjangoFilterBackend,)
-    filter_fields = ('site', 'number')
+    filter_class = ManHoleFilter
 
     @action(methods=['post'], detail=True, url_path='login', url_name="login",
             serializer_class=ManHoleLoginSerializer)
