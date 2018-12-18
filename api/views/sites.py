@@ -4,7 +4,7 @@ from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
 
 from api.models.notifications import Notification
-from api.models.sites import Site, SiteImage, SitePIP
+from api.models.sites import Site, SiteImage, SitePIP, SiteDocument
 from api.serializers.sites import SiteSerializer, SiteImageSerializer, SiteDocumentSerializer, SitePIPSerializer
 
 
@@ -33,7 +33,7 @@ class SiteImageViewSet(viewsets.ModelViewSet):
 
 class SiteDocumentViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticated,)
-    queryset = SiteImage.objects.all()
+    queryset = SiteDocument.objects.all()
     serializer_class = SiteDocumentSerializer
     filter_backends = (DjangoFilterBackend,)
     filter_fields = ('site',)
