@@ -11,7 +11,8 @@ class ManHoleSerializer(serializers.ModelSerializer):
 
 class ManHoleLoginSerializer(serializers.Serializer):
     manhole = serializers.CharField()
-    duration = serializers.CharField()
+    start_time = serializers.DateTimeField()
+    end_time = serializers.DateTimeField()
     user = serializers.CharField()
 
 
