@@ -57,7 +57,7 @@ class UserViewSet(ModelViewSet):
         phone_number = request.data['phone_number']
         type = request.data['type']
         role = request.data['role']
-        user, created = User.objects.get_or_create(email=email,
+        user, created = User.objects.get_or_create(email=email, workspace_id=workspace,
                                                    defaults={'first_name': first_name, 'last_name': last_name,
                                                              'type': type, 'contract_type': contract_type,
                                                              'phone_number': phone_number, 'role': role})

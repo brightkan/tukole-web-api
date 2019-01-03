@@ -31,7 +31,8 @@ class MyUserManager(BaseUserManager):
 
 
 class AbstractEmailUser(AbstractBaseUser, PermissionsMixin):
-    email = models.EmailField(unique=True, null=True)
+    email = models.EmailField(null=True)
+    workspace = models.ForeignKey(to=Workspace, null=True, on_delete=models.CASCADE)
     is_staff = models.BooleanField(
         _('staff status'),
         default=False,
@@ -45,7 +46,7 @@ class AbstractEmailUser(AbstractBaseUser, PermissionsMixin):
             'Unselect this instead of deleting accounts.'
         ),
     )
-    USERNAME_FIELD = 'email'
+    USERNAME_FIELD = 'id'
     objects = MyUserManager()
 
     def __str__(self):
@@ -56,6 +57,9 @@ class AbstractEmailUser(AbstractBaseUser, PermissionsMixin):
 
     def get_short_name(self):
         return str(self.email)
+
+    class Meta:
+        unique_together = ('email', 'workspace',)
 
 
 class User(AbstractEmailUser, TimeStampedModel):
