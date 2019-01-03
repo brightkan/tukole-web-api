@@ -31,7 +31,7 @@ class UserSerializer(ModelSerializer):
     class Meta:
         model = User
         fields = ('id', 'first_name', 'last_name', 'email', 'type', 'contract_type', 'role',
-                  'phone_number', 'workspace', 'password', 'user_workspace')
+                  'phone_number', 'workspace', 'password', 'user_workspace', 'created')
 
 
 class SimpleInviteUserSerializer(ModelSerializer):
