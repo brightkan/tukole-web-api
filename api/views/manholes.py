@@ -81,3 +81,10 @@ class ManHoleAssignmentViewSet(viewsets.ModelViewSet):
         manhole_today = ManHoleAssignment.objects.filter(created__year=today.year, created__month=today.month,
                                                          created__day=today.day)
         return manhole_today
+
+    @action(methods=['get'], detail=False, url_path='all', url_name="all",
+            serializer_class=ManHoleCreateAssignmentSerializer)
+    def all_manhole_assignments(self, request):
+        manholes_today = ManHoleAssignment.objects.all()
+        data = ManHoleAssignmentSerializer(manholes_today, many=True).data
+        return Response(data=data, status=HTTP_200_OK)
