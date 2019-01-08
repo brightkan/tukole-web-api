@@ -4,7 +4,16 @@
   template: src=tukole.service.j2 dest=/etc/systemd/system/tukole.service
   become_user: root
 
+- name: adding service to tukole celery beat
+  template: src=tukole.service.j2 dest=/etc/systemd/system/tukole-celery-beat.service
+  become_user: root
+
 - name: start tukole service
   systemd:
     state: restarted
     name: tukole
+
+- name: start tukole service
+  systemd:
+    state: restarted
+    name: tukole-celery-beat

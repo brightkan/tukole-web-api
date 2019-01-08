@@ -29,6 +29,7 @@ class Site(TimeStampedModel):
     ack_date = models.DateField(null=True)
     survay_time = models.TimeField(null=True)
     can_client_view_survey_reports = models.BooleanField(default=False)
+    email_remainder_sent = models.BooleanField(default=False)
 
     def save(self, *args, **kwargs):
         clientId = self.clientId

@@ -1,0 +1,13 @@
+[Unit]
+Description=Celery for background tasks
+After=network.target
+
+
+[Service]
+User=tukole
+WorkingDirectory=/home/tukole/app/tukole
+Environment="PATH=/home/tukole/app/tukole/.venv/bin"
+ExecStart=/home/tukole/app/tukole/.venv/bin/celery -A tukole beat -l info
+
+[Install]
+WantedBy=multi-user.target
