@@ -1,4 +1,3 @@
-	
 # Create your views here.
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import viewsets
@@ -15,5 +14,7 @@ class SurveyViewset(viewsets.ModelViewSet):
     queryset = Survey.objects.all()
     serializer_class = SurveySerializer
     filter_backends = (DjangoFilterBackend,)
-    filter_fields = ('creator','surveyor','ack_user')
+    filter_fields = ('creator', 'surveyor', 'ack_user')
+
+
 

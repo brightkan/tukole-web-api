@@ -1,9 +1,11 @@
+from datetime import timedelta, datetime
+
 import sendgrid
 from celery import shared_task
 from django.template.loader import get_template
 from sendgrid.helpers.mail import *
 
-from api.models import User, Workspace
+from api.models import User, Workspace, Site
 from tukole.settings import SENDGRID_API_KEY, SERVER_URL
 
 
@@ -37,3 +39,5 @@ def send_invite_email(receiver_user_id, token, sender_user_id, workspace):
     print(response.status_code)
     print(response.body)
     print(response.headers)
+
+
