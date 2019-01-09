@@ -30,6 +30,9 @@ class Site(TimeStampedModel):
     survay_time = models.TimeField(null=True)
     can_client_view_survey_reports = models.BooleanField(default=False)
     email_remainder_sent = models.BooleanField(default=False)
+    site_contact_person = models.CharField(null=True, blank=True, max_length=150)
+    site_contact_phone_number = models.IntegerField(null=True, blank=True)
+    site_location = models.CharField(null=True, blank=True, max_length=150)
 
     def save(self, *args, **kwargs):
         clientId = self.clientId
