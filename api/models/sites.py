@@ -13,6 +13,7 @@ class Site(TimeStampedModel):
     site_deleted = models.BooleanField(default=False, null=True)
     site_accessible = models.BooleanField(default=False, null=True)
     site_surveyed = models.BooleanField(default=False, null=True)
+    site_accepted = models.BooleanField(default=False, null=True)
     location_lat = models.CharField(max_length=20, null=True)
     location_long = models.CharField(max_length=20, null=True)
     start_date = models.DateField(null=True)
