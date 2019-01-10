@@ -11,6 +11,4 @@ class SitetoolViewSet(ModelViewSet):
     serializer_class = SitetoolSerializer
     queryset = Sitetool.objects.all()
     filter_backends = (DjangoFilterBackend,)
-    filter_fields = ('tool','site','user')
-
-		
+    filter_fields = ('tool', 'site', 'user')

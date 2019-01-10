@@ -15,6 +15,7 @@ from api.models.distance import TrenchedDistance
 from api.models.cost import Cost
 from api.models.incidents import Incident
 from api.models.repairs import RepairHistory
+from api.models.siteworktimes import SiteArrivalTime, SiteWorkStatus, SiteCompletedWorks
 
 __all__ = [
     'Workspace',
@@ -38,5 +39,8 @@ __all__ = [
     'SiteDocument',
     'SitePIP',
     'RepairHistory',
-    'ManHoleAssignment'
+    'ManHoleAssignment',
+    'SiteArrivalTime',
+    'SiteWorkStatus',
+    'SiteCompletedWorks'
 ]
