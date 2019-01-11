@@ -17,6 +17,7 @@ from api.models.incidents import Incident
 from api.models.repairs import RepairHistory
 from api.models.siteworktimes import SiteArrivalTime, SiteWorkStatus, SiteCompletedWorks
 from api.models.fleet_check_list import FleetCheckListItem, FleetCheckList
+from api.models.history import FleetHistory, ToolHistory, MachineHistory
 
 __all__ = [
     'Workspace',
@@ -46,4 +47,7 @@ __all__ = [
     'SiteCompletedWorks',
     'FleetCheckListItem',
     'FleetCheckList',
+    'FleetHistory',
+    'ToolHistory',
+    'MachineHistory',
 ]

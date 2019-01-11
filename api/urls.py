@@ -8,7 +8,7 @@ from api.views.cost import CostViewSet
 from api.views.distance import TrenchedDistanceViewSet
 from api.views.fleet_check_list import FleetCheckListItemViewset, FleetCheckListViewset
 from api.views.fleet_types import Fleet_typesViewset as myapp_fleet_types_views
-from api.views.fleets import FleetViewset as myapp_fleets_views
+from api.views.history import ToolHistoryViewSet, MachineHistoryViewSet, FleetHistoryViewSet
 from api.views.incidents import IncidentViewSet
 from api.views.machinery import MachineryViewset as myapp_machinerys_views
 from api.views.machinery_types import MachineryTypeViewset as myapp_machinery_types_views
@@ -49,6 +49,9 @@ router.register(r'cost', CostViewSet, base_name='cost')
 router.register(r'workspaces', myapp_workspaces_views)
 router.register(r'userworkspaces', UserWorkSpaceViewSet, base_name='user_workspaces')
 router.register(r'fleet_types', myapp_fleet_types_views)
+router.register(r'fleethistory', FleetHistoryViewSet, base_name='fleet-history')
+router.register(r'machinehistory', MachineHistoryViewSet, base_name='machine-history')
+router.register(r'toolhistory', ToolHistoryViewSet, base_name='tool-history')
 router.register(r'fleetchecklist', FleetCheckListViewset, base_name='fleet-check-list')
 router.register(r'fleetchecklistitems', FleetCheckListItemViewset, base_name='fleet-check-list-items')
 router.register(r'machinery', myapp_machinerys_views)
