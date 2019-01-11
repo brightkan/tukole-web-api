@@ -44,13 +44,12 @@ class ManHoleViewSet(viewsets.ModelViewSet):
         manhole = ManHole.objects.filter(id=manhole_).first()
 
         if manhole and user:
-            user = ManHoleDuration.objects.create(
+            manhole_duraation = ManHoleDuration.objects.create(
                 manhole=manhole,
                 start_time=start_time,
                 end_time=end_time,
                 user=user)
-            data = ManHoleLoginSerializer(manhole=manhole_, start_time=start_time,
-                                          end_time=end_time, user_=user).data
+            data = ManHoleLoginSerializer(manhole_duraation).data
         else:
             data = {"error": "Error logging into manhole", "status": False}
         return Response(data=data, status=HTTP_200_OK)

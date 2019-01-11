@@ -9,11 +9,10 @@ class ManHoleSerializer(serializers.ModelSerializer):
         fields = ('id', 'site', 'number', 'created')
 
 
-class ManHoleLoginSerializer(serializers.Serializer):
-    manhole = serializers.CharField()
-    start_time = serializers.DateTimeField()
-    end_time = serializers.DateTimeField()
-    user = serializers.CharField()
+class ManHoleLoginSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ManHoleDuration
+        fields = ('id', 'manhole', 'start_time', 'end_time', 'user', 'created')
 
 
 class ManHoleCreateAssignmentSerializer(serializers.Serializer):
