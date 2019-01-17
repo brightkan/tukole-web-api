@@ -9,7 +9,7 @@ from rest_framework.response import Response
 from rest_framework.status import HTTP_200_OK
 from rest_framework.viewsets import ModelViewSet
 
-from api.models import User, Site
+from api.models import User, Site, Company
 from api.models.siteroles import Siterole
 from api.models.users import UserEmailActivation, UserWorkSpace
 from api.serializers.sites import SiteUserRoleSerializer
@@ -57,11 +57,16 @@ class UserViewSet(ModelViewSet):
         phone_number = request.data['phone_number']
         type = request.data['type']
         role = request.data['role']
+        company = request.data.get('company', None)
         user, created = User.objects.get_or_create(email=email, workspace_id=workspace,
                                                    defaults={'first_name': first_name, 'last_name': last_name,
                                                              'type': type, 'contract_type': contract_type,
                                                              'phone_number': phone_number, 'role': role})
 
+        company_ = Company.objects.filter(id=company).first()
+        if company_:
+            user.company = company_
+            user.save()
         signer = TimestampSigner()
         value = signer.sign(email)
         ttl = value.split(":")
