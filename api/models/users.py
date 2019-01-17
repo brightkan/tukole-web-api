@@ -5,7 +5,7 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from model_utils.models import TimeStampedModel
 
-from api.models import Workspace
+from api.models import Workspace, Company
 
 
 class MyUserManager(BaseUserManager):
@@ -93,6 +93,7 @@ class User(AbstractEmailUser, TimeStampedModel):
     last_name = models.CharField(max_length=255, null=True, blank=True)
     contract_type = models.CharField(max_length=150, choices=contract_type_choices)
     phone_number = models.CharField(max_length=150, null=True, blank=True)
+    company = models.ForeignKey(Company, null=True, blank=True, on_delete=models.CASCADE)
 
     def __str__(self):
         return "%s %s %s" % (self.id, self.first_name, self.last_name)

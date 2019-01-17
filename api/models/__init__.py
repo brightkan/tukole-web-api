@@ -1,6 +1,6 @@
 from api.models.workspaces import Workspace
-from api.models.users import User
 from api.models.company import Company
+from api.models.users import User
 from api.models.fleets import Fleet
 from api.models.machinery import Machinery
 from api.models.materials import Material

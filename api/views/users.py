@@ -22,7 +22,7 @@ class UserFilter(filters.FilterSet):
 
     class Meta:
         model = User
-        fields = ['workspace', ]
+        fields = ['workspace', 'company']
 
     def filter_workspace(self, queryset, name, value):
         user_ids = UserWorkSpace.objects.filter(workspace=value).values_list('user_id', flat=True)

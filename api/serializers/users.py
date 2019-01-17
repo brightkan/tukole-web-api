@@ -31,7 +31,7 @@ class UserSerializer(ModelSerializer):
     class Meta:
         model = User
         fields = ('id', 'first_name', 'last_name', 'email', 'type', 'contract_type', 'role',
-                  'phone_number', 'workspace', 'password', 'user_workspace', 'created')
+                  'phone_number', 'workspace', 'password', 'user_workspace', 'created', 'company')
 
 
 class SimpleInviteUserSerializer(ModelSerializer):
@@ -39,7 +39,8 @@ class SimpleInviteUserSerializer(ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('first_name', 'last_name', 'email', 'type', 'workspace', 'contract_type', 'phone_number', 'role')
+        fields = ('first_name', 'last_name', 'email', 'type', 'workspace', 'contract_type', 'phone_number',
+                  'role', 'company')
 
 
 class AcceptUserSerializer(serializers.Serializer):
