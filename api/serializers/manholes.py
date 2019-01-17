@@ -20,6 +20,10 @@ class ManHoleCreateAssignmentSerializer(serializers.Serializer):
     manhole = serializers.CharField()
 
 
+class ManHoleUserFilterSerializer(serializers.Serializer):
+    user = serializers.CharField()
+
+
 class ManHoleAssignmentSerializer(serializers.ModelSerializer):
     login_time = serializers.SerializerMethodField(read_only=True)
     logout_time = serializers.SerializerMethodField(read_only=True)

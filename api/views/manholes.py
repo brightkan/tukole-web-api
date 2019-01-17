@@ -10,7 +10,7 @@ from rest_framework.status import HTTP_200_OK
 
 from api.models import ManHole, User, ManHoleAssignment, ManHoleDuration
 from api.serializers.manholes import ManHoleSerializer, ManHoleLoginSerializer, ManHoleAssignmentSerializer, \
-    ManHoleCreateAssignmentSerializer
+    ManHoleCreateAssignmentSerializer, ManHoleUserFilterSerializer
 
 
 class ManHoleFilter(filters.FilterSet):
@@ -81,9 +81,11 @@ class ManHoleAssignmentViewSet(viewsets.ModelViewSet):
                                                          created__day=today.day)
         return manhole_today
 
-    @action(methods=['get'], detail=False, url_path='all', url_name="all",
-            serializer_class=ManHoleCreateAssignmentSerializer)
+    @action(methods=['post'], detail=False, url_path='all', url_name="all",
+            serializer_class=ManHoleUserFilterSerializer)
     def all_manhole_assignments(self, request):
-        manholes_today = ManHoleAssignment.objects.all()
+        user_id = request.data['user']
+        user = User.objects.filter(id=user_id).first()
+        manholes_today = ManHoleAssignment.objects.filter(user=user)
         data = ManHoleAssignmentSerializer(manholes_today, many=True).data
         return Response(data=data, status=HTTP_200_OK)
