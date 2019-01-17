@@ -15,7 +15,7 @@ class SitesViewset(viewsets.ModelViewSet):
     queryset = Site.objects.all()
     serializer_class = SiteSerializer
     filter_backends = (DjangoFilterBackend,)
-    filter_fields = ('workspace', 'clientId')
+    filter_fields = ('workspace', 'clientId', 'company')
 
     def get_context_data(self, **kwargs):
         user = Site.objects.get(id=kwargs['user_id'])

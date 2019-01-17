@@ -1,7 +1,7 @@
 from django.db import models
 from model_utils.models import TimeStampedModel
 
-from api.models import User
+from api.models import User, Company
 from api.models.notifications import Notification
 from api.models.workspaces import Workspace
 
@@ -20,6 +20,7 @@ class Site(TimeStampedModel):
     survey_date = models.DateField(null=True)
     expected_end_date = models.DateField(null=True)
     clientId = models.ForeignKey(User, on_delete=models.CASCADE)
+    company = models.ForeignKey(Company, on_delete=models.CASCADE, null=True, blank=True)
     current_stage = models.IntegerField(default=0)
     archivedStatus = models.BooleanField(default=False)
     workspace = models.ForeignKey(Workspace, on_delete=models.CASCADE, null=True, blank=True,

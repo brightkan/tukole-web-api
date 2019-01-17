@@ -1,5 +1,6 @@
 from api.models.workspaces import Workspace
 from api.models.users import User
+from api.models.company import Company
 from api.models.fleets import Fleet
 from api.models.machinery import Machinery
 from api.models.materials import Material
@@ -18,7 +19,6 @@ from api.models.repairs import RepairHistory
 from api.models.siteworktimes import SiteArrivalTime, SiteWorkStatus, SiteCompletedWorks
 from api.models.fleet_check_list import FleetCheckListItem, FleetCheckList
 from api.models.history import FleetHistory, ToolHistory, MachineHistory
-from api.models.company import Company
 
 __all__ = [
     'Workspace',

@@ -12,7 +12,7 @@ class SiteSerializer(serializers.ModelSerializer):
             'location_long', 'start_date', 'survey_date', 'expected_end_date', 'clientId',
             'current_stage', 'archivedStatus', 'workspace', 'surveyor', 'ackStatus', 'ack_user',
             'ack_date', 'survay_time', 'created', 'modified', 'can_client_view_survey_reports', 'site_contact_person',
-            'site_contact_phone_number', 'site_location', 'site_accepted'
+            'site_contact_phone_number', 'site_location', 'site_accepted', 'company'
         )
 
 
