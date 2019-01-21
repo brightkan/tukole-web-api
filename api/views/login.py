@@ -56,6 +56,7 @@ class MyTokenObtainPairSerializer(serializers.Serializer):
                     data['user_role'] = authed_user.role
                     data['user_type'] = authed_user.type
                     data['workspace'] = workspace.id
+                    data['company'] = authed_user.company
             data['part_of_workspace'] = part_of_workspace
 
             return data
