@@ -12,7 +12,6 @@ app.config_from_object('django.conf:settings', namespace='CELERY')
 app.autodiscover_tasks()
 
 app.conf.beat_schedule = {
-    # Executes every day at 8:00 a.m.
     'send_survey_reminder_email_every_day': {
         'task': 'api.tasks.get_survey_due_in_3days',
         'schedule': crontab(minute=0, hour=1)
