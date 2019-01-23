@@ -5,6 +5,10 @@ from api.models import Site, User
 
 
 class Comment(TimeStampedModel):
+    status_choices = (
+        ('pending', 'Pending'),
+        ('fixed', 'Fixed')
+    )
     priority_choices = (
         ('high', 'High'),
         ('low', 'Low'),
@@ -16,3 +20,4 @@ class Comment(TimeStampedModel):
     affected_teams = models.CharField(max_length=255, null=True, blank=True)
     description = models.TextField(null=True, blank=True)
     user = models.ForeignKey(to=User, null=True, blank=True, on_delete=models.CASCADE)
+    status = models.CharField(max_length=255, null=True, blank=True, choices=status_choices)
