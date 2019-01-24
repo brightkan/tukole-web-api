@@ -35,6 +35,10 @@ class Site(TimeStampedModel):
     site_contact_person = models.CharField(null=True, blank=True, max_length=150)
     site_contact_phone_number = models.IntegerField(null=True, blank=True)
     site_location = models.CharField(null=True, blank=True, max_length=150)
+    site_connected = models.BooleanField(default=False)
+    site_ready_for_connection = models.BooleanField(default=False)
+    site_connection_request_acknowledged = models.BooleanField(default=False)
+    site_connection_date = models.DateTimeField(null=True,blank=True)
 
     def save(self, *args, **kwargs):
         clientId = self.clientId
