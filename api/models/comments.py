@@ -21,3 +21,4 @@ class Comment(TimeStampedModel):
     description = models.TextField(null=True, blank=True)
     user = models.ForeignKey(to=User, null=True, blank=True, on_delete=models.CASCADE)
     status = models.CharField(max_length=255, null=True, blank=True, choices=status_choices)
+    fixed_at = models.DateTimeField(blank=True, null=True)
