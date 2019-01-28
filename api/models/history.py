@@ -1,7 +1,7 @@
 from django.db import models
 from model_utils.models import TimeStampedModel
 
-from api.models import Fleet, User, Machinery
+from api.models import Fleet, User, Machinery, Site
 from api.models.tools import Tool
 
 
@@ -15,6 +15,7 @@ class FleetHistory(TimeStampedModel):
     user = models.ForeignKey(to=User, on_delete=models.CASCADE)
     history_type = models.CharField(max_length=150, choices=history_type_choices)
     time_to_fix = models.IntegerField(blank=True, null=True)
+    site = models.ForeignKey(to=Site, null=True, blank=True, on_delete=models.CASCADE)
 
 
 class MachineHistory(TimeStampedModel):
@@ -27,6 +28,7 @@ class MachineHistory(TimeStampedModel):
     user = models.ForeignKey(to=User, on_delete=models.CASCADE)
     history_type = models.CharField(max_length=150, choices=history_type_choices)
     time_to_fix = models.IntegerField(blank=True, null=True)
+    site = models.ForeignKey(to=Site, null=True, blank=True, on_delete=models.CASCADE)
 
 
 class ToolHistory(TimeStampedModel):
@@ -39,3 +41,4 @@ class ToolHistory(TimeStampedModel):
     user = models.ForeignKey(to=User, on_delete=models.CASCADE)
     history_type = models.CharField(max_length=150, choices=history_type_choices)
     time_to_fix = models.IntegerField(blank=True, null=True)
+    site = models.ForeignKey(to=Site, null=True, blank=True, on_delete=models.CASCADE)
