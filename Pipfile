@@ -18,6 +18,9 @@ sendgrid = "*"
 
 [dev-packages]
 django-extensions = "*"
+pytest = "*"
+pytest-django = "*"
+pytest-factoryboy = "*"
 
 [requires]
 python_version = "3.6"
