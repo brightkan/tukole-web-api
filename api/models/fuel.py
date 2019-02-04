@@ -28,3 +28,10 @@ class FleetFuelRequest(TimeStampedModel):
     mileage_at_fuelling_time = models.IntegerField(null=True, blank=True)
     status = models.IntegerField(choices=fuel_status)
     refuel_reject_reason = models.CharField(null=True, blank=True, max_length=250)
+
+
+class FuelReceipt(TimeStampedModel):
+    user = models.ForeignKey(to=User, on_delete=models.CASCADE)
+    fleet = models.ForeignKey(to=Fleet, on_delete=models.CASCADE)
+    fuel_in_litres = models.IntegerField(null=True,blank=True)
+    total_fuel = models.IntegerField(null=True,blank=True)
