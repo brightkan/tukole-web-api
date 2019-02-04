@@ -38,7 +38,10 @@ class Site(TimeStampedModel):
     site_connected = models.BooleanField(default=False)
     site_ready_for_connection = models.BooleanField(default=False)
     site_connection_request_acknowledged = models.BooleanField(default=False)
-    site_connection_date = models.DateTimeField(null=True,blank=True)
+    site_connection_date = models.DateTimeField(null=True, blank=True)
+    number_of_site_fleet = models.IntegerField(null=True, blank=True)
+    number_of_members_on_site = models.IntegerField(null=True, blank=True)
+    site_image = models.FileField(upload_to="sites/", null=True, blank=True)
 
     def save(self, *args, **kwargs):
         clientId = self.clientId

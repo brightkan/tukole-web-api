@@ -13,7 +13,8 @@ class SiteSerializer(serializers.ModelSerializer):
             'current_stage', 'archivedStatus', 'workspace', 'surveyor', 'ackStatus', 'ack_user',
             'ack_date', 'survay_time', 'created', 'modified', 'can_client_view_survey_reports', 'site_contact_person',
             'site_contact_phone_number', 'site_location', 'site_accepted', 'company', 'site_connected',
-            'site_connection_date', 'site_connection_request_acknowledged', 'site_ready_for_connection'
+            'site_connection_date', 'site_connection_request_acknowledged', 'site_ready_for_connection',
+            'number_of_site_fleet', 'number_of_members_on_site', 'site_image'
         )
 
 
