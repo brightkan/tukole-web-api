@@ -6,4 +6,4 @@ from api.models import Company
 class CompanySerializer(serializers.ModelSerializer):
     class Meta:
         model = Company
-        fields = ('id', 'name', 'created', 'workspace')
+        fields = ('id', 'name', 'created', 'workspace', 'company')

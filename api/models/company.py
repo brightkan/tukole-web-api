@@ -7,3 +7,4 @@ from api.models import Workspace
 class Company(TimeStampedModel):
     name = models.CharField(max_length=255)
     workspace = models.ForeignKey(Workspace, on_delete=models.CASCADE, null=True, blank=True)
+    logo = models.FileField(upload_to="sites/", null=True, blank=True)
