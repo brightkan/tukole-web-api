@@ -22,6 +22,7 @@ class CommentViewSet(viewsets.ModelViewSet):
         affected_teams = serializer['affected_teams']
         site = serializer['site']
         description = serializer['description']
+        affected_teams = str(affected_teams)
         affected_teams = affected_teams.split(',')
         for team in affected_teams:
             user_ids = Siterole.objects.filter(site_id=site, role=team).values_list('user_id', flat=True)
