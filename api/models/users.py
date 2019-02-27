@@ -77,6 +77,7 @@ class User(AbstractEmailUser, TimeStampedModel):
     )
     role_choices = (
         ('isp', 'ISP'),
+        ('osp', 'OSP'),
         ('osp_field_manager', 'OSP Field Manager'),
         ('osp_supervisor', 'OSP Supervisor'),
         ('quality', 'Quality'),
