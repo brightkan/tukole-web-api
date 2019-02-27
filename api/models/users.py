@@ -77,7 +77,8 @@ class User(AbstractEmailUser, TimeStampedModel):
     )
     role_choices = (
         ('isp', 'ISP'),
-        ('osp', 'OSP'),
+        ('osp_field_manager', 'OSP Field Manager'),
+        ('osp_supervisor', 'OSP Supervisor'),
         ('quality', 'Quality'),
         ('ofc', 'OFC'),
         ('driver', 'Driver'),
@@ -85,8 +86,9 @@ class User(AbstractEmailUser, TimeStampedModel):
         ('project_manager', 'Project Manager'),
         ('fleet_manager', 'Fleet Manager'),
         ('mechanic', 'Mechanic'),
-        ('mechanic', 'Mechanic'),
         ('fuel_station_user', 'Fuel Station User'),
+        ('warehouse', 'warehouse'),
+        ('garage_manager', 'Garage Manager'),
 
     )
     type = models.CharField(max_length=150, choices=user_types)
