@@ -12,4 +12,4 @@ class FleetCheckListItemSerializer(serializers.ModelSerializer):
 class FleetCheckListSerializer(serializers.ModelSerializer):
     class Meta:
         model = FleetCheckList
-        fields = ('id', 'fleet', 'user', 'fleet_check_list_item', 'status')
+        fields = ('id', 'fleet', 'user', 'workspace', 'fleet_check_list_item', 'status')
