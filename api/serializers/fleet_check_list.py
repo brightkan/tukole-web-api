@@ -6,7 +6,7 @@ from api.models import FleetCheckListItem, FleetCheckList
 class FleetCheckListItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = FleetCheckListItem
-        fields = ('id', 'name')
+        fields = ('id', 'name', 'workspace')
 
 
 class FleetCheckListSerializer(serializers.ModelSerializer):

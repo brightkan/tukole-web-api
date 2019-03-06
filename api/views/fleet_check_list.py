@@ -10,6 +10,8 @@ class FleetCheckListItemViewset(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticated,)
     queryset = FleetCheckListItem.objects.all()
     serializer_class = FleetCheckListItemSerializer
+    filter_backends = (DjangoFilterBackend,)
+    filter_fields = ('fleet', 'workspace')
 
 
 class FleetCheckListViewset(viewsets.ModelViewSet):

@@ -6,6 +6,7 @@ from api.models import Fleet, User, Workspace
 
 class FleetCheckListItem(TimeStampedModel):
     name = models.CharField(max_length=255, null=True)
+    workspace = models.ForeignKey(to=Workspace, null=True, on_delete=models.CASCADE)
 
 
 class FleetCheckList(TimeStampedModel):
