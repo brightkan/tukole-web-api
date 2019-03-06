@@ -18,6 +18,10 @@ class SurveyResult(TimeStampedModel):
                                  related_name="surveyresult_surveyor")
     acceptStatus = models.BooleanField(default=False)
 
+    def number_of_comments(self):
+        from api.models.survey_result_comments import SurveyResultComment
+        return SurveyResultComment.objects.filter(survey_result=self).count()
+
     def save(self, *args, **kwargs):
         surveyor = self.surveyor
         acceptStatus = self.acceptStatus
@@ -30,8 +34,6 @@ class SurveyResult(TimeStampedModel):
             p = Notification(user=surveyor, notification=note1)
             p.save()
             super(SurveyResult, self).save(*args, **kwargs)
-
-
 
         elif acceptStatus == True:  # shouldn't do this
             print("survey_results_accepted")
