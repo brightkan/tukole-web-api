@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from api.models import User, Fleet, Machinery, ToolType, Site, Workspace, Material
+from api.models import User, Fleet, Machinery, ToolType, Site, Workspace, Material, FleetCheckList, FleetCheckListItem
 from api.models.fleet_types import FleetType
 from api.models.siteboqs import Siteboq
 from api.models.siteroles import Siterole
@@ -25,3 +25,5 @@ admin.site.register(UserWorkSpace)
 admin.site.register(Siterole)
 admin.site.register(SurveyResult)
 admin.site.register(SurveyResultComment)
+admin.site.register(FleetCheckList)
+admin.site.register(FleetCheckListItem)
