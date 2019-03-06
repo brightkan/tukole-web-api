@@ -11,7 +11,7 @@ class FleetCheckListItemViewset(viewsets.ModelViewSet):
     queryset = FleetCheckListItem.objects.all()
     serializer_class = FleetCheckListItemSerializer
     filter_backends = (DjangoFilterBackend,)
-    filter_fields = ('workspace')
+    filter_fields = ('workspace',)
 
 
 class FleetCheckListViewset(viewsets.ModelViewSet):
