@@ -14,7 +14,10 @@ class SiteSerializer(serializers.ModelSerializer):
             'ack_date', 'survay_time', 'created', 'modified', 'can_client_view_survey_reports', 'site_contact_person',
             'site_contact_phone_number', 'site_location', 'site_accepted', 'company', 'site_connected',
             'site_connection_date', 'site_connection_request_acknowledged', 'site_ready_for_connection',
-            'number_of_site_fleet', 'number_of_members_on_site', 'site_image'
+            'number_of_site_fleet', 'number_of_members_on_site', 'site_image', 'site_completed',
+            'isp_works_complete', 'osp_works_complete', 'ofc_works_complete', 'site_powering_complete',
+            'original_trenching_distance', 'current_trenching_distance', 'site_drawing', 'site_address',
+
         )
 
 

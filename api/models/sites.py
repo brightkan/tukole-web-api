@@ -11,6 +11,7 @@ from api.models.workspaces import Workspace
 class Site(TimeStampedModel):
     site_name = models.CharField(max_length=50, null=True)
     site_deleted = models.BooleanField(default=False, null=True)
+    site_completed = models.BooleanField(default=False, null=True)
     site_accessible = models.BooleanField(default=False, null=True)
     site_surveyed = models.BooleanField(default=False, null=True)
     site_accepted = models.BooleanField(default=False, null=True)
@@ -42,6 +43,14 @@ class Site(TimeStampedModel):
     number_of_site_fleet = models.IntegerField(null=True, blank=True)
     number_of_members_on_site = models.IntegerField(null=True, blank=True)
     site_image = models.FileField(upload_to="sites/", null=True, blank=True)
+    isp_works_complete = models.BooleanField(default=False, null=True)
+    osp_works_complete = models.BooleanField(default=False, null=True)
+    ofc_works_complete = models.BooleanField(default=False, null=True)
+    site_powering_complete = models.BooleanField(default=False, null=True)
+    original_trenching_distance = models.BooleanField(default=False, null=True)
+    current_trenching_distance = models.BooleanField(default=False, null=True)
+    site_drawing = models.FileField(upload_to="drawing/", null=True, blank=True)
+    site_address = models.TextField(null=True, blank=True)
 
     def save(self, *args, **kwargs):
         clientId = self.clientId
