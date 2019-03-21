@@ -51,6 +51,7 @@ class Site(TimeStampedModel):
     current_trenching_distance = models.BooleanField(default=False, null=True)
     site_drawing = models.FileField(upload_to="drawing/", null=True, blank=True)
     site_address = models.TextField(null=True, blank=True)
+    site_usd_rate= models.IntegerField(null=True, blank=True)
 
     def save(self, *args, **kwargs):
         clientId = self.clientId
