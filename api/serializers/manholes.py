@@ -1,6 +1,7 @@
 from rest_framework import serializers
 
 from api.models import ManHole, ManHoleAssignment, ManHoleDuration
+from api.models.manholes import ManHoleInstallation
 
 
 class ManHoleSerializer(serializers.ModelSerializer):
@@ -45,3 +46,15 @@ class ManHoleAssignmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = ManHoleAssignment
         fields = ('id', 'user', 'manhole', 'login_time', 'logout_time', 'created')
+
+
+class ManHoleInstallationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ManHoleInstallation
+        fields = ('id', 'site', 'user', 'number_installed', 'created')
+
+
+class HandHoleInstallationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ManHoleInstallation
+        fields = ('id', 'site', 'user', 'number_installed', 'created')

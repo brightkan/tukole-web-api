@@ -9,8 +9,10 @@ from rest_framework.response import Response
 from rest_framework.status import HTTP_200_OK
 
 from api.models import ManHole, User, ManHoleAssignment, ManHoleDuration
+from api.models.manholes import ManHoleInstallation, HandHoleInstallation
 from api.serializers.manholes import ManHoleSerializer, ManHoleLoginSerializer, ManHoleAssignmentSerializer, \
-    ManHoleCreateAssignmentSerializer, ManHoleUserFilterSerializer
+    ManHoleCreateAssignmentSerializer, ManHoleUserFilterSerializer, ManHoleInstallationSerializer, \
+    HandHoleInstallationSerializer
 
 
 class ManHoleFilter(filters.FilterSet):
@@ -88,3 +90,19 @@ class ManHoleAssignmentViewSet(viewsets.ModelViewSet):
         filtered_manhole = self.filter_queryset(manholes_today)
         data = ManHoleAssignmentSerializer(filtered_manhole, many=True).data
         return Response(data=data, status=HTTP_200_OK)
+
+
+class ManHoleInstallationViewSet(viewsets.ModelViewSet):
+    permission_classes = (IsAuthenticated,)
+    queryset = ManHoleInstallation.objects.all()
+    serializer_class = ManHoleInstallationSerializer
+    filter_backends = (DjangoFilterBackend,)
+    filter_fields = ('user', 'site')
+
+
+class HandHoleInstallationViewSet(viewsets.ModelViewSet):
+    permission_classes = (IsAuthenticated,)
+    queryset = HandHoleInstallation.objects.all()
+    serializer_class = HandHoleInstallationSerializer
+    filter_backends = (DjangoFilterBackend,)
+    filter_fields = ('user', 'site')

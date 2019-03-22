@@ -19,3 +19,14 @@ class ManHoleDuration(TimeStampedModel):
 class ManHoleAssignment(TimeStampedModel):
     user = models.ForeignKey(to=User, on_delete=models.CASCADE)
     manhole = models.ForeignKey(to=ManHole, on_delete=models.CASCADE)
+
+
+class ManHoleInstallation(TimeStampedModel):
+    site = models.ForeignKey(to=Site, null=True, blank=True, on_delete=models.CASCADE)
+    user = models.ForeignKey(to=User, on_delete=models.CASCADE)
+    number_installed = models.IntegerField(null=True, blank=True)
+
+class HandHoleInstallation(TimeStampedModel):
+    site = models.ForeignKey(to=Site, null=True, blank=True, on_delete=models.CASCADE)
+    user = models.ForeignKey(to=User, on_delete=models.CASCADE)
+    number_installed = models.IntegerField(null=True, blank=True)
