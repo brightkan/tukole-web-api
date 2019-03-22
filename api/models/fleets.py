@@ -24,6 +24,13 @@ class Fleet(TimeStampedModel):
 
 
 class UserFleetAssignment(TimeStampedModel):
+    approve_status = (
+        (0, 0),
+        (1, 1),
+        (2, 2),
+        (3, 3),
+        (4, 4),
+    )
     assignment_type_choices = (
         ('assignment', 'Assignment'),
         ('request', 'Request')
@@ -34,3 +41,4 @@ class UserFleetAssignment(TimeStampedModel):
     start_date = models.DateTimeField(null=True, blank=True)
     end_date = models.DateTimeField(null=True, blank=True)
     approved = models.BooleanField(default=Fleet)
+    status = models.IntegerField(choices=approve_status, default=0)

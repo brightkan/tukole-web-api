@@ -36,4 +36,4 @@ class UserFleetAssignmentViewSet(viewsets.ModelViewSet):
     queryset = UserFleetAssignment.objects.all()
     serializer_class = UserFleetAssignmentSerializer
     filter_backends = (DjangoFilterBackend,)
-    filter_fields = ('user', 'fleet', 'approved')
+    filter_fields = ('user', 'fleet', 'approved', 'status')
