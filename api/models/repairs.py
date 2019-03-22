@@ -18,3 +18,4 @@ class RepairHistory(TimeStampedModel):
     cost = models.IntegerField(null=True, blank=True)
     fleet = models.IntegerField()
     fleet_type = models.CharField(choices=fleet_type_choices, max_length=255)
+    fm_approved = models.BooleanField(null=True, blank=True)

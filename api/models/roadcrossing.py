@@ -10,3 +10,4 @@ class RoadCrossing(TimeStampedModel):
     tool = models.ForeignKey(to=Tool, on_delete=models.CASCADE)
     site = models.ForeignKey(to=Site, on_delete=models.CASCADE)
     user = models.ForeignKey(to=User, on_delete=models.CASCADE)
+    fm_approved = models.BooleanField(null=True, blank=True)

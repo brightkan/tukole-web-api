@@ -9,3 +9,4 @@ class TrenchedDistance(TimeStampedModel):
     user = models.ForeignKey(to=User, on_delete=models.CASCADE)
     distance = models.IntegerField()
     depth = models.IntegerField()
+    fm_approved = models.BooleanField(null=True, blank=True)

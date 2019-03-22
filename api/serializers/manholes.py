@@ -13,7 +13,7 @@ class ManHoleSerializer(serializers.ModelSerializer):
 class ManHoleLoginSerializer(serializers.ModelSerializer):
     class Meta:
         model = ManHoleDuration
-        fields = ('id', 'manhole', 'start_time', 'end_time', 'user', 'created')
+        fields = ('id', 'manhole', 'start_time', 'end_time', 'user', 'created', 'fm_approved')
 
 
 class ManHoleCreateAssignmentSerializer(serializers.Serializer):
@@ -45,16 +45,16 @@ class ManHoleAssignmentSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ManHoleAssignment
-        fields = ('id', 'user', 'manhole', 'login_time', 'logout_time', 'created')
+        fields = ('id', 'user', 'manhole', 'login_time', 'logout_time', 'created', 'fm_approved')
 
 
 class ManHoleInstallationSerializer(serializers.ModelSerializer):
     class Meta:
         model = ManHoleInstallation
-        fields = ('id', 'site', 'user', 'number_installed', 'created')
+        fields = ('id', 'site', 'user', 'number_installed', 'created', 'fm_approved')
 
 
 class HandHoleInstallationSerializer(serializers.ModelSerializer):
     class Meta:
         model = ManHoleInstallation
-        fields = ('id', 'site', 'user', 'number_installed', 'created')
+        fields = ('id', 'site', 'user', 'number_installed', 'created', 'fm_approved')

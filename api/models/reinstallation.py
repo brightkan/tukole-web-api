@@ -10,3 +10,4 @@ class ReInstallation(TimeStampedModel):
     site = models.ForeignKey(to=Site, on_delete=models.CASCADE)
     amount = models.IntegerField()
     type = models.CharField(max_length=255)
+    fm_approved = models.BooleanField(null=True, blank=True)
