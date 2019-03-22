@@ -9,7 +9,7 @@ from api.views.cost import CostViewSet
 from api.views.distance import TrenchedDistanceViewSet
 from api.views.fleet_check_list import FleetCheckListItemViewset, FleetCheckListViewset
 from api.views.fleet_types import Fleet_typesViewset as myapp_fleet_types_views
-from api.views.fleets import FleetViewset
+from api.views.fleets import FleetViewset, UserFleetAssignmentViewSet
 from api.views.fuel import FuelViewSet, FleetFuelRequestViewSet, FuelReceiptViewSet
 from api.views.history import ToolHistoryViewSet, MachineHistoryViewSet, FleetHistoryViewSet
 from api.views.incidents import IncidentViewSet
@@ -74,6 +74,7 @@ router.register(r'sitearrivaltimes', SiteArrivalTimeViewSet, base_name='site-arr
 router.register(r'siteboqs', myapp_siteboqs_views)
 router.register(r'sitefleets', myapp_sitefleets_views)
 router.register(r'usersitefleets', UserSitefleetViewSet, base_name="user-site-fleet")
+router.register(r'userfleetsassignments', UserFleetAssignmentViewSet, base_name="user-fleet-assignments")
 router.register(r'sitereports', myapp_sitereports_views)
 router.register(r'siteroles', myapp_siteroles_views)
 router.register(r'sitestatus', myapp_sitestatus_views)

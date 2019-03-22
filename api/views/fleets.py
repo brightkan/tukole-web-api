@@ -7,8 +7,8 @@ from rest_framework.response import Response
 from rest_framework.status import HTTP_200_OK
 
 from api.models import UserSiteFleet
-from api.models.fleets import Fleet
-from api.serializers.fleets import FleetSerializer
+from api.models.fleets import Fleet, UserFleetAssignment
+from api.serializers.fleets import FleetSerializer, UserFleetAssignmentSerializer
 from api.serializers.sitefleets import UserSiteFleetHistorySerializer
 
 
@@ -29,3 +29,11 @@ class FleetViewset(viewsets.ModelViewSet):
         else:
             data = {"error": "User is not attached to any site"}
         return Response(data=data, status=HTTP_200_OK)
+
+
+class UserFleetAssignmentViewSet(viewsets.ModelViewSet):
+    permission_classes = (IsAuthenticated,)
+    queryset = UserFleetAssignment.objects.all()
+    serializer_class = UserFleetAssignmentSerializer
+    filter_backends = (DjangoFilterBackend,)
+    filter_fields = ('user', 'fleet')
