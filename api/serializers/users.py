@@ -48,6 +48,10 @@ class AcceptUserSerializer(serializers.Serializer):
     password = serializers.CharField()
 
 
+class ResetPasswordSerializer(serializers.Serializer):
+    email = serializers.EmailField()
+
+
 class UserSiteRoleSerializer(serializers.Serializer):
     user = serializers.CharField()
     user_id = serializers.CharField()

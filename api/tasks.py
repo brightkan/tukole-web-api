@@ -41,6 +41,27 @@ def send_invite_email(receiver_user_id, token, sender_user_id, workspace):
     print(response.headers)
 
 
+@shared_task
+def send_reset_password_email(receiver_user_id, token):
+    receiver = User.objects.filter(id=receiver_user_id).first()
+    sg = sendgrid.SendGridAPIClient(apikey=SENDGRID_API_KEY)
+    from_email = Email(email="no-reply@tukole.co.ug", name="Tukole System")
+    to_email = Email(receiver.email)
+    subject = "Tukole Workspace Password Reset"
+    ctx = {
+        "receiver_name": "%s %s" % (receiver.first_name, receiver.last_name),
+        "accept_link": "%s/%s/%s/" % (SERVER_URL, "users/accept", token),
+        "server_url": SERVER_URL,
+    }
+    content = Content("text/html", get_template('email/reset_password.html').render(context=ctx))
+    # message = get_template('email/meeting_confirmation.html').render(context=ctx)
+    mail = Mail(from_email, subject, to_email, content)
+    response = sg.client.mail.send.post(request_body=mail.get())
+    print(response.status_code)
+    print(response.body)
+    print(response.headers)
+
+
 @shared_task()
 def send_survey_reminder_email(receivers, site_id):
     sg = sendgrid.SendGridAPIClient(apikey=SENDGRID_API_KEY)

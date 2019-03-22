@@ -13,8 +13,9 @@ from api.models import User, Site, Company
 from api.models.siteroles import Siterole
 from api.models.users import UserEmailActivation, UserWorkSpace
 from api.serializers.sites import SiteUserRoleSerializer
-from api.serializers.users import UserSerializer, SimpleInviteUserSerializer, AcceptUserSerializer
-from api.tasks import send_invite_email
+from api.serializers.users import UserSerializer, SimpleInviteUserSerializer, AcceptUserSerializer, \
+    ResetPasswordSerializer
+from api.tasks import send_invite_email, send_reset_password_email
 
 
 class UserFilter(filters.FilterSet):
@@ -106,6 +107,25 @@ class UserViewSet(ModelViewSet):
             print(e)
             data = {'status': False,
                     'message': "User invite expired. Please have the admin reinvite you to the workspace"}
+            return Response(data=data, status=HTTP_200_OK)
+
+    @action(methods=['post'], detail=False, url_path='reset', url_name="reset-password",
+            serializer_class=ResetPasswordSerializer)
+    def reset_password(self, request):
+        email = request.data['email']
+        user = User.objects.filter(email=email).first()
+        if user:
+            signer = TimestampSigner()
+            value = signer.sign(email)
+            ttl = value.split(":")
+            token = ('%s%s' % (ttl[1], ttl[2]))
+            deleted = UserEmailActivation.objects.filter(email=email).delete()
+            email_activation_, created = UserEmailActivation.objects.get_or_create(email=email, token=token)
+            send_reset_password_email.delay(user.id, token, )
+            data = {'status': True, 'message': 'Password reset sent'}
+            return Response(data=data, status=HTTP_200_OK)
+        else:
+            data = {'error': "User with that email not found", 'status': False}
             return Response(data=data, status=HTTP_200_OK)
 
     @action(methods=['post'], detail=True, url_path='sites', url_name="sites")
