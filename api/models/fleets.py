@@ -42,7 +42,7 @@ class UserFleetAssignment(TimeStampedModel):
     )
     assignment_type = models.CharField(max_length=150, null=True, blank=True, choices=assignment_type_choices)
     user = models.ForeignKey(to=User, on_delete=models.CASCADE)
-    fleet = models.ForeignKey(to=Fleet, on_delete=models.CASCADE)
+    fleet = models.ForeignKey(to=Fleet, on_delete=models.CASCADE, null=True, blank=True)
     type = models.CharField(max_length=155, choices=type_choices, null=True, blank=True)
     start_date = models.DateTimeField(null=True, blank=True)
     end_date = models.DateTimeField(null=True, blank=True)
