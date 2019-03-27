@@ -13,7 +13,7 @@ class ManHoleSerializer(serializers.ModelSerializer):
 class ManHoleLoginSerializer(serializers.ModelSerializer):
     class Meta:
         model = ManHoleDuration
-        fields = ('id', 'manhole', 'start_time', 'end_time', 'user', 'created', 'fm_approved')
+        fields = ('id', 'manhole', 'start_time', 'end_time', 'user', 'created')
 
 
 class ManHoleCreateAssignmentSerializer(serializers.Serializer):
