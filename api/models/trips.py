@@ -13,3 +13,5 @@ class Trip(TimeStampedModel):
     destination_lat = models.DecimalField(max_digits=9, decimal_places=6, null=True, blank=True)
     reason = models.TextField(null=True, blank=True)
     site_fleet = models.ForeignKey(to=Sitefleet, null=True, blank=True, on_delete=models.CASCADE)
+    cancelled = models.BooleanField(null=True, blank=True)
+    reason_for_cancellation = models.TextField(null=True, blank=True)
