@@ -26,6 +26,7 @@ class FleetFuelRequest(TimeStampedModel):
     )
     user = models.ForeignKey(to=User, on_delete=models.CASCADE)
     fleet = models.ForeignKey(to=Fleet, on_delete=models.CASCADE, null=True, blank=True)
+    object_id = models.IntegerField(null=True, blank=True)
     type = models.CharField(max_length=155, choices=type_choices, null=True, blank=True)
     requested_fuel_in_litres = models.IntegerField(null=True, blank=True)
     received_fuel_in_litres = models.IntegerField(null=True, blank=True)

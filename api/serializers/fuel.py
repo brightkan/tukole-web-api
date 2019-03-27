@@ -1,6 +1,8 @@
 from rest_framework import serializers
 
-from api.models import Fuel, FleetFuelRequest, FuelReceipt
+from api.models import Fuel, FleetFuelRequest, FuelReceipt, Machinery, Fleet
+from api.serializers.fleets import FleetSerializer
+from api.serializers.machinery import MachinerySerializer
 
 
 class FuelSerializer(serializers.ModelSerializer):
@@ -10,20 +12,27 @@ class FuelSerializer(serializers.ModelSerializer):
 
 
 class FleetFuelRequestSerializer(serializers.ModelSerializer):
-    fleet_name = serializers.SerializerMethodField()
-    fleet_humanuuid = serializers.SerializerMethodField()
+    type_entity_object = serializers.SerializerMethodField(read_only=True)
 
-    def get_fleet_name(self, obj):
-        return obj.fleet.name
+    def get_type_entity_object(self, obj):
+        if obj.type == 'machine':
+            machine = Machinery.objects.filter(id=obj.object_id).first()
+            if machine:
+                return MachinerySerializer(machine).data
 
-    def get_fleet_humanuuid(self, obj):
-        return obj.fleet.humanUuid
+        elif obj.type == 'fleet':
+            fleet = Fleet.objects.filter(id=obj.object_id).first()
+            if fleet:
+                return FleetSerializer(fleet).data
+
+        else:
+            return {}
 
     class Meta:
         model = FleetFuelRequest
-        fields = ('id', 'fleet', 'user', 'requested_fuel_in_litres', 'received_fuel_in_litres',
-                  'mileage_at_fuelling_time', 'status', 'refuel_reject_reason', 'created', 'fleet_name',
-                  'fleet_humanuuid', 'approved', 'fuel_amount', 'pump_screenshot', 'type'
+        fields = ('id', 'object_id', 'user', 'requested_fuel_in_litres', 'received_fuel_in_litres',
+                  'mileage_at_fuelling_time', 'status', 'refuel_reject_reason', 'created', 'approved', 'fuel_amount',
+                  'pump_screenshot', 'type', 'type_entity_object'
                   )
 
 
