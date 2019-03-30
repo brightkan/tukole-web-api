@@ -18,6 +18,7 @@ from api.views.machinery_types import MachineryTypeViewset as myapp_machinery_ty
 from api.views.manholes import ManHoleViewSet, ManHoleAssignmentViewSet, ManHoleInstallationViewSet, \
     HandHoleInstallationViewSet
 from api.views.materials import MaterialViewSet
+from api.views.metrics import MetricViewSet, UserPerformanceMetricViewSet
 from api.views.notifications import NotificationViewset as myapp_notifications_views
 from api.views.reinstallation import ReInstallationViewSet
 from api.views.repairs import RepairHistoryViewSet
@@ -81,6 +82,8 @@ router.register(r'sitestatus', myapp_sitestatus_views)
 router.register(r'sitetools', myapp_sitetools_views)
 router.register(r'trips', TripViewSet, base_name='trips')
 router.register(r'machinery_types', myapp_machinery_types_views)
+router.register(r'metrics', MetricViewSet, base_name="metrics")
+router.register(r'usermetrics', UserPerformanceMetricViewSet, base_name="user-metric")
 router.register(r'manholes', ManHoleViewSet, base_name="man-holes")
 router.register(r'manholesassignment', ManHoleAssignmentViewSet, base_name="man-assignments")
 router.register(r'manholesinstallation', ManHoleInstallationViewSet, base_name="manhole-installments")

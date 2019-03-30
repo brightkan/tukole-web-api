@@ -10,6 +10,7 @@ from rest_framework.status import HTTP_200_OK
 
 from api.models import ManHole, User, ManHoleAssignment, ManHoleDuration
 from api.models.manholes import ManHoleInstallation, HandHoleInstallation
+from api.models.metrics import Metric
 from api.serializers.manholes import ManHoleSerializer, ManHoleLoginSerializer, ManHoleAssignmentSerializer, \
     ManHoleCreateAssignmentSerializer, ManHoleUserFilterSerializer, ManHoleInstallationSerializer, \
     HandHoleInstallationSerializer
@@ -90,6 +91,9 @@ class ManHoleAssignmentViewSet(viewsets.ModelViewSet):
         filtered_manhole = self.filter_queryset(manholes_today)
         data = ManHoleAssignmentSerializer(filtered_manhole, many=True).data
         return Response(data=data, status=HTTP_200_OK)
+
+    def perform_create(self, serializer):
+        super().perform_create(serializer)
 
 
 class ManHoleInstallationViewSet(viewsets.ModelViewSet):

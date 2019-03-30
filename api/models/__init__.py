@@ -20,6 +20,7 @@ from api.models.siteworktimes import SiteArrivalTime, SiteWorkStatus, SiteComple
 from api.models.fleet_check_list import FleetCheckListItem, FleetCheckList
 from api.models.history import FleetHistory, ToolHistory, MachineHistory
 from api.models.fuel import Fuel, FleetFuelRequest, FuelReceipt
+from api.models.metrics import Metric, UserPerformanceMetric
 
 __all__ = [
     'Workspace',
@@ -55,5 +56,7 @@ __all__ = [
     'Company',
     'Fuel',
     'FleetFuelRequest',
-    'FuelReceipt'
+    'FuelReceipt',
+    'Metric',
+    'UserPerformanceMetric',
 ]
