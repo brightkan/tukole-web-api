@@ -40,3 +40,8 @@ class FuelReceiptSerializer(serializers.ModelSerializer):
     class Meta:
         model = FuelReceipt
         fields = ('id', 'fleet', 'user', 'fuel_in_litres', 'total_fuel')
+
+
+class FuelReceiptSummarySerializer(serializers.Serializer):
+    type = serializers.CharField()
+    month = serializers.DateTimeField()
