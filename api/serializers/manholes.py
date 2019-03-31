@@ -25,6 +25,12 @@ class ManHoleUserFilterSerializer(serializers.Serializer):
     user = serializers.CharField()
 
 
+class ManHoleUserImportSerializer(serializers.Serializer):
+    file = serializers.FileField()
+    user_assigned = serializers.IntegerField()
+
+
+
 class ManHoleAssignmentSerializer(serializers.ModelSerializer):
     login_time = serializers.SerializerMethodField(read_only=True)
     logout_time = serializers.SerializerMethodField(read_only=True)
