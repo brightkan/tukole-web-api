@@ -14,11 +14,11 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.status import HTTP_200_OK, HTTP_404_NOT_FOUND
 
-from api.models import ManHole, User, ManHoleAssignment, ManHoleDuration
+from api.models import ManHole, User, ManHoleAssignment, ManHoleDuration, Site
 from api.models.manholes import ManHoleInstallation, HandHoleInstallation
 from api.serializers.manholes import ManHoleSerializer, ManHoleLoginSerializer, ManHoleAssignmentSerializer, \
     ManHoleCreateAssignmentSerializer, ManHoleUserFilterSerializer, ManHoleInstallationSerializer, \
-    HandHoleInstallationSerializer, ManHoleUserImportSerializer
+    HandHoleInstallationSerializer, ManHoleUserImportSerializer, ManHoleImportSerializer
 
 
 class ManHoleFilter(filters.FilterSet):
@@ -75,13 +75,14 @@ class ManHoleViewSet(viewsets.ModelViewSet):
         }
         return Response(data=data, status=HTTP_200_OK)
 
-    @action(methods=['post'], detail=False, url_path='import', url_name="import",
+    @action(methods=['post'], detail=False, url_path='assginimport', url_name="assginimport",
             serializer_class=ManHoleUserImportSerializer)
-    def import_manholes(self, request):
-        print("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
+    def import_and_assign_manholes(self, request):
         csv_file_posted = request.data['file']
         user_id = request.data['user_assigned']
+        site_id = request.data.get('site', None)
         user = User.objects.filter(id=user_id).first()
+        site = Site.objects.filter(id=site_id).first()
         if user:
             csv_file = StringIO(csv_file_posted.read().decode())
             csv_reader = csv.reader(csv_file, delimiter=',')
@@ -90,7 +91,7 @@ class ManHoleViewSet(viewsets.ModelViewSet):
                 manhole_ = row[0]
                 manhole_ = manhole_.split(':')[1]
                 manhole_ = manhole_.split('_')[0]
-                manhole, manhole_created = ManHole.objects.get_or_create(number=manhole_)
+                manhole, manhole_created = ManHole.objects.get_or_create(number=manhole_, site=site)
                 manhole_assignment, assignment_created = ManHoleAssignment.objects.get_or_create(user=user,
                                                                                                  manhole=manhole)
                 if manhole_created and assignment_created:
@@ -100,6 +101,25 @@ class ManHoleViewSet(viewsets.ModelViewSet):
         else:
             data = {'status': False, 'error': 'No user with that id found'}
             return Response(data=data, status=HTTP_404_NOT_FOUND)
+
+    @action(methods=['post'], detail=False, url_path='import', url_name="import",
+            serializer_class=ManHoleImportSerializer)
+    def import_manholes(self, request):
+        csv_file_posted = request.data['file']
+        site_id = request.data.get('site', None)
+        site = Site.objects.filter(id=site_id).first()
+        csv_file = StringIO(csv_file_posted.read().decode())
+        csv_reader = csv.reader(csv_file, delimiter=',')
+        count = 0
+        for row in csv_reader:
+            manhole_ = row[0]
+            manhole_ = manhole_.split(':')[1]
+            manhole_ = manhole_.split('_')[0]
+            manhole, manhole_created = ManHole.objects.get_or_create(number=manhole_, defaults={'site': site})
+            if manhole_created:
+                count = count + 1
+        data = {'number_of_manholes': count, }
+        return Response(data=data, status=HTTP_200_OK)
 
 
 class ManHoleAssignmentViewSet(viewsets.ModelViewSet):

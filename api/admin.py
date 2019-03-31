@@ -2,7 +2,7 @@ from django.contrib import admin
 
 # Register your models here.
 from api.models import User, Fleet, Machinery, ToolType, Site, Workspace, Material, FleetCheckList, FleetCheckListItem, \
-    FleetFuelRequest
+    FleetFuelRequest, ManHole, ManHoleAssignment
 from api.models.fleet_types import FleetType
 from api.models.fleets import UserFleetAssignment
 from api.models.siteboqs import Siteboq
@@ -31,3 +31,5 @@ admin.site.register(FleetCheckList)
 admin.site.register(FleetCheckListItem)
 admin.site.register(UserFleetAssignment)
 admin.site.register(FleetFuelRequest)
+admin.site.register(ManHole)
+admin.site.register(ManHoleAssignment)

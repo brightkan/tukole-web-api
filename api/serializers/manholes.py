@@ -27,7 +27,12 @@ class ManHoleUserFilterSerializer(serializers.Serializer):
 
 class ManHoleUserImportSerializer(serializers.Serializer):
     file = serializers.FileField()
+    site = serializers.IntegerField(required=False)
     user_assigned = serializers.IntegerField()
+
+class ManHoleImportSerializer(serializers.Serializer):
+    file = serializers.FileField()
+    site = serializers.IntegerField(required=False)
 
 
 
