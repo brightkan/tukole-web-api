@@ -86,16 +86,19 @@ class ManHoleViewSet(viewsets.ModelViewSet):
         if user:
             csv_file = StringIO(csv_file_posted.read().decode())
             csv_reader = csv.reader(csv_file, delimiter=',')
+            title = next(csv_reader)
+            man_holes = next(csv_reader)
             count = 0
-            for row in csv_reader:
-                manhole_ = row[0]
-                manhole_ = manhole_.split(':')[1]
-                manhole_ = manhole_.split('_')[0]
-                manhole, manhole_created = ManHole.objects.get_or_create(number=manhole_, site=site)
-                manhole_assignment, assignment_created = ManHoleAssignment.objects.get_or_create(user=user,
-                                                                                                 manhole=manhole)
-                if manhole_created and assignment_created:
-                    count = count + 1
+            for row in man_holes:
+                if row.startswith('G:'):
+                    manhole_ = row
+                    manhole_ = manhole_.split(':')[1]
+                    manhole_ = manhole_.split('_')[0]
+                    manhole, manhole_created = ManHole.objects.get_or_create(number=manhole_, site=site)
+                    manhole_assignment, assignment_created = ManHoleAssignment.objects.get_or_create(user=user,
+                                                                                                     manhole=manhole)
+                    if manhole_created and assignment_created:
+                        count = count + 1
             data = {'number_of_manholes_assgined': count, 'user_id': user.id}
             return Response(data=data, status=HTTP_200_OK)
         else:
@@ -110,14 +113,17 @@ class ManHoleViewSet(viewsets.ModelViewSet):
         site = Site.objects.filter(id=site_id).first()
         csv_file = StringIO(csv_file_posted.read().decode())
         csv_reader = csv.reader(csv_file, delimiter=',')
+        title = next(csv_reader)
+        man_holes = next(csv_reader)
         count = 0
-        for row in csv_reader:
-            manhole_ = row[0]
-            manhole_ = manhole_.split(':')[1]
-            manhole_ = manhole_.split('_')[0]
-            manhole, manhole_created = ManHole.objects.get_or_create(number=manhole_, defaults={'site': site})
-            if manhole_created:
-                count = count + 1
+        for row in man_holes:
+            if row.startswith('G:'):
+                manhole_ = row
+                manhole_ = manhole_.split(':')[1]
+                manhole_ = manhole_.split('_')[0]
+                manhole, manhole_created = ManHole.objects.get_or_create(number=manhole_, defaults={'site': site})
+                if manhole_created:
+                    count = count + 1
         data = {'number_of_manholes': count, }
         return Response(data=data, status=HTTP_200_OK)
 
