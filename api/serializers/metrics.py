@@ -2,6 +2,8 @@ from rest_framework import serializers
 from rest_framework.serializers import ModelSerializer
 
 from api.models import Metric, UserPerformanceMetric
+from api.serializers.sites import SiteSerializer
+from api.serializers.users import UserSerializer
 
 
 class MetricSerializer(ModelSerializer):
@@ -11,6 +13,14 @@ class MetricSerializer(ModelSerializer):
 
 
 class UserPerformanceMetricSerializer(ModelSerializer):
+
+    def to_representation(self, instance):
+        data = super().to_representation(instance)
+        data['site'] = SiteSerializer(instance.site).data
+        data['user'] = UserSerializer(instance.user).data
+        data['metric'] = MetricSerializer(instance.metric).data
+        return data
+
     class Meta:
         model = UserPerformanceMetric
         fields = ('id', 'user', 'site', 'metric', 'points', 'created')
