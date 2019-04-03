@@ -13,7 +13,9 @@ class ManHoleSerializer(serializers.ModelSerializer):
 class ManHoleLoginSerializer(serializers.ModelSerializer):
     class Meta:
         model = ManHoleDuration
-        fields = ('id', 'manhole', 'start_time', 'end_time', 'user', 'created')
+        fields = ('id', 'manhole', 'start_time', 'end_time', 'user', 'created',
+                  'to_fibers', 'to_tube', 'from_fibers', 'from_tube',
+                  )
 
 
 class ManHoleCreateAssignmentSerializer(serializers.Serializer):
@@ -30,10 +32,10 @@ class ManHoleUserImportSerializer(serializers.Serializer):
     site = serializers.IntegerField(required=False)
     user_assigned = serializers.IntegerField()
 
+
 class ManHoleImportSerializer(serializers.Serializer):
     file = serializers.FileField()
     site = serializers.IntegerField(required=False)
-
 
 
 class ManHoleAssignmentSerializer(serializers.ModelSerializer):

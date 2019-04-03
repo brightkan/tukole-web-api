@@ -47,15 +47,24 @@ class ManHoleViewSet(viewsets.ModelViewSet):
         manhole_ = request.data['manhole']
         start_time = request.data['start_time']
         end_time = request.data['end_time']
+        to_fibers = request.data['to_fibers']
+        to_tube = request.data['to_tube']
+        from_tube = request.data['from_tube']
+        from_fibers = request.data['from_fibers']
         user_ = request.data['user']
         user = User.objects.filter(id=user_).first()
         manhole = ManHole.objects.filter(id=manhole_).first()
 
         if manhole and user:
+
             manhole_duraation = ManHoleDuration.objects.create(
                 manhole=manhole,
                 start_time=start_time,
                 end_time=end_time,
+                to_fibers=to_fibers,
+                to_tube=to_tube,
+                from_fibers=from_fibers,
+                from_tube=from_tube,
                 user=user)
             data = ManHoleLoginSerializer(manhole_duraation).data
         else:

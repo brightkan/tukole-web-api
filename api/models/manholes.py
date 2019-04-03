@@ -14,6 +14,10 @@ class ManHoleDuration(TimeStampedModel):
     start_time = models.DateTimeField(null=True)
     end_time = models.DateTimeField(null=True)
     user = models.ForeignKey(to=User, on_delete=models.CASCADE)
+    from_tube = models.CharField(max_length=150, null=True, blank=True)
+    from_fibers = models.CharField(max_length=150, null=True, blank=True)
+    to_tube = models.CharField(max_length=150, null=True, blank=True)
+    to_fibers = models.CharField(max_length=150, null=True, blank=True)
 
 
 class ManHoleAssignment(TimeStampedModel):
