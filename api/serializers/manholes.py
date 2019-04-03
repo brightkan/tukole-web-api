@@ -41,11 +41,43 @@ class ManHoleImportSerializer(serializers.Serializer):
 class ManHoleAssignmentSerializer(serializers.ModelSerializer):
     login_time = serializers.SerializerMethodField(read_only=True)
     logout_time = serializers.SerializerMethodField(read_only=True)
+    to_tube = serializers.SerializerMethodField(read_only=True)
+    from_tube = serializers.SerializerMethodField(read_only=True)
+    to_fibers = serializers.SerializerMethodField(read_only=True)
+    from_fibers = serializers.SerializerMethodField(read_only=True)
 
     def get_login_time(self, obj):
         manhole_duration = ManHoleDuration.objects.filter(user=obj.user, manhole=obj.manhole).first()
         if manhole_duration:
             return manhole_duration.start_time
+        else:
+            return ""
+
+    def get_to_tube(self, obj):
+        manhole_duration = ManHoleDuration.objects.filter(user=obj.user, manhole=obj.manhole).first()
+        if manhole_duration:
+            return manhole_duration.to_tube
+        else:
+            return ""
+
+    def get_from_tube(self, obj):
+        manhole_duration = ManHoleDuration.objects.filter(user=obj.user, manhole=obj.manhole).first()
+        if manhole_duration:
+            return manhole_duration.from_tube
+        else:
+            return ""
+
+    def get_to_fibers(self, obj):
+        manhole_duration = ManHoleDuration.objects.filter(user=obj.user, manhole=obj.manhole).first()
+        if manhole_duration:
+            return manhole_duration.to_fibers
+        else:
+            return ""
+
+    def get_from_fibers(self, obj):
+        manhole_duration = ManHoleDuration.objects.filter(user=obj.user, manhole=obj.manhole).first()
+        if manhole_duration:
+            return manhole_duration.from_fibers
         else:
             return ""
 
@@ -58,7 +90,8 @@ class ManHoleAssignmentSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ManHoleAssignment
-        fields = ('id', 'user', 'manhole', 'login_time', 'logout_time', 'created', 'fm_approved')
+        fields = ('id', 'user', 'manhole', 'login_time', 'logout_time', 'created', 'fm_approved',
+                  'to_fibers', 'to_tube', 'from_fibers', 'from_tube')
 
 
 class ManHoleInstallationSerializer(serializers.ModelSerializer):
