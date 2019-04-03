@@ -3,7 +3,8 @@ from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
 
 from api.models import RepairHistory
-from api.serializers.repairs import RepairHistorySerializer
+from api.models.repairs import RepairTicket
+from api.serializers.repairs import RepairHistorySerializer, RepairTicketSerializer
 
 
 class RepairHistoryViewSet(viewsets.ModelViewSet):
@@ -11,4 +12,12 @@ class RepairHistoryViewSet(viewsets.ModelViewSet):
     queryset = RepairHistory.objects.all()
     serializer_class = RepairHistorySerializer
     filter_backends = (DjangoFilterBackend,)
-    filter_fields = ('fleet','fleet_type')
+    filter_fields = ('fleet', 'fleet_type')
+
+
+class RepairTicketViewSet(viewsets.ModelViewSet):
+    permission_classes = (IsAuthenticated,)
+    queryset = RepairTicket.objects.all()
+    serializer_class = RepairTicketSerializer
+    filter_backends = (DjangoFilterBackend,)
+    filter_fields = ('fleet', 'fleet_type')

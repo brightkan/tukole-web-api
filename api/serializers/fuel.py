@@ -16,12 +16,12 @@ class FleetFuelRequestSerializer(serializers.ModelSerializer):
 
     def get_type_entity_object(self, obj):
         if obj.type == 'machine':
-            machine = Machinery.objects.filter(id=obj.object_id).first()
+            machine = Machinery.objects.filter(humanUuid=obj.humanUuid).first()
             if machine:
                 return MachinerySerializer(machine).data
 
         elif obj.type == 'fleet':
-            fleet = Fleet.objects.filter(id=obj.object_id).first()
+            fleet = Fleet.objects.filter(humanUuid=obj.humanUuid).first()
             if fleet:
                 return FleetSerializer(fleet).data
 
@@ -32,7 +32,7 @@ class FleetFuelRequestSerializer(serializers.ModelSerializer):
         model = FleetFuelRequest
         fields = ('id', 'object_id', 'user', 'requested_fuel_in_litres', 'received_fuel_in_litres',
                   'mileage_at_fuelling_time', 'status', 'refuel_reject_reason', 'created', 'approved', 'fuel_amount',
-                  'pump_screenshot', 'type', 'type_entity_object', 'allow_full_tank'
+                  'pump_screenshot', 'type', 'type_entity_object', 'allow_full_tank', 'humanUuid'
                   )
 
 

@@ -91,6 +91,7 @@ router.register(r'handholeinstallation', HandHoleInstallationViewSet, base_name=
 router.register(r'roadcrossing', RoadCrossingViewSet, base_name="road-crossing")
 router.register(r'reinstallation', ReInstallationViewSet, base_name="reinstallation")
 router.register(r'repairhistory', RepairHistoryViewSet, base_name="repair-history")
+router.register(r'repairticket', RepairHistoryViewSet, base_name="repair-history")
 router.register(r'distance/trenched', TrenchedDistanceViewSet, base_name="distance-trenched")
 router.register(r'incidents', IncidentViewSet, base_name="site-incident")
 router.register(r'surveys', myapp_surveys_views)
