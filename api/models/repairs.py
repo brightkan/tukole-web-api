@@ -29,17 +29,21 @@ class RepairTicket(TimeStampedModel):
         ('tool', 'Tool'),
         ('fleet', 'Fleet'),
     )
-    reported_by = models.ForeignKey(to=User, on_delete=models.CASCADE)
+    reported_by = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name="repair_reported_by",
+                                    null=True, blank=True)
     time_reported = models.DateTimeField(null=True, blank=True)
     time_acknowledged = models.DateTimeField(null=True, blank=True)
-    acknowledged_by = models.ForeignKey(to=User, on_delete=models.CASCADE)
+    acknowledged_by = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name="repair_acknowledged_by",
+                                        null=True, blank=True)
     assessment = models.CharField(max_length=255, null=True, blank=True)
     requisition_materials = models.CharField(max_length=255, null=True, blank=True)
     requisition_started = models.DateTimeField(null=True, blank=True)
     requisition_ended = models.DateTimeField(null=True, blank=True)
     repairs_complete = models.BooleanField(null=True, blank=True)
     repairs_complete_timestamp = models.DateTimeField(null=True, blank=True)
-    mechanic = models.ForeignKey(to=User, on_delete=models.CASCADE)
-    supervised_by = models.ForeignKey(to=User, on_delete=models.CASCADE)
-    type = models.CharField(choices=type_choices)
+    mechanic = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name="repair_mechanic", null=True,
+                                 blank=True)
+    supervised_by = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name="repair_supervised_by",
+                                      null=True, blank=True)
+    type = models.CharField(max_length=255, choices=type_choices, null=True, blank=True)
     object_id = models.IntegerField(null=True, blank=True)

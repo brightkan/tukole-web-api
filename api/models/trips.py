@@ -15,3 +15,5 @@ class Trip(TimeStampedModel):
     site_fleet = models.ForeignKey(to=Sitefleet, null=True, blank=True, on_delete=models.CASCADE)
     cancelled = models.BooleanField(null=True, blank=True)
     reason_for_cancellation = models.TextField(null=True, blank=True)
+
+
