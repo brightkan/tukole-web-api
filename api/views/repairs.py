@@ -20,4 +20,4 @@ class RepairTicketViewSet(viewsets.ModelViewSet):
     queryset = RepairTicket.objects.all()
     serializer_class = RepairTicketSerializer
     filter_backends = (DjangoFilterBackend,)
-    filter_fields = ('fleet', 'fleet_type')
+    filter_fields = ('reported_by', 'acknowledged_by')
