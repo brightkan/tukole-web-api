@@ -1,6 +1,7 @@
 from django.db import models
 from model_utils.models import TimeStampedModel
 
+from api.models import Site
 from api.models.sitefleets import Sitefleet
 
 
@@ -17,3 +18,7 @@ class Trip(TimeStampedModel):
     reason_for_cancellation = models.TextField(null=True, blank=True)
 
 
+class RouteChange(TimeStampedModel):
+    site = models.ForeignKey(to=Site, on_delete=models.CASCADE, null=True, blank=True)
+    user = models.ForeignKey(to=Site, on_delete=models.CASCADE, null=True, blank=True)
+    route_change_reason = models.CharField(max_length=255, null=True, blank=True)

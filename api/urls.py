@@ -2,6 +2,7 @@ from django.urls import path, include
 from rest_framework import routers
 from rest_framework_swagger.views import get_swagger_view
 
+from api.serializers.trips import RouteChangeSerializer
 from api.views.challenge import ChallengeViewset
 from api.views.comment import CommentViewSet
 from api.views.company import CompanyViewSet
@@ -74,7 +75,7 @@ router.register(r'sitespips', SitePIPViewSet, base_name='site-pips')
 router.register(r'sitearrivaltimes', SiteArrivalTimeViewSet, base_name='site-arrival-times')
 router.register(r'siteboqs', myapp_siteboqs_views)
 router.register(r'sitefleets', myapp_sitefleets_views)
-router.register(r'routechange', myapp_sitefleets_views)
+router.register(r'routechange', RouteChangeSerializer, base_name='route-change')
 router.register(r'usersitefleets', UserSitefleetViewSet, base_name="user-site-fleet")
 router.register(r'userfleetsassignments', UserFleetAssignmentViewSet, base_name="user-fleet-assignments")
 router.register(r'sitereports', myapp_sitereports_views)

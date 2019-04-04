@@ -5,7 +5,8 @@ from rest_framework.permissions import IsAuthenticated
 
 from api.models import Trip
 # Create your views here.
-from api.serializers.trips import TripSerializer
+from api.models.trips import RouteChange
+from api.serializers.trips import TripSerializer, RouteChangeSerializer
 
 
 class TripViewSet(viewsets.ModelViewSet):
@@ -14,3 +15,11 @@ class TripViewSet(viewsets.ModelViewSet):
     serializer_class = TripSerializer
     filter_backends = (DjangoFilterBackend,)
     filter_fields = ('site_fleet',)
+
+
+class RouteChangeViewSet(viewsets.ModelViewSet):
+    permission_classes = (IsAuthenticated,)
+    queryset = RouteChange.objects.all()
+    serializer_class = RouteChangeSerializer
+    filter_backends = (DjangoFilterBackend,)
+    filter_fields = ('site', 'user')
