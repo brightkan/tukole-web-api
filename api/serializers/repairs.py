@@ -28,7 +28,7 @@ class RepairTicketSerializer(serializers.ModelSerializer):
             'type',
             'supervised_by',
             'id',
-            'created'
+            'created',
             'humanUuid',
             'perform_fix',
             'assessment_verified',
