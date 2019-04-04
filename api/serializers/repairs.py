@@ -26,8 +26,15 @@ class RepairTicketSerializer(serializers.ModelSerializer):
             'repairs_complete_timestamp',
             'mechanic',
             'type',
-            'object_id',
             'supervised_by',
             'id',
             'created'
+            'humanUuid',
+            'perform_fix',
+            'assessment_verified',
+            'assessment_verification_timestamp',
+            'requisition_required',
+            'repairs_started',
+            'repairs_verified',
+
         )

@@ -46,4 +46,10 @@ class RepairTicket(TimeStampedModel):
     supervised_by = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name="repair_supervised_by",
                                       null=True, blank=True)
     type = models.CharField(max_length=255, choices=type_choices, null=True, blank=True)
-    object_id = models.IntegerField(null=True, blank=True)
+    humanUuid = models.CharField(max_length=150, null=True, blank=True)
+    perform_fix = models.BooleanField(null=True, blank=True)
+    assessment_verified = models.BooleanField(null=True, blank=True)
+    assessment_verification_timestamp = models.DateTimeField(null=True, blank=True)
+    requisition_required = models.BooleanField(null=True, blank=True)
+    repairs_started = models.BooleanField(null=True, blank=True)
+    repairs_verified = models.BooleanField(null=True, blank=True)
