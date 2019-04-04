@@ -2,7 +2,6 @@ from django.urls import path, include
 from rest_framework import routers
 from rest_framework_swagger.views import get_swagger_view
 
-from api.serializers.trips import RouteChangeSerializer
 from api.views.challenge import ChallengeViewset
 from api.views.comment import CommentViewSet
 from api.views.company import CompanyViewSet
@@ -36,7 +35,7 @@ from api.views.siteworktimes import SiteArrivalTimeViewSet
 from api.views.survey_result_comments import SurveyResultCommentViewSet as myapp_survey_result_comments_views
 from api.views.survey_results import SurveyResultViewSet as myapp_survey_results_views
 from api.views.surveys import SurveyViewset as myapp_surveys_views
-from api.views.tools import ToolsViewset as myapp_tools_views
+from api.views.tools import ToolsViewset as myapp_tools_views, ToolAssignmentViewSet
 from api.views.tools_types import Tools_typesViewset as myapp_tools_types_views
 from api.views.trips import TripViewSet, RouteChangeViewSet
 from api.views.user_roles import UserRolesViewSet as myapp_user_roles_views
@@ -68,6 +67,7 @@ router.register(r'fleetchecklistitems', FleetCheckListItemViewset, base_name='fl
 router.register(r'machinery', myapp_machinerys_views)
 router.register(r'tools_types', myapp_tools_types_views)
 router.register(r'tools', myapp_tools_views)
+router.register(r'toolsassignments', ToolAssignmentViewSet, base_name='tool-assignment')
 router.register(r'sites', myapp_sites_views)
 router.register(r'sitesimages', SiteImageViewSet, base_name='site-images')
 router.register(r'sitesdocuments', SiteDocumentViewSet, base_name='site-document')

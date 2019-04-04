@@ -21,6 +21,7 @@ from api.models.fleet_check_list import FleetCheckListItem, FleetCheckList
 from api.models.history import FleetHistory, ToolHistory, MachineHistory
 from api.models.fuel import Fuel, FleetFuelRequest, FuelReceipt
 from api.models.metrics import Metric, UserPerformanceMetric
+from api.models.tools import ToolAssignment
 
 __all__ = [
     'Workspace',
@@ -59,4 +60,5 @@ __all__ = [
     'FuelReceipt',
     'Metric',
     'UserPerformanceMetric',
+    'ToolAssignment',
 ]
