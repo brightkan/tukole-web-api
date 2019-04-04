@@ -13,4 +13,21 @@ class RepairHistorySerializer(serializers.ModelSerializer):
 class RepairTicketSerializer(serializers.ModelSerializer):
     class Meta:
         model = RepairTicket
-        fields = '__all__'
+        fields = (
+            'reported_by',
+            'time_reported',
+            'time_acknowledged',
+            'acknowledged_by',
+            'assessment',
+            'requisition_materials',
+            'requisition_started',
+            'requisition_ended',
+            'repairs_complete',
+            'repairs_complete_timestamp',
+            'mechanic',
+            'type',
+            'object_id',
+            'supervised_by',
+            'id',
+            'created'
+        )
