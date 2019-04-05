@@ -1,7 +1,9 @@
 # Create your views here.
 from datetime import datetime
 
+import django_filters
 from django.db.models import Sum
+from django_filters import FilterSet
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import viewsets
 from rest_framework.decorators import action
@@ -22,12 +24,47 @@ class FuelViewSet(viewsets.ModelViewSet):
     filter_fields = ('fleet', 'fueled_by')
 
 
+# class FleetFuelRequestFilter(FilterSet):
+#     start_date_gte = django_filters.DateTimeFilter(name="created", lookup_expr='gte')
+#     end_date_lte = django_filters.DateTimeFilter(name="created", lookup_expr='ltr')
+#
+#     class Meta:
+#         model = FleetFuelRequest
+#         fields = ['fleet', 'user', 'start_date_gte', 'end_date_lte']
+
+
+
+class FleetFuelRequestFilter(django_filters.FilterSet):
+    "Custom meeting filtering by start date"
+
+    class Meta:
+        model = FleetFuelRequest
+        fields = {
+            'user': ['exact'],
+            'type': ['exact'],
+            'created': ['gte', 'lt'],
+        }
+
+
 class FleetFuelRequestViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticated,)
     queryset = FleetFuelRequest.objects.all()
     serializer_class = FleetFuelRequestSerializer
+    filter_class = FleetFuelRequestFilter
     filter_backends = (DjangoFilterBackend,)
-    filter_fields = ('fleet', 'user')
+
+    @action(methods=['post'], detail=False, url_path='summary', url_name="summary",
+            serializer_class=FuelReceiptSummarySerializer)
+    def get_points(self, request):
+        type = request.data['type']
+        month = request.data['month']
+        month = datetime.strptime(month, "%Y-%m-%d")
+        total = FleetFuelRequest.objects.filter(
+            type=type, created__year=month.year,
+            created__month=month.month).aggregate(Sum('fuel_amount'))
+
+        data = {'total': total['fuel_amount__sum'], 'type': type}
+        return Response(data=data, status=HTTP_200_OK)
 
     @action(methods=['post'], detail=False, url_path='summary', url_name="summary",
             serializer_class=FuelReceiptSummarySerializer)
