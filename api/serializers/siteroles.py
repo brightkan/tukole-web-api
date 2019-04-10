@@ -7,3 +7,7 @@ class SiteroleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Siterole
         fields = ('id', 'site', 'user', 'created', 'role')
+
+
+class SiteRoleImportSerializer(serializers.Serializer):
+    file = serializers.FileField()
