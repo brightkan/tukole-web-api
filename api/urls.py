@@ -31,7 +31,7 @@ from api.views.siteroles import SiteroleViewSet as myapp_siteroles_views
 from api.views.sites import SitesViewset as myapp_sites_views, SiteImageViewSet, SiteDocumentViewSet, SitePIPViewSet
 from api.views.sitestatuses import SitestatusViewSet as myapp_sitestatus_views
 from api.views.sitetools import SitetoolViewSet as myapp_sitetools_views
-from api.views.siteworktimes import SiteArrivalTimeViewSet
+from api.views.siteworktimes import SiteArrivalTimeViewSet, SiteWorkStatusViewSet
 from api.views.survey_result_comments import SurveyResultCommentViewSet as myapp_survey_result_comments_views
 from api.views.survey_results import SurveyResultViewSet as myapp_survey_results_views
 from api.views.surveys import SurveyViewset as myapp_surveys_views
@@ -73,6 +73,7 @@ router.register(r'sitesimages', SiteImageViewSet, base_name='site-images')
 router.register(r'sitesdocuments', SiteDocumentViewSet, base_name='site-document')
 router.register(r'sitespips', SitePIPViewSet, base_name='site-pips')
 router.register(r'sitearrivaltimes', SiteArrivalTimeViewSet, base_name='site-arrival-times')
+router.register(r'siteworkstatus', SiteWorkStatusViewSet, base_name='site-work-status')
 router.register(r'siteboqs', myapp_siteboqs_views)
 router.register(r'sitefleets', myapp_sitefleets_views)
 router.register(r'routechange', RouteChangeViewSet, base_name='route-change')

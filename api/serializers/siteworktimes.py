@@ -2,6 +2,8 @@ from rest_framework import serializers
 
 from api.models import SiteArrivalTime, SiteWorkStatus, SiteCompletedWorks
 from api.models.siteroles import Siterole
+from api.serializers.sites import SiteSerializer
+from api.serializers.users import UserSerializer
 
 
 class SiteArrivalTimeSerializer(serializers.ModelSerializer):
@@ -25,24 +27,16 @@ class SiteArrivalTimeSerializer(serializers.ModelSerializer):
 
 
 class SiteWorkStatusSerializer(serializers.ModelSerializer):
-    site = serializers.CharField(write_only=True)
-    user = serializers.CharField(write_only=True)
-    site_role = serializers.CharField(read_only=True)
+
+    def to_representation(self, instance):
+        representation = super().to_representation(instance)
+        representation['site'] = SiteSerializer(instance.site).data
+        representation['user'] = UserSerializer(instance.user).data
+        return representation
 
     class Meta:
         model = SiteWorkStatus
-        fields = ('site_role', 'work_status', 'reason', 'site', 'user')
-
-    def create(self, validated_data):
-        site_id = validated_data['site']
-        user_id = validated_data['user']
-        work_status = validated_data['work_status']
-        reason = validated_data.get('reason', None)
-        site_role_ = Siterole.objects.filter(user_id=user_id, site_id=site_id).first()
-        if site_role_:
-            return SiteWorkStatus.objects.create(site_role_id=site_role_.id, work_status=work_status, reason=reason)
-        else:
-            return {}
+        fields = ('id', 'work_status', 'reason', 'site', 'user', 'created')
 
 
 class SiteCompletedWorksSerializer(serializers.ModelSerializer):
