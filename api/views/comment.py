@@ -15,7 +15,7 @@ class CommentViewSet(viewsets.ModelViewSet):
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
     filter_backends = (DjangoFilterBackend,)
-    filter_fields = ('site', 'user', 'status')
+    filter_fields = ('site', 'user', 'status', 'appraisal')
 
     def perform_create(self, serializer):
         super().perform_create(serializer)

@@ -17,6 +17,7 @@ class Comment(TimeStampedModel):
     site = models.ForeignKey(to=Site, null=True, blank=True, on_delete=models.CASCADE)
     title = models.CharField(max_length=255, null=True, blank=True)
     priority = models.CharField(max_length=255, null=True, blank=True, choices=priority_choices)
+    appraisal = models.BooleanField(null=True, blank=True)
     affected_teams = models.CharField(max_length=255, null=True, blank=True)
     description = models.TextField(null=True, blank=True)
     user = models.ForeignKey(to=User, null=True, blank=True, on_delete=models.CASCADE)
