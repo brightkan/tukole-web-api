@@ -2,8 +2,6 @@ from rest_framework import serializers
 
 from api.models import SiteArrivalTime, SiteWorkStatus, SiteCompletedWorks
 from api.models.siteroles import Siterole
-from api.serializers.sites import SiteSerializer
-from api.serializers.users import UserSerializer
 
 
 class SiteArrivalTimeSerializer(serializers.ModelSerializer):
@@ -27,13 +25,6 @@ class SiteArrivalTimeSerializer(serializers.ModelSerializer):
 
 
 class SiteWorkStatusSerializer(serializers.ModelSerializer):
-
-    def to_representation(self, instance):
-        representation = super().to_representation(instance)
-        representation['site'] = SiteSerializer(instance.site).data
-        representation['user'] = UserSerializer(instance.user).data
-        return representation
-
     class Meta:
         model = SiteWorkStatus
         fields = ('id', 'work_status', 'reason', 'site', 'user', 'created')
