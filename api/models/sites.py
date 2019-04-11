@@ -103,3 +103,4 @@ class SitePower(TimeStampedModel):
     user = models.ForeignKey(to=User, on_delete=models.CASCADE, null=True, blank=True)
     material_used = models.CharField(max_length=255, null=True, blank=True)
     start_time = models.DateTimeField(null=True, blank=True)
+    end_time = models.DateTimeField(null=True, blank=True)
