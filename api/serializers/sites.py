@@ -70,4 +70,4 @@ class SitePIPSerializer(serializers.ModelSerializer):
 class SitePowerSerializer(serializers.ModelSerializer):
     class Meta:
         model = SitePower
-        fields = ('id', 'end_time', 'start_time', 'material_used', 'user', 'type', 'site',)
+        fields = ('id', 'end_time', 'start_time', 'material_used', 'user', 'type', 'site', 'powering_successful')

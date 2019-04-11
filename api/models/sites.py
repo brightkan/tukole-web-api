@@ -104,3 +104,4 @@ class SitePower(TimeStampedModel):
     material_used = models.CharField(max_length=255, null=True, blank=True)
     start_time = models.DateTimeField(null=True, blank=True)
     end_time = models.DateTimeField(null=True, blank=True)
+    powering_successful = models.BooleanField(null=True, blank=True)
