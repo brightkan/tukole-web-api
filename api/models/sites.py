@@ -90,10 +90,17 @@ class SitePIP(TimeStampedModel):
 
 
 class SitePower(TimeStampedModel):
+    type_choices = (
+        ('bts', 'BTS'),
+        ('bts', 'Bts'),
+        ('dual', 'DUAL'),
+        ('dual', 'Dual'),
+        ('single', 'SINGLE'),
+        ('single', 'Single')
+    )
     site = models.ForeignKey(to=Site, on_delete=models.CASCADE, null=True, blank=True)
     type = models.CharField(max_length=255, null=True, blank=True)
     user = models.ForeignKey(to=User, on_delete=models.CASCADE, null=True, blank=True)
     material_used = models.CharField(max_length=255, null=True, blank=True)
-    start_time = models.DateTimeField(null=True)
-    end_time = models.DateTimeField(null=True)
-    end_time = models.BooleanField(null=True, blank=True)
+    start_time = models.DateTimeField(null=True, blank=True)
+    end_time = models.DateTimeField(null=True, blank=True)
