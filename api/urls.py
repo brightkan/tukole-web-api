@@ -28,7 +28,8 @@ from api.views.sitefleets import SitefleetViewSet as myapp_sitefleets_views, Use
 from api.views.sitemachines import SiteMachinesViewSet as myapp_sitemachines_views
 from api.views.sitereports import SitereportViewSet as myapp_sitereports_views
 from api.views.siteroles import SiteroleViewSet as myapp_siteroles_views
-from api.views.sites import SitesViewset as myapp_sites_views, SiteImageViewSet, SiteDocumentViewSet, SitePIPViewSet
+from api.views.sites import SitesViewset as myapp_sites_views, SiteImageViewSet, SiteDocumentViewSet, SitePIPViewSet, \
+    SitePoweringViewSet
 from api.views.sitestatuses import SitestatusViewSet as myapp_sitestatus_views
 from api.views.sitetools import SitetoolViewSet as myapp_sitetools_views
 from api.views.siteworktimes import SiteArrivalTimeViewSet, SiteWorkStatusViewSet
@@ -74,6 +75,7 @@ router.register(r'sitesdocuments', SiteDocumentViewSet, base_name='site-document
 router.register(r'sitespips', SitePIPViewSet, base_name='site-pips')
 router.register(r'sitearrivaltimes', SiteArrivalTimeViewSet, base_name='site-arrival-times')
 router.register(r'siteworkstatus', SiteWorkStatusViewSet, base_name='site-work-status')
+router.register(r'sitepowering', SitePoweringViewSet, base_name='site-powering')
 router.register(r'siteboqs', myapp_siteboqs_views)
 router.register(r'sitefleets', myapp_sitefleets_views)
 router.register(r'routechange', RouteChangeViewSet, base_name='route-change')

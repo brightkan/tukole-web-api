@@ -51,7 +51,7 @@ class Site(TimeStampedModel):
     current_trenching_distance = models.IntegerField(null=True, blank=True)
     site_drawing = models.FileField(upload_to="drawing/", null=True, blank=True)
     site_address = models.TextField(null=True, blank=True)
-    site_usd_rate= models.IntegerField(null=True, blank=True)
+    site_usd_rate = models.IntegerField(null=True, blank=True)
 
     def save(self, *args, **kwargs):
         clientId = self.clientId
@@ -87,3 +87,13 @@ class SitePIP(TimeStampedModel):
     task = models.CharField(max_length=255, null=True, blank=True)
     start = models.DateTimeField()
     end = models.DateTimeField()
+
+
+class SitePower(TimeStampedModel):
+    site = models.ForeignKey(to=Site, on_delete=models.CASCADE, null=True, blank=True)
+    type = models.CharField(max_length=255, null=True, blank=True)
+    user = models.ForeignKey(to=User, on_delete=models.CASCADE, null=True, blank=True)
+    material_used = models.CharField(max_length=255, null=True, blank=True)
+    start_time = models.DateTimeField(null=True)
+    end_time = models.DateTimeField(null=True)
+    end_time = models.BooleanField(null=True, blank=True)

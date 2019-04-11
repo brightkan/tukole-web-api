@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
 from api.models.siteroles import Siterole
-from api.models.sites import Site, SiteImage, SiteDocument, SitePIP
+from api.models.sites import Site, SiteImage, SiteDocument, SitePIP, SitePower
 
 
 class SiteSerializer(serializers.ModelSerializer):
@@ -65,3 +65,9 @@ class SitePIPSerializer(serializers.ModelSerializer):
     class Meta:
         model = SitePIP
         fields = ('id', 'site', 'task', 'start', 'end', 'created', 'modified')
+
+
+class SitePowerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = SitePower
+        fields = ('id', 'end_time', 'start_time', 'material_used', 'user', 'type', 'site',)
