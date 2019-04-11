@@ -90,6 +90,9 @@ class User(AbstractEmailUser, TimeStampedModel):
         ('fuel_station_user', 'Fuel Station User'),
         ('warehouse', 'warehouse'),
         ('garage_manager', 'Garage Manager'),
+        ('tools_head_of_department', 'Tools Head of Department'),
+        ('tools_manager', 'Tools Manager'),
+        ('technician', 'Technician'),
 
     )
     type = models.CharField(max_length=150, choices=user_types)
