@@ -16,7 +16,7 @@ from api.views.incidents import IncidentViewSet
 from api.views.machinery import MachineryViewset as myapp_machinerys_views
 from api.views.machinery_types import MachineryTypeViewset as myapp_machinery_types_views
 from api.views.manholes import ManHoleViewSet, ManHoleAssignmentViewSet, ManHoleInstallationViewSet, \
-    HandHoleInstallationViewSet
+    HandHoleInstallationViewSet, ManHoleDurationViewSet
 from api.views.materials import MaterialViewSet
 from api.views.metrics import MetricViewSet, UserPerformanceMetricViewSet
 from api.views.notifications import NotificationViewset as myapp_notifications_views
@@ -91,6 +91,7 @@ router.register(r'machinery_types', myapp_machinery_types_views)
 router.register(r'metrics', MetricViewSet, base_name="metrics")
 router.register(r'usermetrics', UserPerformanceMetricViewSet, base_name="user-metric")
 router.register(r'manholes', ManHoleViewSet, base_name="man-holes")
+router.register(r'manholeduration', ManHoleDurationViewSet, base_name="man-assignments")
 router.register(r'manholesassignment', ManHoleAssignmentViewSet, base_name="man-assignments")
 router.register(r'manholesinstallation', ManHoleInstallationViewSet, base_name="manhole-installments")
 router.register(r'handholeinstallation', HandHoleInstallationViewSet, base_name="handhole-installments")

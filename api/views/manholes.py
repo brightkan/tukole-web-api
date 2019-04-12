@@ -66,6 +66,7 @@ class ManHoleViewSet(viewsets.ModelViewSet):
                 from_fibers=from_fibers,
                 from_tube=from_tube,
                 user=user)
+
             data = ManHoleLoginSerializer(manhole_duraation).data
         else:
             data = {"error": "Error logging into manhole", "status": False}
@@ -157,6 +158,15 @@ class ManHoleAssignmentViewSet(viewsets.ModelViewSet):
         filtered_manhole = self.filter_queryset(manholes_today)
         data = ManHoleAssignmentSerializer(filtered_manhole, many=True).data
         return Response(data=data, status=HTTP_200_OK)
+
+
+class ManHoleDurationViewSet(viewsets.ModelViewSet):
+    permission_classes = (IsAuthenticated,)
+    queryset = ManHoleDuration.objects.all()
+    serializer_class = ManHoleLoginSerializer
+    filter_backends = (DjangoFilterBackend,)
+    filter_fields = ('user', 'manhole')
+
 
 
 class ManHoleInstallationViewSet(viewsets.ModelViewSet):
