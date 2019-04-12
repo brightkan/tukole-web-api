@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
 from api.models import Trip
-from api.models.trips import RouteChange
+from api.models.trips import RouteChange, Other
 
 
 class TripSerializer(serializers.ModelSerializer):
@@ -15,4 +15,10 @@ class TripSerializer(serializers.ModelSerializer):
 class RouteChangeSerializer(serializers.ModelSerializer):
     class Meta:
         model = RouteChange
-        fields = ('id', 'created', 'site', 'user')
+        fields = ('id', 'created', 'site', 'user', 'route_change_reason')
+
+
+class OtherSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Other
+        fields = ('id', 'created', 'site', 'user', 'reason')

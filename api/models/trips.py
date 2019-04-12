@@ -22,3 +22,9 @@ class RouteChange(TimeStampedModel):
     site = models.ForeignKey(to=Site, on_delete=models.CASCADE, null=True, blank=True)
     user = models.ForeignKey(to=User, on_delete=models.CASCADE, null=True, blank=True)
     route_change_reason = models.CharField(max_length=255, null=True, blank=True)
+
+
+class Other(TimeStampedModel):
+    site = models.ForeignKey(to=Site, on_delete=models.CASCADE, null=True, blank=True)
+    user = models.ForeignKey(to=User, on_delete=models.CASCADE, null=True, blank=True)
+    reason = models.TextField(null=True, blank=True)

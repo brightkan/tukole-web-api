@@ -38,7 +38,7 @@ from api.views.survey_results import SurveyResultViewSet as myapp_survey_results
 from api.views.surveys import SurveyViewset as myapp_surveys_views
 from api.views.tools import ToolsViewset as myapp_tools_views, ToolAssignmentViewSet
 from api.views.tools_types import Tools_typesViewset as myapp_tools_types_views
-from api.views.trips import TripViewSet, RouteChangeViewSet
+from api.views.trips import TripViewSet, RouteChangeViewSet, OtherViewSet
 from api.views.user_roles import UserRolesViewSet as myapp_user_roles_views
 from api.views.users import UserViewSet
 from api.views.userworkspaces import UserWorkSpaceViewSet
@@ -79,6 +79,7 @@ router.register(r'sitepowering', SitePoweringViewSet, base_name='site-powering')
 router.register(r'siteboqs', myapp_siteboqs_views)
 router.register(r'sitefleets', myapp_sitefleets_views)
 router.register(r'routechange', RouteChangeViewSet, base_name='route-change')
+router.register(r'other', OtherViewSet, base_name='other-viewset')
 router.register(r'usersitefleets', UserSitefleetViewSet, base_name="user-site-fleet")
 router.register(r'userfleetsassignments', UserFleetAssignmentViewSet, base_name="user-fleet-assignments")
 router.register(r'sitereports', myapp_sitereports_views)
