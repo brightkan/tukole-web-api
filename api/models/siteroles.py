@@ -24,6 +24,7 @@ class Siterole(TimeStampedModel):
         ('fuel_station_user', 'Fuel Station User'),
         ('warehouse', 'warehouse'),
         ('garage_manager', 'Garage Manager'),
+        ('workshop_supervisor', 'Workshop Supervisor'),
 
     )
 
