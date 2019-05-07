@@ -52,6 +52,12 @@ class Site(TimeStampedModel):
     site_drawing = models.FileField(upload_to="drawing/", null=True, blank=True)
     site_address = models.TextField(null=True, blank=True)
     site_usd_rate = models.IntegerField(null=True, blank=True)
+    site_type_choices = (
+        ('single', 'Single'),
+        ('dual', 'Dual'),
+        ('shared', 'Shared'),
+    )
+    site_type = models.CharField(max_length=150, choices=site_type_choices, null=True, blank=True)
 
     def save(self, *args, **kwargs):
         clientId = self.clientId
