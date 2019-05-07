@@ -71,3 +71,12 @@ class DuctInstallation(TimeStampedModel):
     micro_duct = models.CharField(max_length=155, choices=micro_duct_choices, null=True, blank=True)
     size = models.CharField(max_length=255, null=True, blank=True)
     number = models.CharField(max_length=255, null=True, blank=True)
+
+
+class CableInstallation(TimeStampedModel):
+    site = models.ForeignKey(to=Site, null=True, blank=True, on_delete=models.CASCADE)
+    user = models.ForeignKey(to=User, on_delete=models.CASCADE)
+    method = models.CharField(max_length=255, null=True, blank=True)
+    type = models.CharField(max_length=255, null=True, blank=True)
+    size = models.CharField(max_length=255, null=True, blank=True)
+    length = models.CharField(max_length=255, null=True, blank=True)
