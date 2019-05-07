@@ -6,4 +6,4 @@ from api.models import Incident
 class IncidentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Incident
-        fields = ('id', 'title', 'description', 'created', 'type', 'site', 'user')
+        fields = ('id', 'title', 'description', 'created', 'type', 'site', 'user', 'image')
