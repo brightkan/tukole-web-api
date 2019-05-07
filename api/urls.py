@@ -2,6 +2,7 @@ from django.urls import path, include
 from rest_framework import routers
 from rest_framework_swagger.views import get_swagger_view
 
+from api.views.activities import ActivityViewSet
 from api.views.challenge import ChallengeViewset
 from api.views.comment import CommentViewSet
 from api.views.company import CompanyViewSet
@@ -48,6 +49,7 @@ from api.views.workspaces import WorkspaceViewset as myapp_workspaces_views
 
 # router
 router = routers.DefaultRouter()
+router.register(r'activity', ActivityViewSet, base_name='activity')
 router.register(r'challenges', ChallengeViewset, base_name='challenges')
 router.register(r'company', CompanyViewSet, base_name='companies')
 router.register(r'users', UserViewSet, base_name='users')
