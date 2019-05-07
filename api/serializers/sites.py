@@ -52,7 +52,7 @@ class SiteUserRoleSerializer(serializers.ModelSerializer):
 class SiteImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = SiteImage
-        fields = ('id', 'site', 'image', 'status', 'created', 'modified')
+        fields = ('id', 'site', 'image', 'status', 'created', 'modified', 'long', 'lat')
 
 
 class SiteDocumentSerializer(serializers.ModelSerializer):

@@ -79,6 +79,8 @@ class SiteImage(TimeStampedModel):
     )
     site = models.ForeignKey(to=Site, on_delete=models.CASCADE)
     image = models.FileField(upload_to="siteimages")
+    lat = models.DecimalField(max_digits=9, decimal_places=6, null=True, blank=True)
+    long = models.DecimalField(max_digits=9, decimal_places=6, null=True, blank=True)
     status = models.CharField(choices=status_choices, max_length=255)
 
 
