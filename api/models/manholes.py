@@ -53,3 +53,21 @@ class ODFTermination(TimeStampedModel):
     ports = models.IntegerField(null=True, blank=True)
     client = models.CharField(max_length=255, null=True, blank=True)
     label = models.CharField(max_length=255, null=True, blank=True)
+
+
+class DuctInstallation(TimeStampedModel):
+    duct_type_choices = (
+        ('HDPE', 'HDPE'),
+        ('PVC', 'PVC'),
+    )
+    micro_duct_choices = (
+        ('1_way', '1 Way'),
+        ('2_way', '2 Way'),
+        ('3_way', '3 Way'),
+    )
+    site = models.ForeignKey(to=Site, null=True, blank=True, on_delete=models.CASCADE)
+    user = models.ForeignKey(to=User, on_delete=models.CASCADE)
+    duct_type = models.CharField(max_length=155, choices=duct_type_choices, null=True, blank=True)
+    micro_duct = models.CharField(max_length=155, choices=micro_duct_choices, null=True, blank=True)
+    size = models.CharField(max_length=255, null=True, blank=True)
+    number = models.CharField(max_length=255, null=True, blank=True)
