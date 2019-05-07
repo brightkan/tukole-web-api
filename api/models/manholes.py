@@ -45,3 +45,11 @@ class ODFInstallation(TimeStampedModel):
     user = models.ForeignKey(to=User, on_delete=models.CASCADE)
     number_of_odf_installed = models.IntegerField(null=True, blank=True)
     size_of_odf = models.CharField(max_length=255, null=True, blank=True)
+
+
+class ODFTermination(TimeStampedModel):
+    site = models.ForeignKey(to=Site, null=True, blank=True, on_delete=models.CASCADE)
+    user = models.ForeignKey(to=User, on_delete=models.CASCADE)
+    ports = models.IntegerField(null=True, blank=True)
+    client = models.CharField(max_length=255, null=True, blank=True)
+    label = models.CharField(max_length=255, null=True, blank=True)

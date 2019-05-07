@@ -15,10 +15,11 @@ from rest_framework.response import Response
 from rest_framework.status import HTTP_200_OK, HTTP_404_NOT_FOUND
 
 from api.models import ManHole, User, ManHoleAssignment, ManHoleDuration, Site
-from api.models.manholes import ManHoleInstallation, HandHoleInstallation, ODFInstallation
+from api.models.manholes import ManHoleInstallation, HandHoleInstallation, ODFInstallation, ODFTermination
 from api.serializers.manholes import ManHoleSerializer, ManHoleLoginSerializer, ManHoleAssignmentSerializer, \
     ManHoleCreateAssignmentSerializer, ManHoleUserFilterSerializer, ManHoleInstallationSerializer, \
-    HandHoleInstallationSerializer, ManHoleUserImportSerializer, ManHoleImportSerializer, ODFInstallationSerializer
+    HandHoleInstallationSerializer, ManHoleUserImportSerializer, ManHoleImportSerializer, ODFInstallationSerializer, \
+    ODFTerminationSerializer
 
 
 class ManHoleFilter(filters.FilterSet):
@@ -188,5 +189,13 @@ class ODFInstallationViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticated,)
     queryset = ODFInstallation.objects.all()
     serializer_class = ODFInstallationSerializer
+    filter_backends = (DjangoFilterBackend,)
+    filter_fields = ('user', 'site')
+
+
+class ODFTerminationViewSet(viewsets.ModelViewSet):
+    permission_classes = (IsAuthenticated,)
+    queryset = ODFTermination.objects.all()
+    serializer_class = ODFTerminationSerializer
     filter_backends = (DjangoFilterBackend,)
     filter_fields = ('user', 'site')

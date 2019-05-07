@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
 from api.models import ManHole, ManHoleAssignment, ManHoleDuration
-from api.models.manholes import ManHoleInstallation, ODFInstallation
+from api.models.manholes import ManHoleInstallation, ODFInstallation, ODFTermination
 
 
 class ManHoleSerializer(serializers.ModelSerializer):
@@ -110,3 +110,9 @@ class ODFInstallationSerializer(serializers.ModelSerializer):
     class Meta:
         model = ODFInstallation
         fields = ('id', 'site', 'user', 'created', 'size_of_odf', 'number_of_odf_installed')
+
+
+class ODFTerminationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ODFTermination
+        fields = ('id', 'site', 'user', 'created', 'ports', 'client', 'label')
