@@ -31,8 +31,9 @@ class FleetFuelRequestSerializer(serializers.ModelSerializer):
     class Meta:
         model = FleetFuelRequest
         fields = ('id', 'object_id', 'user', 'requested_fuel_in_litres', 'received_fuel_in_litres',
-                  'mileage_at_fuelling_time', 'status', 'refuel_reject_reason', 'created', 'approved', 'fuel_amount',
-                  'pump_screenshot', 'type', 'type_entity_object', 'allow_full_tank', 'humanUuid'
+                  'mileage_at_fuelling_time', 'status', 'refuel_reject_reason', 'created', 'approved',
+                  'pump_screenshot', 'type', 'type_entity_object', 'allow_full_tank', 'humanUuid',
+                  'fuelled_by', 'approved_by', 'received_amount', 'approved_amount',
                   )
 
 

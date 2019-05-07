@@ -33,11 +33,16 @@ class FleetFuelRequest(TimeStampedModel):
     received_fuel_in_litres = models.IntegerField(null=True, blank=True)
     allow_full_tank = models.BooleanField(default=False)
     pump_screenshot = models.FileField(upload_to='fuel/screenshot', null=True, blank=True)
-    fuel_amount = models.IntegerField(null=True, blank=True)
+    approved_amount = models.IntegerField(null=True, blank=True)
+    received_amount = models.IntegerField(null=True, blank=True)
     mileage_at_fuelling_time = models.IntegerField(null=True, blank=True)
     status = models.IntegerField(choices=fuel_status)
     approved = models.BooleanField(default=False)
     refuel_reject_reason = models.CharField(null=True, blank=True, max_length=250)
+    approved_by = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name="fuel_request_approved_by",
+                                    null=True, blank=True)
+    fuelled_by = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name="fuel_request_fuelled_by", null=True,
+                                   blank=True)
 
 
 class FuelReceipt(TimeStampedModel):
