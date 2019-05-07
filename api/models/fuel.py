@@ -29,6 +29,7 @@ class FleetFuelRequest(TimeStampedModel):
     object_id = models.IntegerField(null=True, blank=True)
     humanUuid = models.CharField(max_length=150, null=True, blank=True)
     type = models.CharField(max_length=155, choices=type_choices, null=True, blank=True)
+    object_type = models.CharField(max_length=255, null=True, blank=True)
     requested_fuel_in_litres = models.IntegerField(null=True, blank=True)
     received_fuel_in_litres = models.IntegerField(null=True, blank=True)
     allow_full_tank = models.BooleanField(default=False)
