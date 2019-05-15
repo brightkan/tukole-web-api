@@ -81,6 +81,16 @@ class UserViewSet(ModelViewSet):
         user_data = UserSerializer(user).data
         return Response(data=user_data, status=HTTP_200_OK)
 
+    @action(methods=['post'], detail=True, url_path='reinvite', url_name="re-invite",
+            )
+    def reinvite_members(self, request, pk):
+        user = User.objects.filter(id=pk).first()
+        email_activation_ = UserEmailActivation.objects.filter(email=user.email).last()
+        user_workspace = UserWorkSpace.objects.filter(user_id=user.id).last()
+        send_invite_email.delay(user.id, email_activation_.token, self.request.user.id, user_workspace.workspace)
+        user_data = UserSerializer(user).data
+        return Response(data=user_data, status=HTTP_200_OK)
+
     @action(methods=['post'], detail=False, url_path='accept', url_name="accept-members",
             serializer_class=AcceptUserSerializer)
     def accept_users(self, request):
