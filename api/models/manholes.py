@@ -7,6 +7,7 @@ from api.models import Site, User
 class ManHole(TimeStampedModel):
     site = models.ForeignKey(to=Site, null=True, blank=True, on_delete=models.CASCADE)
     number = models.CharField(max_length=150)
+    missed = models.BooleanField(default=False)
 
 
 class ManHoleDuration(TimeStampedModel):

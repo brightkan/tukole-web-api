@@ -28,7 +28,7 @@ class ManHoleFilter(filters.FilterSet):
 
     class Meta:
         model = ManHole
-        fields = ['user', 'site', 'number']
+        fields = ['user', 'site', 'number', 'missed', 'id', 'created']
 
     def filter_user_manhole(self, queryset, name, value):
         manhole_ids = ManHoleAssignment.objects.filter(user=value).values_list('manhole_id', flat=True)
@@ -42,6 +42,7 @@ class ManHoleViewSet(viewsets.ModelViewSet):
     serializer_class = ManHoleSerializer
     filter_backends = (DjangoFilterBackend,)
     filter_class = ManHoleFilter
+    search_fields = ('number', 'site')
 
     @action(methods=['post'], detail=True, url_path='login', url_name="login",
             serializer_class=ManHoleLoginSerializer)
