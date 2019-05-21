@@ -13,3 +13,10 @@ class Material(TimeStampedModel):
     unit_cost = models.CharField(max_length=50, null=True)
     running_out = models.BooleanField(default=False)
     quantity = models.DecimalField(max_digits=10, decimal_places=4, null=True, blank=True)
+
+
+class UsedMaterial(TimeStampedModel):
+    object_id = models.CharField(max_length=255, null=True, blank=True)
+    object_type = models.CharField(max_length=255, null=True, blank=True)
+    material = models.ForeignKey(to=Material, on_delete=models.CASCADE, null=True, blank=True,)
+    quantity = models.DecimalField(max_digits=10, decimal_places=4, null=True, blank=True)

@@ -19,7 +19,7 @@ from api.views.machinery_types import MachineryTypeViewset as myapp_machinery_ty
 from api.views.manholes import ManHoleViewSet, ManHoleAssignmentViewSet, ManHoleInstallationViewSet, \
     HandHoleInstallationViewSet, ManHoleDurationViewSet, ODFInstallationViewSet, ODFTerminationViewSet, \
     DuctInstallationViewSet, CableInstallationViewSet
-from api.views.materials import MaterialViewSet
+from api.views.materials import MaterialViewSet, UsedMaterialViewSet
 from api.views.metrics import MetricViewSet, UserPerformanceMetricViewSet
 from api.views.notifications import NotificationViewset as myapp_notifications_views
 from api.views.reinstallation import ReInstallationViewSet
@@ -54,6 +54,7 @@ router.register(r'challenges', ChallengeViewset, base_name='challenges')
 router.register(r'company', CompanyViewSet, base_name='companies')
 router.register(r'users', UserViewSet, base_name='users')
 router.register(r'materials', MaterialViewSet, base_name='materials')
+router.register(r'usedmaterials', UsedMaterialViewSet, base_name='used-materials')
 router.register(r'comments', CommentViewSet, base_name='comments')
 router.register(r'cost', CostViewSet, base_name='cost')
 router.register(r'workspaces', myapp_workspaces_views)

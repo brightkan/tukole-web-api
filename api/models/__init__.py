@@ -3,7 +3,7 @@ from api.models.company import Company
 from api.models.users import User
 from api.models.fleets import Fleet
 from api.models.machinery import Machinery
-from api.models.materials import Material
+from api.models.materials import Material, UsedMaterial
 from api.models.sites import Site, SiteImage, SiteDocument, SitePIP
 from api.models.tools_types import ToolType
 from api.models.challenges import Challenge
@@ -61,4 +61,5 @@ __all__ = [
     'Metric',
     'UserPerformanceMetric',
     'ToolAssignment',
+    'UsedMaterial',
 ]

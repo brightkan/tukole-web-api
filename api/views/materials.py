@@ -13,8 +13,8 @@ from rest_framework.status import HTTP_200_OK
 from rest_framework.viewsets import ModelViewSet
 
 from api.models import Workspace
-from api.models.materials import Material
-from api.serializers.materials import MaterialSerializer
+from api.models.materials import Material, UsedMaterial
+from api.serializers.materials import MaterialSerializer, UsedMaterialSerializer
 from api.serializers.warehousematerials import MaterialImportSerializer
 
 
@@ -47,3 +47,11 @@ class MaterialViewSet(ModelViewSet):
             count = count + 1
         data = {'number_of_materials': count, }
         return Response(data=data, status=HTTP_200_OK)
+
+
+class UsedMaterialViewSet(ModelViewSet):
+    permission_classes = (IsAuthenticated,)
+    serializer_class = UsedMaterialSerializer
+    queryset = UsedMaterial.objects.all()
+    filter_backends = (DjangoFilterBackend,)
+    filter_fields = ('id', 'material')
