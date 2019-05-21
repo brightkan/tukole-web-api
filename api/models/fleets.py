@@ -13,12 +13,19 @@ class Fleet(TimeStampedModel):
         ('broken_down', 'broken_down'),
         ('assigned', 'assigned')
     )
+
+    state_choices = (
+        ('picked_up', 'picked_up'),
+        ('returned', 'returned'),
+        ('removed', 'removed'),
+    )
     name = models.CharField(max_length=50, null=True)
     vehicle_type = models.ForeignKey(to=FleetType, on_delete=models.CASCADE, null=True, blank=True,
                                      related_name="fleet_vehicle_type")
     uuid = models.CharField(max_length=50, null=True)
     humanUuid = models.CharField(max_length=50, null=True)
     status = models.CharField(max_length=150, null=True, choices=status_choices)
+    state = models.CharField(max_length=150, null=True, choices=state_choices)
     workspace = models.ForeignKey(to=Workspace, on_delete=models.CASCADE, null=True, blank=True,
                                   related_name="fleet_workspace")
 

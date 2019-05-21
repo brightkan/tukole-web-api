@@ -8,7 +8,7 @@ from api.serializers.machinery import MachinerySerializer
 class FleetSerializer(serializers.ModelSerializer):
     class Meta:
         model = Fleet
-        fields = ('id', 'name', 'vehicle_type', 'uuid', 'humanUuid', 'status', 'workspace', 'created')
+        fields = ('id', 'name', 'vehicle_type', 'uuid', 'humanUuid', 'status', 'workspace', 'created', 'state')
 
 
 class UserFleetAssignmentSerializer(serializers.ModelSerializer):
