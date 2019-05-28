@@ -93,6 +93,7 @@ class User(AbstractEmailUser, TimeStampedModel):
         ('tools_head_of_department', 'Tools Head of Department'),
         ('tools_manager', 'Tools Manager'),
         ('technician', 'Technician'),
+        ('workshop_supervisor', 'Workshop Supervisor'),
 
     )
     type = models.CharField(max_length=150, choices=user_types)
