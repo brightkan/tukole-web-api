@@ -57,4 +57,6 @@ class UserFleetAssignment(TimeStampedModel):
     start_date = models.DateTimeField(null=True, blank=True)
     end_date = models.DateTimeField(null=True, blank=True)
     approved = models.BooleanField(default=Fleet)
+    approved_by = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name="user_fleet_approver", null=True,
+                                    blank=True)
     status = models.IntegerField(choices=approve_status, default=0)
