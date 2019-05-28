@@ -31,4 +31,4 @@ class UserFleetAssignmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserFleetAssignment
         fields = ('id', 'user', 'assignment_type', 'start_date', 'end_date', 'approved', 'status', 'type',
-                  'object_id', 'type_entity_object')
+                  'object_id', 'type_entity_object', 'object_type_name', 'object_type_id')
