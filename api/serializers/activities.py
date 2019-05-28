@@ -6,4 +6,4 @@ from api.models.activities import Activity
 class ActivitySerializer(serializers.ModelSerializer):
     class Meta:
         model = Activity
-        fields = ('id', 'title', 'description', 'created', 'site', 'user', 'start_time', 'end_time')
+        fields = ('id', 'title', 'description', 'created', 'site', 'user', 'start_time', 'end_time', 'duration')
