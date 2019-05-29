@@ -8,7 +8,7 @@ from api.views.comment import CommentViewSet
 from api.views.company import CompanyViewSet
 from api.views.cost import CostViewSet
 from api.views.distance import TrenchedDistanceViewSet
-from api.views.fleet_check_list import FleetCheckListItemViewset, FleetCheckListViewset
+from api.views.fleet_check_list import FleetCheckListItemViewset, FleetCheckListViewset, FleetCheckListItemResultViewSet
 from api.views.fleet_types import Fleet_typesViewset as myapp_fleet_types_views
 from api.views.fleets import FleetViewset, UserFleetAssignmentViewSet
 from api.views.fuel import FuelViewSet, FleetFuelRequestViewSet, FuelReceiptViewSet
@@ -69,6 +69,7 @@ router.register(r'machinehistory', MachineHistoryViewSet, base_name='machine-his
 router.register(r'toolhistory', ToolHistoryViewSet, base_name='tool-history')
 router.register(r'fleetchecklist', FleetCheckListViewset, base_name='fleet-check-list')
 router.register(r'fleetchecklistitems', FleetCheckListItemViewset, base_name='fleet-check-list-items')
+router.register(r'fleetchecklistresults', FleetCheckListItemResultViewSet, base_name='fleet-check-results')
 router.register(r'machinery', myapp_machinerys_views)
 router.register(r'tools_types', myapp_tools_types_views)
 router.register(r'tools', myapp_tools_views)

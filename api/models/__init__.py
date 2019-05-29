@@ -17,7 +17,7 @@ from api.models.cost import Cost
 from api.models.incidents import Incident
 from api.models.repairs import RepairHistory
 from api.models.siteworktimes import SiteArrivalTime, SiteWorkStatus, SiteCompletedWorks
-from api.models.fleet_check_list import FleetCheckListItem, FleetCheckList
+from api.models.fleet_check_list import FleetCheckListItem, FleetCheckList, FleetCheckListItemResult
 from api.models.history import FleetHistory, ToolHistory, MachineHistory
 from api.models.fuel import Fuel, FleetFuelRequest, FuelReceipt
 from api.models.metrics import Metric, UserPerformanceMetric
@@ -62,4 +62,5 @@ __all__ = [
     'UserPerformanceMetric',
     'ToolAssignment',
     'UsedMaterial',
+    'FleetCheckListItemResult'
 ]
