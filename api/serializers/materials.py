@@ -12,4 +12,4 @@ class MaterialSerializer(ModelSerializer):
 class UsedMaterialSerializer(ModelSerializer):
     class Meta:
         model = UsedMaterial
-        fields = ('id', 'object_id', 'object_type', 'created', 'material', 'quantity')
+        fields = ('id', 'object_id', 'object_type', 'created', 'material', 'quantity', 'site')

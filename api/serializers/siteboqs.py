@@ -33,4 +33,4 @@ class SiteboqSerializer(serializers.ModelSerializer):
     class Meta:
         model = Siteboq
         fields = ('id', 'site', 'material', 'material_name', 'material_measurement', 'material_unit_cost',
-                  'actual_quantity', 'estimate_quantity', 'boq_type', 'user', 'created')
+                  'actual_quantity', 'estimate_quantity', 'boq_type', 'user', 'created', 'description')

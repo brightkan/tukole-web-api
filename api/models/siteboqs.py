@@ -16,3 +16,4 @@ class Siteboq(TimeStampedModel):
     estimate_quantity = models.IntegerField(null=True, blank=True)
     boq_type = models.CharField(max_length=50, null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, related_name="siteboq_user")
+    description = models.CharField(max_length=255, null=True, blank=True)
