@@ -3,7 +3,7 @@ from django.contrib import admin
 # Register your models here.
 from api.models import User, Fleet, Machinery, ToolType, Site, Workspace, Material, FleetCheckList, FleetCheckListItem, \
     FleetFuelRequest, ManHole, ManHoleAssignment, UserPerformanceMetric, Metric, SiteWorkStatus, \
-    FleetCheckListItemResult
+    FleetCheckListItemResult, UsedMaterial
 from api.models.fleet_types import FleetType
 from api.models.fleets import UserFleetAssignment
 from api.models.siteboqs import Siteboq
@@ -24,6 +24,7 @@ admin.site.register(UserEmailActivation)
 admin.site.register(Workspace)
 admin.site.register(Siteboq)
 admin.site.register(Material)
+admin.site.register(UsedMaterial)
 admin.site.register(UserWorkSpace)
 admin.site.register(Siterole)
 admin.site.register(SurveyResult)

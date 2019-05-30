@@ -71,6 +71,9 @@ class Site(TimeStampedModel):
             p = Notification(user=clientId, notification=note)
             p.save()
 
+    def __str__(self):
+        return self.id
+
 
 class SiteImage(TimeStampedModel):
     status_choices = (
