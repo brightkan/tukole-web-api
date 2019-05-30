@@ -2,7 +2,7 @@ from rest_framework import serializers
 
 from api.models import ManHole, ManHoleAssignment, ManHoleDuration
 from api.models.manholes import ManHoleInstallation, ODFInstallation, ODFTermination, DuctInstallation, \
-    CableInstallation
+    CableInstallation, Trunking
 
 
 class ManHoleSerializer(serializers.ModelSerializer):
@@ -129,3 +129,9 @@ class CableInstallationSerializer(serializers.ModelSerializer):
     class Meta:
         model = CableInstallation
         fields = ('id', 'site', 'user', 'created', 'length', 'size', 'method', 'type',)
+
+
+class TrunkingSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Trunking
+        fields = '__all__'

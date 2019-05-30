@@ -81,3 +81,9 @@ class CableInstallation(TimeStampedModel):
     type = models.CharField(max_length=255, null=True, blank=True)
     size = models.CharField(max_length=255, null=True, blank=True)
     length = models.CharField(max_length=255, null=True, blank=True)
+
+
+class Trunking(TimeStampedModel):
+    site = models.ForeignKey(to=Site, null=True, blank=True, on_delete=models.CASCADE)
+    user = models.ForeignKey(to=User, on_delete=models.CASCADE)
+    meters_trunked = models.CharField(max_length=255, null=True, blank=True)

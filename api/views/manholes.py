@@ -16,11 +16,11 @@ from rest_framework.status import HTTP_200_OK, HTTP_404_NOT_FOUND
 
 from api.models import ManHole, User, ManHoleAssignment, ManHoleDuration, Site
 from api.models.manholes import ManHoleInstallation, HandHoleInstallation, ODFInstallation, ODFTermination, \
-    DuctInstallation, CableInstallation
+    DuctInstallation, CableInstallation, Trunking
 from api.serializers.manholes import ManHoleSerializer, ManHoleLoginSerializer, ManHoleAssignmentSerializer, \
     ManHoleCreateAssignmentSerializer, ManHoleUserFilterSerializer, ManHoleInstallationSerializer, \
     HandHoleInstallationSerializer, ManHoleUserImportSerializer, ManHoleImportSerializer, ODFInstallationSerializer, \
-    ODFTerminationSerializer, DuctInstallationSerializer, CableInstallationSerializer
+    ODFTerminationSerializer, DuctInstallationSerializer, CableInstallationSerializer, TrunkingSerializer
 
 
 class ManHoleFilter(filters.FilterSet):
@@ -215,5 +215,13 @@ class CableInstallationViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticated,)
     queryset = CableInstallation.objects.all()
     serializer_class = CableInstallationSerializer
+    filter_backends = (DjangoFilterBackend,)
+    filter_fields = ('user', 'site')
+
+
+class TrunkingViewSet(viewsets.ModelViewSet):
+    permission_classes = (IsAuthenticated,)
+    queryset = Trunking.objects.all()
+    serializer_class = TrunkingSerializer
     filter_backends = (DjangoFilterBackend,)
     filter_fields = ('user', 'site')

@@ -18,7 +18,7 @@ from api.views.machinery import MachineryViewset as myapp_machinerys_views
 from api.views.machinery_types import MachineryTypeViewset as myapp_machinery_types_views
 from api.views.manholes import ManHoleViewSet, ManHoleAssignmentViewSet, ManHoleInstallationViewSet, \
     HandHoleInstallationViewSet, ManHoleDurationViewSet, ODFInstallationViewSet, ODFTerminationViewSet, \
-    DuctInstallationViewSet, CableInstallationViewSet
+    DuctInstallationViewSet, CableInstallationViewSet, TrunkingViewSet
 from api.views.materials import MaterialViewSet, UsedMaterialViewSet
 from api.views.metrics import MetricViewSet, UserPerformanceMetricViewSet
 from api.views.notifications import NotificationViewset as myapp_notifications_views
@@ -103,6 +103,7 @@ router.register(r'handholeinstallation', HandHoleInstallationViewSet, base_name=
 router.register(r'odfinstallation', ODFInstallationViewSet, base_name="odf-installments")
 router.register(r'ductinstallation', DuctInstallationViewSet, base_name="duct-installments")
 router.register(r'cableinstallation', CableInstallationViewSet, base_name="cable-installments")
+router.register(r'trunking', TrunkingViewSet, base_name="trunking")
 router.register(r'odftermination', ODFTerminationViewSet, base_name="odf-termination")
 router.register(r'roadcrossing', RoadCrossingViewSet, base_name="road-crossing")
 router.register(r'reinstallation', ReInstallationViewSet, base_name="reinstallation")
