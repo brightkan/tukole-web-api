@@ -12,6 +12,7 @@ class RepairHistorySerializer(serializers.ModelSerializer):
 
 
 class RepairTicketSerializer(serializers.ModelSerializer):
+    object_id = serializers.SerializerMethodField(read_only=True)
 
     def get_object_id(self):
         object_type = self.type
