@@ -36,7 +36,7 @@ class RepairTicketSerializer(serializers.ModelSerializer):
     class Meta:
         model = RepairTicket
         fields = (
-            'object_id'
+            'object_id',
             'reported_by',
             'time_reported',
             'time_acknowledged',
