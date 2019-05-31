@@ -30,7 +30,7 @@ class Site(TimeStampedModel):
     ackStatus = models.BooleanField(default=False)
     ack_user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, related_name="site_ack_user")
     ack_date = models.DateField(null=True)
-    survay_time = models.TimeField(null=True)
+    survay_time = models.CharField(max_length=255, null=True, blank=True)
     can_client_view_survey_reports = models.BooleanField(default=False)
     email_remainder_sent = models.BooleanField(default=False)
     site_contact_person = models.CharField(null=True, blank=True, max_length=150)
@@ -82,8 +82,8 @@ class SiteImage(TimeStampedModel):
     )
     site = models.ForeignKey(to=Site, on_delete=models.CASCADE)
     image = models.FileField(upload_to="siteimages")
-    lat = models.DecimalField(max_digits=9, decimal_places=6, null=True, blank=True)
-    long = models.DecimalField(max_digits=9, decimal_places=6, null=True, blank=True)
+    lat = models.DecimalField(max_digits=12, decimal_places=12, null=True, blank=True)
+    long = models.DecimalField(max_digits=12, decimal_places=12, null=True, blank=True)
     status = models.CharField(choices=status_choices, max_length=255)
 
 
