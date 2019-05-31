@@ -17,7 +17,7 @@ class SiteSerializer(serializers.ModelSerializer):
             'number_of_site_fleet', 'number_of_members_on_site', 'site_image', 'site_completed',
             'isp_works_complete', 'osp_works_complete', 'ofc_works_complete', 'site_powering_complete',
             'original_trenching_distance', 'current_trenching_distance', 'site_drawing', 'site_address',
-            'site_usd_rate','site_type'
+            'site_usd_rate', 'site_type'
         )
 
 
@@ -70,4 +70,5 @@ class SitePIPSerializer(serializers.ModelSerializer):
 class SitePowerSerializer(serializers.ModelSerializer):
     class Meta:
         model = SitePower
-        fields = ('id', 'end_time', 'start_time', 'material_used', 'user', 'type', 'site', 'powering_successful')
+        fields = ('id', 'end_time', 'start_time', 'material_used', 'user', 'type', 'site', 'powering_successful',
+                  'product', 'comment', 'equipment_used')

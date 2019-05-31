@@ -116,3 +116,6 @@ class SitePower(TimeStampedModel):
     start_time = models.DateTimeField(null=True, blank=True)
     end_time = models.DateTimeField(null=True, blank=True)
     powering_successful = models.BooleanField(null=True, blank=True)
+    product = models.CharField(max_length=255, null=True, blank=True)
+    comment = models.CharField(max_length=255, null=True, blank=True)
+    equipment_used = models.CharField(max_length=255, null=True, blank=True)
