@@ -14,9 +14,9 @@ class RepairHistorySerializer(serializers.ModelSerializer):
 class RepairTicketSerializer(serializers.ModelSerializer):
     object_id = serializers.SerializerMethodField(read_only=True)
 
-    def get_object_id(self):
-        object_type = self.type
-        human_uuid = self.humanUuid
+    def get_object_id(self, obj):
+        object_type = obj.type
+        human_uuid = obj.humanUuid
         if object_type == 'fleet':
             fleet = Fleet.objects.filter(humanUuid=human_uuid).first()
             if fleet:
