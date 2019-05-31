@@ -18,18 +18,18 @@ class RepairTicketSerializer(serializers.ModelSerializer):
         object_type = obj.type
         human_uuid = obj.humanUuid
         if object_type == 'fleet':
-            fleet = Fleet.objects.filter(humanUuid=human_uuid).first()
+            fleet = Fleet.objects.filter(humanUuid__icontains=human_uuid).first()
             if fleet:
                 return fleet.id
             return ""
 
         elif object_type == 'machine':
-            machine = Machinery.objects.filter(humanUuid=human_uuid).first()
+            machine = Machinery.objects.filter(humanUuid__icontains=human_uuid).first()
             if machine:
                 return machine.id
             return ""
         elif object_type == 'tool':
-            tool = Tool.objects.filter(humanUuid=human_uuid)
+            tool = Tool.objects.filter(humanUuid__icontains=human_uuid)
             if tool:
                 return tool.id
             return ""

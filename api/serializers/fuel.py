@@ -16,7 +16,7 @@ class FleetFuelRequestSerializer(serializers.ModelSerializer):
 
     def get_type_entity_object(self, obj):
         if obj.type == 'machine':
-            machine = Machinery.objects.filter(humanUuid=obj.humanUuid).first()
+            machine = Machinery.objects.filter(humanUuid__icon=obj.humanUuid).first()
             if machine:
                 return MachinerySerializer(machine).data
 
