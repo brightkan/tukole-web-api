@@ -12,3 +12,4 @@ class Activity(TimeStampedModel):
     duration = models.BigIntegerField(null=True, blank=True)
     title = models.CharField(max_length=255, null=True, blank=True)
     description = models.CharField(max_length=255, null=True, blank=True)
+    image = models.FileField(upload_to="activityimages", null=True, blank=True)
