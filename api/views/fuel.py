@@ -74,9 +74,9 @@ class FleetFuelRequestViewSet(viewsets.ModelViewSet):
         month = datetime.strptime(month, "%Y-%m-%d")
         total = FleetFuelRequest.objects.filter(
             type=type, created__year=month.year,
-            created__month=month.month).aggregate(Sum('fuel_amount'))
+            created__month=month.month).aggregate(Sum('approved_amount'))
 
-        data = {'total': total['fuel_amount__sum'], 'type': type}
+        data = {'total': total['approved_amount__sum'], 'type': type}
         return Response(data=data, status=HTTP_200_OK)
 
 
