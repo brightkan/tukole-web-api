@@ -9,7 +9,11 @@ from api.models import Workspace, ToolType, User
 class Tool(TimeStampedModel):
     status_choices = (
         ('broken', 'Broken'),
-        ('healty', 'Healty')
+        ('healty', 'Healty'),
+        ('available', 'available'),
+        ('broken_down', 'broken_down'),
+        ('assigned', 'assigned'),
+
     )
     name = models.CharField(max_length=50, null=True)
     type = models.ForeignKey(ToolType, on_delete=models.CASCADE)
