@@ -55,9 +55,5 @@ class SiteroleViewSet(ModelViewSet):
                                                                          role='Surveyor')
                     if created:
                         count = count + 1
-                data = {'status': True, 'count_of_site_roles': count}
-                return Response(data=data, status=HTTP_200_OK)
-
-        else:
-            data = {'status': False, 'error': 'No site found from that name'}
-            return Response(data=data, status=HTTP_200_OK)
+        data = {'status': True, 'count_of_site_roles': count}
+        return Response(data=data, status=HTTP_200_OK)
