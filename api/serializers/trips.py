@@ -9,7 +9,7 @@ class TripSerializer(serializers.ModelSerializer):
         model = Trip
         fields = ('id', 'start', 'start_lat', 'start_long', 'destination',
                   'destination_lat', 'destination_long', 'site_fleet', 'reason',
-                  'reason_for_cancellation', 'cancelled', 'created')
+                  'reason_for_cancellation', 'cancelled', 'created', 'user', 'site')
 
 
 class RouteChangeSerializer(serializers.ModelSerializer):

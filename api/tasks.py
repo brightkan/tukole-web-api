@@ -77,6 +77,39 @@ def send_challenge_email(receiver_user_id, sender_user_id, challenge_id):
 
 
 @shared_task
+def send_trip_cancel_email(receiver_user_id, sender_user_id, trip_id):
+    sender = User.objects.filter(id=sender_user_id).first()
+    receiver = User.objects.filter(id=receiver_user_id).first()
+    from api.models import Trip
+    trip = Trip.objects.filter(id=trip_id).first()
+    sg = sendgrid.SendGridAPIClient(apikey=SENDGRID_API_KEY)
+    from_email = Email(email="no-reply@tukole.co.ug", name="Tukole System")
+    to_email = Email(receiver.email)
+    subject = "Tukole Workspace Challenge"
+    sender_name = ""
+    if sender:
+        if sender.first_name and sender.last_name:
+            sender_name = "%s %s" % (sender.first_name, sender.last_name)
+    else:
+        sender_name = "A Tukole Admin"
+
+    ctx = {
+        "receiver_name": "%s %s" % (receiver.first_name, receiver.last_name),
+        "sender_name": "%s" % sender_name,
+        "trip_reason": trip.reason_for_cancellation,
+        "trip_site": trip.site.site_name,
+        "server_url": SERVER_URL,
+    }
+    content = Content("text/html", get_template('email/user_cancelled_trip.html').render(context=ctx))
+    # message = get_template('email/meeting_confirmation.html').render(context=ctx)
+    mail = Mail(from_email, subject, to_email, content)
+    response = sg.client.mail.send.post(request_body=mail.get())
+    print(response.status_code)
+    print(response.body)
+    print(response.headers)
+
+
+@shared_task
 def send_reset_password_email(receiver_user_id, token):
     receiver = User.objects.filter(id=receiver_user_id).first()
     sg = sendgrid.SendGridAPIClient(apikey=SENDGRID_API_KEY)
