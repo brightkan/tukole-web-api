@@ -163,6 +163,7 @@ class ManHoleAssignmentViewSet(viewsets.ModelViewSet):
         return Response(data=data, status=HTTP_200_OK)
 
 
+
 class ManHoleDurationViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticated,)
     queryset = ManHoleDuration.objects.all()
