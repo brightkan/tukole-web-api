@@ -42,6 +42,41 @@ def send_invite_email(receiver_user_id, token, sender_user_id, workspace):
 
 
 @shared_task
+def send_challenge_email(receiver_user_id, sender_user_id, challenge_id):
+    sender = User.objects.filter(id=sender_user_id).first()
+    receiver = User.objects.filter(id=receiver_user_id).first()
+    from api.models import Challenge
+    challenge = Challenge.objects.filter(id=challenge_id).first()
+    sg = sendgrid.SendGridAPIClient(apikey=SENDGRID_API_KEY)
+    from_email = Email(email="no-reply@tukole.co.ug", name="Tukole System")
+    to_email = Email(receiver.email)
+    subject = "Tukole Workspace Challenge"
+    sender_name = ""
+    if sender:
+        if sender.first_name and sender.last_name:
+            sender_name = "%s %s" % (sender.first_name, sender.last_name)
+    else:
+        sender_name = "A Tukole Admin"
+
+    ctx = {
+        "receiver_name": "%s %s" % (receiver.first_name, receiver.last_name),
+        "sender_name": "%s" % sender_name,
+        "challenge_title": challenge.title,
+        "challenge_site": challenge.site.site_name,
+        "challenge_description": challenge.description,
+        "server_url": SERVER_URL,
+        "challenge_type": challenge.type
+    }
+    content = Content("text/html", get_template('email/site_challenge.html').render(context=ctx))
+    # message = get_template('email/meeting_confirmation.html').render(context=ctx)
+    mail = Mail(from_email, subject, to_email, content)
+    response = sg.client.mail.send.post(request_body=mail.get())
+    print(response.status_code)
+    print(response.body)
+    print(response.headers)
+
+
+@shared_task
 def send_reset_password_email(receiver_user_id, token):
     receiver = User.objects.filter(id=receiver_user_id).first()
     sg = sendgrid.SendGridAPIClient(apikey=SENDGRID_API_KEY)
