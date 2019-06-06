@@ -61,19 +61,6 @@ class FleetFuelRequestViewSet(viewsets.ModelViewSet):
         month = datetime.strptime(month, "%Y-%m-%d")
         total = FleetFuelRequest.objects.filter(
             type=type, created__year=month.year,
-            created__month=month.month).aggregate(Sum('fuel_amount'))
-
-        data = {'total': total['fuel_amount__sum'], 'type': type}
-        return Response(data=data, status=HTTP_200_OK)
-
-    @action(methods=['post'], detail=False, url_path='summary', url_name="summary",
-            serializer_class=FuelReceiptSummarySerializer)
-    def get_points(self, request):
-        type = request.data['type']
-        month = request.data['month']
-        month = datetime.strptime(month, "%Y-%m-%d")
-        total = FleetFuelRequest.objects.filter(
-            type=type, created__year=month.year,
             created__month=month.month).aggregate(Sum('approved_amount'))
 
         data = {'total': total['approved_amount__sum'], 'type': type}
