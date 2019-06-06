@@ -25,6 +25,7 @@ class SiteboqViewSet(ModelViewSet):
 
     @action(methods=['get'], detail=True, url_path='summary', url_name="summary", )
     def get_siteboq_summary(self, request, pk):
+        # improve this
         site = Site.objects.filter(id=pk).first()
         data = []
         if site:
@@ -34,7 +35,6 @@ class SiteboqViewSet(ModelViewSet):
                                                                           total_estimate_quantity=Sum(
                                                                               'estimate_quantity'),
                                                                           )
-                print(bq)
                 siteboq = Siteboq.objects.filter(material__name=boq).last()
                 boq_type = siteboq.boq_type
                 description = siteboq.description
