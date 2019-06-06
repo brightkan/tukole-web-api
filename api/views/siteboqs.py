@@ -50,7 +50,7 @@ class SiteboqViewSet(ModelViewSet):
                     'total_actual_quantity': bq['total_actual_quantity'],
                     'total_estimate_quantity': bq['total_estimate_quantity'],
                     'measurement_unit': material.measurement,
-                    'unit_cost': material.measurement,
+                    'unit_cost': material.unit_cost,
 
                 }
                 data.append(siteboq_data)
