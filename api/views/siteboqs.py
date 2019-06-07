@@ -6,7 +6,7 @@ from rest_framework.response import Response
 from rest_framework.status import HTTP_200_OK
 from rest_framework.viewsets import ModelViewSet
 
-from api.models import Site, Material
+from api.models import Site, Material, UsedMaterial
 from api.models.siteboqs import Siteboq
 from api.serializers.siteboqs import SiteboqSerializer
 
@@ -42,12 +42,14 @@ class SiteboqViewSet(ModelViewSet):
                 description = siteboq.description
                 site = siteboq.site
 
+                material_used = UsedMaterial.objects.filter(material=material, site=site).aggregate(
+                    total_actual_quantity=Sum('quantity'))
                 siteboq_data = {
                     'site': site.id,
                     'description': description,
                     'material': material.name,
                     'boq_type': boq_type,
-                    'total_actual_quantity': bq['total_actual_quantity'],
+                    'total_actual_quantity': material_used['total_actual_quantity'],
                     'total_estimate_quantity': bq['total_estimate_quantity'],
                     'measurement_unit': material.measurement,
                     'unit_cost': material.unit_cost,
