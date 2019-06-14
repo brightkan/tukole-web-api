@@ -11,11 +11,11 @@ from api.tasks import send_trip_cancel_email
 
 class Trip(TimeStampedModel):
     start = models.CharField(max_length=255, null=True, blank=True)
-    start_long = models.DecimalField(max_digits=9, decimal_places=6, null=True, blank=True)
-    start_lat = models.DecimalField(max_digits=9, decimal_places=6, null=True, blank=True)
+    start_long = models.DecimalField(max_digits=22, decimal_places=16, null=True, blank=True)
+    start_lat = models.DecimalField(max_digits=22, decimal_places=16, null=True, blank=True)
     destination = models.CharField(max_length=255, null=True, blank=True)
-    destination_long = models.DecimalField(max_digits=9, decimal_places=6, null=True, blank=True)
-    destination_lat = models.DecimalField(max_digits=9, decimal_places=6, null=True, blank=True)
+    destination_long = models.DecimalField(max_digits=22, decimal_places=16, null=True, blank=True)
+    destination_lat = models.DecimalField(max_digits=22, decimal_places=16, null=True, blank=True)
     reason = models.TextField(null=True, blank=True)
     site_fleet = models.ForeignKey(to=Sitefleet, null=True, blank=True, on_delete=models.CASCADE)
     user = models.ForeignKey(to=User, null=True, blank=True, on_delete=models.CASCADE)
@@ -42,4 +42,5 @@ def send_trip_cancelled_email(sender, instance, created, **kwargs):
         project_managers = User.objects.filter(
             Q(role__contains='project_manager') | Q(role__contains='fleet_manager'))
         for pm in project_managers:
-            send_trip_cancel_email.delay(pm.id, instance.user.id, instance.id)
+            trip = Trip.objects.filter(id=instance.id).first()
+            send_trip_cancel_email.delay(pm.id, trip.user.id, trip.id)
