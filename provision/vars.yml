@@ -4,4 +4,5 @@ user: tukole
 secret: MVrxHMXPXv6>6HjGydr3J*P8TF
 #repo: git@bitbucket.org:enockmudde/tukole-web-app.git
 #repo: git@kifaru.soliton.co.ke:mudde.enock/tukole-front-end.git
-repo: git@kifaru.soliton.co.ke:mudde.enock/tukole-web-app.git
+repo: git@41.79.8.112:mudde.enock/tukole-web-app.git
+#repo: https://kifaru.soliton.co.ke/mudde.enock/tukole-web-app.git
