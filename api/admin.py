@@ -6,6 +6,7 @@ from api.models import User, Fleet, Machinery, ToolType, Site, Workspace, Materi
     FleetCheckListItemResult, UsedMaterial
 from api.models.fleet_types import FleetType
 from api.models.fleets import UserFleetAssignment
+from api.models.repairs import RepairTicket
 from api.models.siteboqs import Siteboq
 from api.models.siteroles import Siterole
 from api.models.survey_result_comments import SurveyResultComment
@@ -39,3 +40,4 @@ admin.site.register(ManHoleAssignment)
 admin.site.register(UserPerformanceMetric)
 admin.site.register(Metric)
 admin.site.register(SiteWorkStatus)
+admin.site.register(RepairTicket)
