@@ -40,7 +40,8 @@ class Other(TimeStampedModel):
 def send_trip_cancelled_email(sender, instance, created, **kwargs):
     if instance.cancelled:
         project_managers = User.objects.filter(
-            Q(role__contains='project_manager') | Q(role__contains='fleet_manager'))
+            Q(role__contains='project_manager') | Q(role__contains='fleet_manager')
+        )
         for pm in project_managers:
             trip = Trip.objects.filter(id=instance.id).first()
             send_trip_cancel_email.delay(pm.id, trip.user.id, trip.id)

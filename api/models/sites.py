@@ -8,6 +8,7 @@ from api.models.workspaces import Workspace
 
 # Create your models here.
 
+
 class Site(TimeStampedModel):
     site_name = models.CharField(max_length=50, null=True)
     site_deleted = models.BooleanField(default=False, null=True)
@@ -24,11 +25,16 @@ class Site(TimeStampedModel):
     company = models.ForeignKey(Company, on_delete=models.CASCADE, null=True, blank=True)
     current_stage = models.IntegerField(default=0)
     archivedStatus = models.BooleanField(default=False)
-    workspace = models.ForeignKey(Workspace, on_delete=models.CASCADE, null=True, blank=True,
-                                  related_name="sites_workspace")
-    surveyor = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, related_name="site_surveyor")
+    workspace = models.ForeignKey(
+        Workspace, on_delete=models.CASCADE, null=True, blank=True, related_name="sites_workspace"
+    )
+    surveyor = models.ForeignKey(
+        User, on_delete=models.CASCADE, null=True, blank=True, related_name="site_surveyor"
+    )
     ackStatus = models.BooleanField(default=False)
-    ack_user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, related_name="site_ack_user")
+    ack_user = models.ForeignKey(
+        User, on_delete=models.CASCADE, null=True, blank=True, related_name="site_ack_user"
+    )
     ack_date = models.DateField(null=True)
     survay_time = models.CharField(max_length=255, null=True, blank=True)
     can_client_view_survey_reports = models.BooleanField(default=False)
@@ -52,11 +58,7 @@ class Site(TimeStampedModel):
     site_drawing = models.FileField(upload_to="drawing/", null=True, blank=True)
     site_address = models.TextField(null=True, blank=True)
     site_usd_rate = models.IntegerField(null=True, blank=True)
-    site_type_choices = (
-        ('single', 'Single'),
-        ('dual', 'Dual'),
-        ('shared', 'Shared'),
-    )
+    site_type_choices = (('single', 'Single'), ('dual', 'Dual'), ('shared', 'Shared'))
     site_type = models.CharField(max_length=150, choices=site_type_choices, null=True, blank=True)
 
     def save(self, *args, **kwargs):
@@ -66,7 +68,7 @@ class Site(TimeStampedModel):
         note = 'Survey request was acknowledged'
         super(Site, self).save(*args, **kwargs)
 
-        if ackStatus == True:
+        if ackStatus:
             print(note)
             p = Notification(user=clientId, notification=note)
             p.save()
@@ -76,10 +78,7 @@ class Site(TimeStampedModel):
 
 
 class SiteImage(TimeStampedModel):
-    status_choices = (
-        ('before', 'before'),
-        ('after', 'after'),
-    )
+    status_choices = (('before', 'before'), ('after', 'after'))
     site = models.ForeignKey(to=Site, on_delete=models.CASCADE)
     image = models.FileField(upload_to="siteimages")
     lat = models.DecimalField(max_digits=22, decimal_places=16, null=True, blank=True)
@@ -107,7 +106,7 @@ class SitePower(TimeStampedModel):
         ('dual', 'DUAL'),
         ('dual', 'Dual'),
         ('single', 'SINGLE'),
-        ('single', 'Single')
+        ('single', 'Single'),
     )
     site = models.ForeignKey(to=Site, on_delete=models.CASCADE, null=True, blank=True)
     type = models.CharField(max_length=255, null=True, blank=True)

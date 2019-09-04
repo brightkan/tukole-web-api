@@ -5,8 +5,12 @@ from api.models import Site, User
 
 
 class Activity(TimeStampedModel):
-    site = models.ForeignKey(to=Site, related_name="activity_site", on_delete=models.CASCADE, null=True, blank=True)
-    user = models.ForeignKey(to=User, related_name="activity_user", on_delete=models.CASCADE, null=True, blank=True)
+    site = models.ForeignKey(
+        to=Site, related_name="activity_site", on_delete=models.CASCADE, null=True, blank=True
+    )
+    user = models.ForeignKey(
+        to=User, related_name="activity_user", on_delete=models.CASCADE, null=True, blank=True
+    )
     start_time = models.DateTimeField(null=True, blank=True)
     end_time = models.DateTimeField(null=True, blank=True)
     duration = models.BigIntegerField(null=True, blank=True)

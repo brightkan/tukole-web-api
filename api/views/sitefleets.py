@@ -8,7 +8,11 @@ from rest_framework.viewsets import ModelViewSet
 from api.models import User, Site
 from api.models.sitefleets import Sitefleet, UserSiteFleet
 from api.serializers.fleets import FleetSerializer
-from api.serializers.sitefleets import SitefleetSerializer, UserSitefleetSerializer, UserSiteFleetRequestSerializer
+from api.serializers.sitefleets import (
+    SitefleetSerializer,
+    UserSitefleetSerializer,
+    UserSiteFleetRequestSerializer,
+)
 
 
 class SitefleetViewSet(ModelViewSet):
@@ -26,8 +30,13 @@ class UserSitefleetViewSet(ModelViewSet):
     filter_backends = (DjangoFilterBackend,)
     filter_fields = ('user', 'site_fleet')
 
-    @action(methods=['post'], detail=False, url_path='fleet', url_name="user-site-fleet",
-            serializer_class=UserSiteFleetRequestSerializer)
+    @action(
+        methods=['post'],
+        detail=False,
+        url_path='fleet',
+        url_name="user-site-fleet",
+        serializer_class=UserSiteFleetRequestSerializer,
+    )
     def get_fleet(self, request):
         user_ = request.data['user']
         site_ = request.data['site']

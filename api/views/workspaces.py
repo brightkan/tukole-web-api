@@ -9,6 +9,7 @@ from api.serializers.workspaces import WorkspaceSerializer
 
 # Create your views here.
 
+
 class WorkspaceViewset(viewsets.ModelViewSet):
     permission_classes = (AllowAny,)
     queryset = Workspace.objects.all()
