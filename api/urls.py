@@ -8,7 +8,11 @@ from api.views.comment import CommentViewSet
 from api.views.company import CompanyViewSet
 from api.views.cost import CostViewSet
 from api.views.distance import TrenchedDistanceViewSet
-from api.views.fleet_check_list import FleetCheckListItemViewset, FleetCheckListViewset, FleetCheckListItemResultViewSet
+from api.views.fleet_check_list import (
+    FleetCheckListItemViewset,
+    FleetCheckListViewset,
+    FleetCheckListItemResultViewSet,
+)
 from api.views.fleet_types import Fleet_typesViewset as myapp_fleet_types_views
 from api.views.fleets import FleetViewset, UserFleetAssignmentViewSet
 from api.views.fuel import FuelViewSet, FleetFuelRequestViewSet, FuelReceiptViewSet
@@ -16,9 +20,18 @@ from api.views.history import ToolHistoryViewSet, MachineHistoryViewSet, FleetHi
 from api.views.incidents import IncidentViewSet
 from api.views.machinery import MachineryViewset as myapp_machinerys_views
 from api.views.machinery_types import MachineryTypeViewset as myapp_machinery_types_views
-from api.views.manholes import ManHoleViewSet, ManHoleAssignmentViewSet, ManHoleInstallationViewSet, \
-    HandHoleInstallationViewSet, ManHoleDurationViewSet, ODFInstallationViewSet, ODFTerminationViewSet, \
-    DuctInstallationViewSet, CableInstallationViewSet, TrunkingViewSet
+from api.views.manholes import (
+    ManHoleViewSet,
+    ManHoleAssignmentViewSet,
+    ManHoleInstallationViewSet,
+    HandHoleInstallationViewSet,
+    ManHoleDurationViewSet,
+    ODFInstallationViewSet,
+    ODFTerminationViewSet,
+    DuctInstallationViewSet,
+    CableInstallationViewSet,
+    TrunkingViewSet,
+)
 from api.views.materials import MaterialViewSet, UsedMaterialViewSet
 from api.views.metrics import MetricViewSet, UserPerformanceMetricViewSet
 from api.views.notifications import NotificationViewset as myapp_notifications_views
@@ -30,12 +43,19 @@ from api.views.sitefleets import SitefleetViewSet as myapp_sitefleets_views, Use
 from api.views.sitemachines import SiteMachinesViewSet as myapp_sitemachines_views
 from api.views.sitereports import SitereportViewSet as myapp_sitereports_views
 from api.views.siteroles import SiteroleViewSet as myapp_siteroles_views
-from api.views.sites import SitesViewset as myapp_sites_views, SiteImageViewSet, SiteDocumentViewSet, SitePIPViewSet, \
-    SitePoweringViewSet
+from api.views.sites import (
+    SitesViewset as myapp_sites_views,
+    SiteImageViewSet,
+    SiteDocumentViewSet,
+    SitePIPViewSet,
+    SitePoweringViewSet,
+)
 from api.views.sitestatuses import SitestatusViewSet as myapp_sitestatus_views
 from api.views.sitetools import SitetoolViewSet as myapp_sitetools_views
 from api.views.siteworktimes import SiteArrivalTimeViewSet, SiteWorkStatusViewSet
-from api.views.survey_result_comments import SurveyResultCommentViewSet as myapp_survey_result_comments_views
+from api.views.survey_result_comments import (
+    SurveyResultCommentViewSet as myapp_survey_result_comments_views,
+)
 from api.views.survey_results import SurveyResultViewSet as myapp_survey_results_views
 from api.views.surveys import SurveyViewset as myapp_surveys_views
 from api.views.tools import ToolsViewset as myapp_tools_views, ToolAssignmentViewSet
@@ -68,8 +88,12 @@ router.register(r'fleethistory', FleetHistoryViewSet, base_name='fleet-history')
 router.register(r'machinehistory', MachineHistoryViewSet, base_name='machine-history')
 router.register(r'toolhistory', ToolHistoryViewSet, base_name='tool-history')
 router.register(r'fleetchecklist', FleetCheckListViewset, base_name='fleet-check-list')
-router.register(r'fleetchecklistitems', FleetCheckListItemViewset, base_name='fleet-check-list-items')
-router.register(r'fleetchecklistresults', FleetCheckListItemResultViewSet, base_name='fleet-check-results')
+router.register(
+    r'fleetchecklistitems', FleetCheckListItemViewset, base_name='fleet-check-list-items'
+)
+router.register(
+    r'fleetchecklistresults', FleetCheckListItemResultViewSet, base_name='fleet-check-results'
+)
 router.register(r'machinery', myapp_machinerys_views)
 router.register(r'tools_types', myapp_tools_types_views)
 router.register(r'tools', myapp_tools_views)
@@ -86,7 +110,9 @@ router.register(r'sitefleets', myapp_sitefleets_views)
 router.register(r'routechange', RouteChangeViewSet, base_name='route-change')
 router.register(r'other', OtherViewSet, base_name='other-viewset')
 router.register(r'usersitefleets', UserSitefleetViewSet, base_name="user-site-fleet")
-router.register(r'userfleetsassignments', UserFleetAssignmentViewSet, base_name="user-fleet-assignments")
+router.register(
+    r'userfleetsassignments', UserFleetAssignmentViewSet, base_name="user-fleet-assignments"
+)
 router.register(r'sitereports', myapp_sitereports_views)
 router.register(r'siteroles', myapp_siteroles_views)
 router.register(r'sitestatus', myapp_sitestatus_views)
@@ -98,8 +124,12 @@ router.register(r'usermetrics', UserPerformanceMetricViewSet, base_name="user-me
 router.register(r'manholes', ManHoleViewSet, base_name="man-holes")
 router.register(r'manholeduration', ManHoleDurationViewSet, base_name="man-assignments")
 router.register(r'manholesassignment', ManHoleAssignmentViewSet, base_name="man-assignments")
-router.register(r'manholesinstallation', ManHoleInstallationViewSet, base_name="manhole-installments")
-router.register(r'handholeinstallation', HandHoleInstallationViewSet, base_name="handhole-installments")
+router.register(
+    r'manholesinstallation', ManHoleInstallationViewSet, base_name="manhole-installments"
+)
+router.register(
+    r'handholeinstallation', HandHoleInstallationViewSet, base_name="handhole-installments"
+)
 router.register(r'odfinstallation', ODFInstallationViewSet, base_name="odf-installments")
 router.register(r'ductinstallation', DuctInstallationViewSet, base_name="duct-installments")
 router.register(r'cableinstallation', CableInstallationViewSet, base_name="cable-installments")
@@ -122,8 +152,4 @@ router.register(r'survey_result_comments', myapp_survey_result_comments_views)
 # swagger_view
 schema_view = get_swagger_view(title='Tukole API')
 
-urlpatterns = [
-    path('docs/', schema_view),
-    path('', include(router.urls)),
-
-]
+urlpatterns = [path('docs/', schema_view), path('', include(router.urls))]

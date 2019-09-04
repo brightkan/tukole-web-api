@@ -11,4 +11,4 @@ class SurveyResultViewSet(ModelViewSet):
     serializer_class = SurveyResultSerializer
     queryset = SurveyResult.objects.all()
     filter_backends = (DjangoFilterBackend,)
-    filter_fields = ('site','surveyor')
+    filter_fields = ('site', 'surveyor')

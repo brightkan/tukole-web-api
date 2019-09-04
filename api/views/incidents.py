@@ -4,6 +4,7 @@ from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
 
 from api.models import Incident
+
 # Create your views here.
 from api.serializers.incidents import IncidentSerializer
 

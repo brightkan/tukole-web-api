@@ -6,8 +6,12 @@ from rest_framework.response import Response
 from rest_framework.status import HTTP_200_OK
 
 from api.models import FleetCheckListItem, FleetCheckList, FleetCheckListItemResult
-from api.serializers.fleet_check_list import FleetCheckListItemSerializer, FleetCheckListSerializer, \
-    FleetCheckListItemResultSerializer, FleetCheckResultCreateSerializer
+from api.serializers.fleet_check_list import (
+    FleetCheckListItemSerializer,
+    FleetCheckListSerializer,
+    FleetCheckListItemResultSerializer,
+    FleetCheckResultCreateSerializer,
+)
 
 
 class FleetCheckListItemViewset(viewsets.ModelViewSet):
@@ -33,8 +37,13 @@ class FleetCheckListItemResultViewSet(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend,)
     filter_fields = ('id',)
 
-    @action(methods=['post'], detail=False, url_path='results', url_name="results",
-            serializer_class=FleetCheckResultCreateSerializer)
+    @action(
+        methods=['post'],
+        detail=False,
+        url_path='results',
+        url_name="results",
+        serializer_class=FleetCheckResultCreateSerializer,
+    )
     def create_checklist_results(self, request):
         status = request.data['status']
         request_object_id = request.data['request_object_id']
@@ -43,14 +52,10 @@ class FleetCheckListItemResultViewSet(viewsets.ModelViewSet):
         ids = check_list_items.split(',')
         count = 0
         for id in ids:
-            fl, created = FleetCheckListItemResult.objects.get_or_create(status=status,
-                                                                         request_object_id_id=request_object_id,
-                                                                         fleet_check_list_item_id=id,
-                                                                         )
+            fl, created = FleetCheckListItemResult.objects.get_or_create(
+                status=status, request_object_id_id=request_object_id, fleet_check_list_item_id=id
+            )
             if created:
                 count = count + 1
-        data = {
-            'status': True,
-            'check_list_items_saved': count
-        }
+        data = {'status': True, 'check_list_items_saved': count}
         return Response(data=data, status=HTTP_200_OK)

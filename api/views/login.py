@@ -30,17 +30,12 @@ class MyTokenObtainPairSerializer(serializers.Serializer):
 
         user_ = User.objects.filter(email=email_).first()
         if user_:
-            authed_user = authenticate(**{
-                'id': user_.id,
-                'password': password_,
-            })
+            authed_user = authenticate(**{'id': user_.id, 'password': password_})
             print("##################################################")
             print(authed_user)
 
         if authed_user is None:
-            raise serializers.ValidationError(
-                'No active account found with the given credentials',
-            )
+            raise serializers.ValidationError('No active account found with the given credentials')
 
         else:
             refresh = self.get_token(authed_user)

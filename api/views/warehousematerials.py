@@ -10,10 +10,10 @@ from api.serializers.warehousematerials import WarehouseMaterialSerializer
 
 # Create your views here.
 
+
 class WarehouseMaterialViewset(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticated,)
     queryset = WarehouseMaterial.objects.all()
     serializer_class = WarehouseMaterialSerializer
     filter_backends = (DjangoFilterBackend,)
-    filter_fields = ('site', 'material',)
-
+    filter_fields = ('site', 'material')

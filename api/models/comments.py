@@ -5,15 +5,8 @@ from api.models import Site, User
 
 
 class Comment(TimeStampedModel):
-    status_choices = (
-        ('pending', 'Pending'),
-        ('fixed', 'Fixed')
-    )
-    priority_choices = (
-        ('high', 'High'),
-        ('low', 'Low'),
-        ('medium', 'Medium'),
-    )
+    status_choices = (('pending', 'Pending'), ('fixed', 'Fixed'))
+    priority_choices = (('high', 'High'), ('low', 'Low'), ('medium', 'Medium'))
     site = models.ForeignKey(to=Site, null=True, blank=True, on_delete=models.CASCADE)
     title = models.CharField(max_length=255, null=True, blank=True)
     priority = models.CharField(max_length=255, null=True, blank=True, choices=priority_choices)

@@ -4,6 +4,7 @@ from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
 
 from api.models import Comment, User
+
 # Create your views here.
 from api.models.notifications import Notification
 from api.models.siteroles import Siterole
@@ -25,7 +26,9 @@ class CommentViewSet(viewsets.ModelViewSet):
         affected_teams = str(affected_teams)
         affected_teams = affected_teams.split(',')
         for team in affected_teams:
-            user_ids = Siterole.objects.filter(site_id=site, role=team).values_list('user_id', flat=True)
+            user_ids = Siterole.objects.filter(site_id=site, role=team).values_list(
+                'user_id', flat=True
+            )
             users = User.objects.filter(id__in=user_ids)
             for user in users:
                 Notification.objects.create(description=description, user=user)

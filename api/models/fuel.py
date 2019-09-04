@@ -13,17 +13,8 @@ class Fuel(TimeStampedModel):
 
 
 class FleetFuelRequest(TimeStampedModel):
-    fuel_status = (
-        (0, 0),
-        (1, 1),
-        (2, 2),
-        (3, 3),
-        (4, 4),
-    )
-    type_choices = (
-        ('machine', 'Machine'),
-        ('fleet', 'Fleet')
-    )
+    fuel_status = ((0, 0), (1, 1), (2, 2), (3, 3), (4, 4))
+    type_choices = (('machine', 'Machine'), ('fleet', 'Fleet'))
     user = models.ForeignKey(to=User, on_delete=models.CASCADE)
     fleet = models.ForeignKey(to=Fleet, on_delete=models.CASCADE, null=True, blank=True)
     object_id = models.IntegerField(null=True, blank=True)
@@ -40,10 +31,20 @@ class FleetFuelRequest(TimeStampedModel):
     status = models.IntegerField(choices=fuel_status)
     approved = models.BooleanField(default=False)
     refuel_reject_reason = models.CharField(null=True, blank=True, max_length=250)
-    approved_by = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name="fuel_request_approved_by",
-                                    null=True, blank=True)
-    fuelled_by = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name="fuel_request_fuelled_by", null=True,
-                                   blank=True)
+    approved_by = models.ForeignKey(
+        to=User,
+        on_delete=models.CASCADE,
+        related_name="fuel_request_approved_by",
+        null=True,
+        blank=True,
+    )
+    fuelled_by = models.ForeignKey(
+        to=User,
+        on_delete=models.CASCADE,
+        related_name="fuel_request_fuelled_by",
+        null=True,
+        blank=True,
+    )
 
 
 class FuelReceipt(TimeStampedModel):

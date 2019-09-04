@@ -6,8 +6,11 @@ from rest_framework.status import HTTP_200_OK
 from rest_framework.viewsets import ModelViewSet
 
 from api.models import SiteArrivalTime, SiteWorkStatus, SiteCompletedWorks, Site
-from api.serializers.siteworktimes import SiteArrivalTimeSerializer, SiteWorkStatusSerializer, \
-    SiteCompletedWorksSerializer
+from api.serializers.siteworktimes import (
+    SiteArrivalTimeSerializer,
+    SiteWorkStatusSerializer,
+    SiteCompletedWorksSerializer,
+)
 
 
 class SiteArrivalTimeViewSet(ModelViewSet):

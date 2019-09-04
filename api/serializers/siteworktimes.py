@@ -19,7 +19,9 @@ class SiteArrivalTimeSerializer(serializers.ModelSerializer):
         arrival_time = validated_data['arrival_time']
         site_role_ = Siterole.objects.filter(user_id=user_id, site_id=site_id).first()
         if site_role_:
-            return SiteArrivalTime.objects.create(site_role_id=site_role_.id, arrival_time=arrival_time)
+            return SiteArrivalTime.objects.create(
+                site_role_id=site_role_.id, arrival_time=arrival_time
+            )
         else:
             return {}
 

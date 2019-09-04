@@ -14,6 +14,6 @@ app.autodiscover_tasks()
 app.conf.beat_schedule = {
     'send_survey_reminder_email_every_day': {
         'task': 'api.tasks.get_survey_due_in_3days',
-        'schedule': crontab(minute=0, hour=1)
-    },
+        'schedule': crontab(minute=0, hour=1),
+    }
 }
