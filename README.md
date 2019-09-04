@@ -15,7 +15,7 @@
   
   Activate virtualenv  
   ```
-  $ pipenv run
+  $ pipenv shell
   ```
 
   Migrate
@@ -26,4 +26,10 @@
   Run app
   ```
   $ python manage.py runserver
+  ```
+ Format and Analyse
+  ```
+  $ black . -S --config black.toml
+  $ flake8 . 
+
   ```
