@@ -13,7 +13,6 @@ class MetricSerializer(ModelSerializer):
 
 
 class UserPerformanceMetricSerializer(ModelSerializer):
-
     def to_representation(self, instance):
         data = super().to_representation(instance)
         data['site'] = SiteSerializer(instance.site).data

@@ -3,7 +3,11 @@ from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
 
 from api.models.history import FleetHistory, ToolHistory, MachineHistory
-from api.serializers.history import FleetHistorySerializer, ToolHistorySerializer, MachineHistorySerializer
+from api.serializers.history import (
+    FleetHistorySerializer,
+    ToolHistorySerializer,
+    MachineHistorySerializer,
+)
 
 
 class FleetHistoryViewSet(viewsets.ModelViewSet):

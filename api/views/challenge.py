@@ -3,13 +3,8 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
 
-from api.models import User
 from api.models.challenges import Challenge
 from api.serializers.challenges import ChallengeSerializer
-
-
-# Create your views here.
-from api.tasks import send_challenge_email
 
 
 class ChallengeViewset(viewsets.ModelViewSet):
@@ -18,4 +13,3 @@ class ChallengeViewset(viewsets.ModelViewSet):
     serializer_class = ChallengeSerializer
     filter_backends = (DjangoFilterBackend,)
     filter_fields = ('site', 'user')
-

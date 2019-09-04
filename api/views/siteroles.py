@@ -25,8 +25,13 @@ class SiteroleViewSet(ModelViewSet):
     filter_backends = (DjangoFilterBackend,)
     filter_fields = ('site', 'user')
 
-    @action(methods=['post'], detail=False, url_path='import', url_name="import",
-            serializer_class=SiteRoleImportSerializer)
+    @action(
+        methods=['post'],
+        detail=False,
+        url_path='import',
+        url_name="import",
+        serializer_class=SiteRoleImportSerializer,
+    )
     def import_site_roles(self, request):
         csv_file_posted = request.data['file']
         csv_file = StringIO(csv_file_posted.read().decode())
@@ -43,16 +48,21 @@ class SiteroleViewSet(ModelViewSet):
                 osp_user = User.objects.filter(email=osp).first()
                 surveyor_user = User.objects.filter(email=surveyor).first()
                 if isp and isp_user:
-                    site_role_, created = Siterole.objects.get_or_create(site=site, user=isp_user, role='ISP')
+                    site_role_, created = Siterole.objects.get_or_create(
+                        site=site, user=isp_user, role='ISP'
+                    )
                     if created:
                         count = count + 1
                 elif osp and osp_user:
-                    site_role_, created = Siterole.objects.get_or_create(site=site, user=osp_user, role='OSP')
+                    site_role_, created = Siterole.objects.get_or_create(
+                        site=site, user=osp_user, role='OSP'
+                    )
                     if created:
                         count = count + 1
                 elif surveyor and surveyor_user:
-                    site_role_, created = Siterole.objects.get_or_create(site=site, user=surveyor_user,
-                                                                         role='Surveyor')
+                    site_role_, created = Siterole.objects.get_or_create(
+                        site=site, user=surveyor_user, role='Surveyor'
+                    )
                     if created:
                         count = count + 1
         data = {'status': True, 'count_of_site_roles': count}

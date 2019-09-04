@@ -8,7 +8,17 @@ from api.serializers.machinery import MachinerySerializer
 class FleetSerializer(serializers.ModelSerializer):
     class Meta:
         model = Fleet
-        fields = ('id', 'name', 'vehicle_type', 'uuid', 'humanUuid', 'status', 'workspace', 'created', 'state')
+        fields = (
+            'id',
+            'name',
+            'vehicle_type',
+            'uuid',
+            'humanUuid',
+            'status',
+            'workspace',
+            'created',
+            'state',
+        )
 
 
 class UserFleetAssignmentSerializer(serializers.ModelSerializer):
@@ -30,5 +40,18 @@ class UserFleetAssignmentSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = UserFleetAssignment
-        fields = ('id', 'user', 'assignment_type', 'start_date', 'end_date', 'approved', 'status', 'type',
-                  'object_id', 'type_entity_object', 'object_type_name', 'object_type_id', 'approved_by')
+        fields = (
+            'id',
+            'user',
+            'assignment_type',
+            'start_date',
+            'end_date',
+            'approved',
+            'status',
+            'type',
+            'object_id',
+            'type_entity_object',
+            'object_type_name',
+            'object_type_id',
+            'approved_by',
+        )

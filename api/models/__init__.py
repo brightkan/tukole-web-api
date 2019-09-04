@@ -62,5 +62,5 @@ __all__ = [
     'UserPerformanceMetric',
     'ToolAssignment',
     'UsedMaterial',
-    'FleetCheckListItemResult'
+    'FleetCheckListItemResult',
 ]

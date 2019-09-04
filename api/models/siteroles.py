@@ -8,6 +8,7 @@ from api.models.sites import Site
 
 # Create your models here.
 
+
 class Siterole(TimeStampedModel):
     role_choices = (
         ('isp', 'ISP'),
@@ -25,7 +26,6 @@ class Siterole(TimeStampedModel):
         ('warehouse', 'warehouse'),
         ('garage_manager', 'Garage Manager'),
         ('workshop_supervisor', 'Workshop Supervisor'),
-
     )
 
     site = models.ForeignKey(Site, on_delete=models.CASCADE, related_name="siteroles_site")
@@ -35,7 +35,6 @@ class Siterole(TimeStampedModel):
     def save(self, *args, **kwargs):
         site = self.site
         user = self.user
-        role = self.role
 
         note = 'You have bean added to site' + site.site_name
         p = Notification(user=user, notification=note)

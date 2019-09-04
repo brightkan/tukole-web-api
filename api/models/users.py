@@ -59,7 +59,7 @@ class AbstractEmailUser(AbstractBaseUser, PermissionsMixin):
         return str(self.email)
 
     class Meta:
-        unique_together = ('email', 'workspace',)
+        unique_together = ('email', 'workspace')
 
 
 class User(AbstractEmailUser, TimeStampedModel):
@@ -70,11 +70,7 @@ class User(AbstractEmailUser, TimeStampedModel):
         ('client', 'Client'),
     )
 
-    contract_type_choices = (
-        ('permanent', 'permanent'),
-        ('temporary', 'temporary'),
-
-    )
+    contract_type_choices = (('permanent', 'permanent'), ('temporary', 'temporary'))
     role_choices = (
         ('isp', 'ISP'),
         ('osp', 'OSP'),
@@ -94,7 +90,6 @@ class User(AbstractEmailUser, TimeStampedModel):
         ('tools_manager', 'Tools Manager'),
         ('technician', 'Technician'),
         ('workshop_supervisor', 'Workshop Supervisor'),
-
     )
     type = models.CharField(max_length=150, choices=user_types)
     role = models.CharField(max_length=150, choices=role_choices, null=True, blank=True)
@@ -118,12 +113,18 @@ class UserEmailActivation(TimeStampedModel):
 
 
 class UserWorkSpace(TimeStampedModel):
-    user = models.ForeignKey(to=User, related_name="user_workspace_user", on_delete=models.CASCADE, db_index=True)
-    workspace = models.ForeignKey(to=Workspace, related_name="user_workspace_workspace", on_delete=models.CASCADE,
-                                  db_index=True)
+    user = models.ForeignKey(
+        to=User, related_name="user_workspace_user", on_delete=models.CASCADE, db_index=True
+    )
+    workspace = models.ForeignKey(
+        to=Workspace,
+        related_name="user_workspace_workspace",
+        on_delete=models.CASCADE,
+        db_index=True,
+    )
 
     class Meta:
-        unique_together = ('user', 'workspace',)
+        unique_together = ('user', 'workspace')
 
     def __str__(self):
         return "%s %s" % (self.user, self.workspace)

@@ -7,10 +7,17 @@ from api.models.sites import Site
 
 # Create your models here.
 
+
 class WarehouseMaterial(TimeStampedModel):
-    site = models.ForeignKey(Site, on_delete=models.CASCADE, null=True, blank=True,
-                             related_name="warehousematerial_site")
+    site = models.ForeignKey(
+        Site, on_delete=models.CASCADE, null=True, blank=True, related_name="warehousematerial_site"
+    )
     is_returned = models.BooleanField(default=False)
-    material = models.ForeignKey(Material, on_delete=models.CASCADE, null=True, blank=True,
-                                 related_name="warehousematerial_material")
+    material = models.ForeignKey(
+        Material,
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+        related_name="warehousematerial_material",
+    )
     quantity = models.IntegerField(default=0)
