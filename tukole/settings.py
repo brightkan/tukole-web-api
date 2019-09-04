@@ -32,12 +32,7 @@ ALLOWED_HOSTS = ['178.62.54.104', '127.0.0.1']
 
 SERVER_URL = "http://178.62.54.104"
 
-THRID_PARTY_APPS = [
-    'rest_framework',
-    'rest_framework_swagger',
-    'corsheaders',
-    'django_filters',
-]
+THRID_PARTY_APPS = ['rest_framework', 'rest_framework_swagger', 'corsheaders', 'django_filters']
 
 DJANGO_CORE_APPS = [
     'django.contrib.admin',
@@ -46,12 +41,9 @@ DJANGO_CORE_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
 ]
 
-TUKOLE_APPS = [
-    'api.apps.ApiConfig',
-]
+TUKOLE_APPS = ['api.apps.ApiConfig']
 
 INSTALLED_APPS = DJANGO_CORE_APPS + THRID_PARTY_APPS + TUKOLE_APPS
 
@@ -81,9 +73,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-            ],
+            ]
         },
-    },
+    }
 ]
 
 WSGI_APPLICATION = 'tukole.wsgi.application'
@@ -91,9 +83,7 @@ WSGI_APPLICATION = 'tukole.wsgi.application'
 AUTH_USER_MODEL = "api.user"
 
 REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
-    ),
+    'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAuthenticated',),
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
         'rest_framework.authentication.SessionAuthentication',
@@ -112,18 +102,14 @@ SIMPLE_JWT = {
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
     'ROTATE_REFRESH_TOKENS': False,
     'BLACKLIST_AFTER_ROTATION': True,
-
     'ALGORITHM': 'HS256',
     'SIGNING_KEY': SECRET_KEY,
     'VERIFYING_KEY': None,
-
     'AUTH_HEADER_TYPES': ('Bearer',),
     'USER_ID_FIELD': 'id',
     'USER_ID_CLAIM': 'user_id',
-
     'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
     'TOKEN_TYPE_CLAIM': 'token_type',
-
     'SLIDING_TOKEN_REFRESH_EXP_CLAIM': 'refresh_exp',
     'SLIDING_TOKEN_LIFETIME': timedelta(hours=3),
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
@@ -140,18 +126,10 @@ DATABASES = {
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
 
 SENDGRID_API_KEY = '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'
@@ -180,6 +158,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 try:
-    from tukole.local_settings import *
+    from tukole.local_settings import *  # noqa
 except ImportError:
     pass

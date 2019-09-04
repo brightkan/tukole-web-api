@@ -25,27 +25,39 @@ class MaterialViewSet(ModelViewSet):
     filter_backends = (DjangoFilterBackend,)
     filter_fields = ('workspace', 'running_out')
 
-    @action(methods=['post'], detail=False, url_path='import', url_name="import",
-            serializer_class=MaterialImportSerializer)
+    @action(
+        methods=['post'],
+        detail=False,
+        url_path='import',
+        url_name="import",
+        serializer_class=MaterialImportSerializer,
+    )
     def import_manholes(self, request):
         csv_file_posted = request.data['file']
         workspace_id = request.data.get('workspace', None)
         workspace = Workspace.objects.filter(id=workspace_id).first()
         csv_file = StringIO(csv_file_posted.read().decode())
         csv_reader = csv.reader(csv_file, delimiter=',')
-        title = next(csv_reader)
+        title = next(csv_reader)  # noqa
         count = 0
         for row in csv_reader:
-            measure = row[4]
             if float(row[3]) < 10.0000:
-                Material.objects.get_or_create(name=row[2], defaults={"measurement": row[4], "quantity": row[3],
-                                                                      'running_out': True, 'workspace': workspace})
+                Material.objects.get_or_create(
+                    name=row[2],
+                    defaults={
+                        "measurement": row[4],
+                        "quantity": row[3],
+                        'running_out': True,
+                        'workspace': workspace,
+                    },
+                )
             else:
-                Material.objects.get_or_create(name=row[2],
-                                               defaults={"measurement": row[4], "quantity": row[3],
-                                                         'workspace': workspace})
+                Material.objects.get_or_create(
+                    name=row[2],
+                    defaults={"measurement": row[4], "quantity": row[3], 'workspace': workspace},
+                )
             count = count + 1
-        data = {'number_of_materials': count, }
+        data = {'number_of_materials': count}
         return Response(data=data, status=HTTP_200_OK)
 
 

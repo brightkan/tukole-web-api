@@ -60,5 +60,4 @@ class RepairTicketSerializer(serializers.ModelSerializer):
             'requisition_required',
             'repairs_started',
             'repairs_verified',
-
         )

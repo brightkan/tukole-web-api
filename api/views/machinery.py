@@ -9,9 +9,10 @@ from api.serializers.machinery import MachinerySerializer
 
 # Create your views here.
 
+
 class MachineryViewset(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticated,)
     queryset = Machinery.objects.all()
     serializer_class = MachinerySerializer
     filter_backends = (DjangoFilterBackend,)
-    filter_fields = ('workspace','type')
+    filter_fields = ('workspace', 'type')

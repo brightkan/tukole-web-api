@@ -23,19 +23,24 @@ class SiteboqViewSet(ModelViewSet):
     filter_backends = (DjangoFilterBackend,)
     filter_fields = ('site', 'material', 'user')
 
-    @action(methods=['get'], detail=True, url_path='summary', url_name="summary", )
+    @action(methods=['get'], detail=True, url_path='summary', url_name="summary")
     def get_siteboq_summary(self, request, pk):
         # improve this
         site = Site.objects.filter(id=pk).first()
         data = []
         if site:
-            boqs = Siteboq.objects.filter(site_id=site.id).values_list('material__id', flat=True).distinct()
+            boqs = (
+                Siteboq.objects.filter(site_id=site.id)
+                .values_list('material__id', flat=True)
+                .distinct()
+            )
             for boq in boqs:
                 material = Material.objects.get(id=boq)
-                bq = Siteboq.objects.filter(material__name=material.name, site_id=site.id).aggregate(
+                bq = Siteboq.objects.filter(
+                    material__name=material.name, site_id=site.id
+                ).aggregate(
                     total_actual_quantity=Sum('actual_quantity'),
-                    total_estimate_quantity=Sum(
-                        'estimate_quantity'),
+                    total_estimate_quantity=Sum('estimate_quantity'),
                 )
                 siteboq = Siteboq.objects.filter(material__name=material.name).last()
                 boq_type = siteboq.boq_type
@@ -43,7 +48,8 @@ class SiteboqViewSet(ModelViewSet):
                 site = siteboq.site
 
                 material_used = UsedMaterial.objects.filter(material=material, site=site).aggregate(
-                    total_actual_quantity=Sum('quantity'))
+                    total_actual_quantity=Sum('quantity')
+                )
                 siteboq_data = {
                     'site': site.id,
                     'description': description,
@@ -53,7 +59,6 @@ class SiteboqViewSet(ModelViewSet):
                     'total_estimate_quantity': bq['total_estimate_quantity'],
                     'measurement_unit': material.measurement,
                     'unit_cost': material.unit_cost,
-
                 }
                 data.append(siteboq_data)
             return Response(data=data, status=HTTP_200_OK)

@@ -5,11 +5,17 @@ from rest_framework.permissions import IsAuthenticated
 
 from api.models.notifications import Notification
 from api.models.sites import Site, SiteImage, SitePIP, SiteDocument, SitePower
-from api.serializers.sites import SiteSerializer, SiteImageSerializer, SiteDocumentSerializer, SitePIPSerializer, \
-    SitePowerSerializer
+from api.serializers.sites import (
+    SiteSerializer,
+    SiteImageSerializer,
+    SiteDocumentSerializer,
+    SitePIPSerializer,
+    SitePowerSerializer,
+)
 
 
 # Create your views here. user=Site.clientId,
+
 
 class SitesViewset(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticated,)

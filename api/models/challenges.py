@@ -8,14 +8,15 @@ from api.tasks import send_challenge_email
 
 
 class Challenge(TimeStampedModel):
-    challenge_type = (
-        ('external', 'External'),
-        ('internal', 'Internal')
-    )
+    challenge_type = (('external', 'External'), ('internal', 'Internal'))
     title = models.CharField(max_length=255)
     type = models.CharField(max_length=255, choices=challenge_type)
-    site = models.ForeignKey(to=Site, related_name="challenge_site", on_delete=models.CASCADE, null=True, blank=True)
-    user = models.ForeignKey(to=User, related_name="challenge_user", on_delete=models.CASCADE, null=True, blank=True)
+    site = models.ForeignKey(
+        to=Site, related_name="challenge_site", on_delete=models.CASCADE, null=True, blank=True
+    )
+    user = models.ForeignKey(
+        to=User, related_name="challenge_user", on_delete=models.CASCADE, null=True, blank=True
+    )
     image = models.FileField(upload_to='challenge', null=True, blank=True)
     description = models.TextField()
 

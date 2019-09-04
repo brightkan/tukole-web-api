@@ -13,8 +13,12 @@ from api.models import User, Site, Company
 from api.models.siteroles import Siterole
 from api.models.users import UserEmailActivation, UserWorkSpace
 from api.serializers.sites import SiteUserRoleSerializer
-from api.serializers.users import UserSerializer, SimpleInviteUserSerializer, AcceptUserSerializer, \
-    ResetPasswordSerializer
+from api.serializers.users import (
+    UserSerializer,
+    SimpleInviteUserSerializer,
+    AcceptUserSerializer,
+    ResetPasswordSerializer,
+)
 from api.tasks import send_invite_email, send_reset_password_email
 
 
@@ -47,8 +51,13 @@ class UserViewSet(ModelViewSet):
     filter_class = UserFilter
     filter_backends = (DjangoFilterBackend,)
 
-    @action(methods=['post'], detail=False, url_path='invite', url_name="invite-members",
-            serializer_class=SimpleInviteUserSerializer)
+    @action(
+        methods=['post'],
+        detail=False,
+        url_path='invite',
+        url_name="invite-members",
+        serializer_class=SimpleInviteUserSerializer,
+    )
     def invite_members(self, request):
         email = request.data['email']
         first_name = request.data['first_name']
@@ -59,10 +68,18 @@ class UserViewSet(ModelViewSet):
         type = request.data['type']
         role = request.data['role']
         company = request.data.get('company', None)
-        user, created = User.objects.get_or_create(email=email, workspace_id=workspace,
-                                                   defaults={'first_name': first_name, 'last_name': last_name,
-                                                             'type': type, 'contract_type': contract_type,
-                                                             'phone_number': phone_number, 'role': role})
+        user, created = User.objects.get_or_create(
+            email=email,
+            workspace_id=workspace,
+            defaults={
+                'first_name': first_name,
+                'last_name': last_name,
+                'type': type,
+                'contract_type': contract_type,
+                'phone_number': phone_number,
+                'role': role,
+            },
+        )
 
         company_ = Company.objects.filter(id=company).first()
         if company_:
@@ -71,28 +88,35 @@ class UserViewSet(ModelViewSet):
         signer = TimestampSigner()
         value = signer.sign(email)
         ttl = value.split(":")
-        token = ('%s%s' % (ttl[1], ttl[2]))
-        email_activation_, created = UserEmailActivation.objects.get_or_create(email=email, token=token)
+        token = '%s%s' % (ttl[1], ttl[2])
+        email_activation_, created = UserEmailActivation.objects.get_or_create(
+            email=email, token=token
+        )
         user_workspace, created = UserWorkSpace.objects.get_or_create(
-            workspace_id=workspace,
-            user_id=user.id
+            workspace_id=workspace, user_id=user.id
         )
         send_invite_email.delay(user.id, token, self.request.user.id, workspace)
         user_data = UserSerializer(user).data
         return Response(data=user_data, status=HTTP_200_OK)
 
-    @action(methods=['post'], detail=True, url_path='reinvite', url_name="re-invite",
-            )
+    @action(methods=['post'], detail=True, url_path='reinvite', url_name="re-invite")
     def reinvite_members(self, request, pk):
         user = User.objects.filter(id=pk).first()
         email_activation_ = UserEmailActivation.objects.filter(email=user.email).last()
         user_workspace = UserWorkSpace.objects.filter(user_id=user.id).last()
-        send_invite_email.delay(user.id, email_activation_.token, self.request.user.id, user_workspace.workspace)
+        send_invite_email.delay(
+            user.id, email_activation_.token, self.request.user.id, user_workspace.workspace
+        )
         user_data = UserSerializer(user).data
         return Response(data=user_data, status=HTTP_200_OK)
 
-    @action(methods=['post'], detail=False, url_path='accept', url_name="accept-members",
-            serializer_class=AcceptUserSerializer)
+    @action(
+        methods=['post'],
+        detail=False,
+        url_path='accept',
+        url_name="accept-members",
+        serializer_class=AcceptUserSerializer,
+    )
     def accept_users(self, request):
         token = request.data['token']
         password = request.data['password']
@@ -101,7 +125,11 @@ class UserViewSet(ModelViewSet):
         token_second_part = token[6:]
 
         signer = TimestampSigner()
-        email_hash = ("%s:%s:%s" % (email_activation_token.email, token_first_part, token_second_part))
+        email_hash = "%s:%s:%s" % (
+            email_activation_token.email,
+            token_first_part,
+            token_second_part,
+        )
         try:
             unsigned_value = signer.unsign(email_hash, max_age=timedelta(days=3))
             if unsigned_value == email_activation_token.email:
@@ -115,12 +143,19 @@ class UserViewSet(ModelViewSet):
 
         except Exception as e:
             print(e)
-            data = {'status': False,
-                    'message': "User invite expired. Please have the admin reinvite you to the workspace"}
+            data = {
+                'status': False,
+                'message': "User invite expired. Please have an admin re-invite you.",
+            }
             return Response(data=data, status=HTTP_200_OK)
 
-    @action(methods=['post'], detail=False, url_path='reset', url_name="reset-password",
-            serializer_class=ResetPasswordSerializer)
+    @action(
+        methods=['post'],
+        detail=False,
+        url_path='reset',
+        url_name="reset-password",
+        serializer_class=ResetPasswordSerializer,
+    )
     def reset_password(self, request):
         email = request.data['email']
         user = User.objects.filter(email=email).first()
@@ -128,10 +163,12 @@ class UserViewSet(ModelViewSet):
             signer = TimestampSigner()
             value = signer.sign(email)
             ttl = value.split(":")
-            token = ('%s%s' % (ttl[1], ttl[2]))
-            deleted = UserEmailActivation.objects.filter(email=email).delete()
-            email_activation_, created = UserEmailActivation.objects.get_or_create(email=email, token=token)
-            send_reset_password_email.delay(user.id, token, )
+            token = '%s%s' % (ttl[1], ttl[2])
+            UserEmailActivation.objects.filter(email=email).delete()
+            email_activation_, created = UserEmailActivation.objects.get_or_create(
+                email=email, token=token
+            )  # noqa
+            send_reset_password_email.delay(user.id, token)
             data = {'status': True, 'message': 'Password reset sent'}
             return Response(data=data, status=HTTP_200_OK)
         else:
