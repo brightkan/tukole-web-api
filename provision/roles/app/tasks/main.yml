@@ -25,7 +25,7 @@
   git: repo={{repo}} dest=/home/{{name}}/app/{{ name }} key_file=/home/{{ user }}/.ssh/webapp accept_hostkey=true force=yes
 
 
-- command: 'pipenv install'
+- command: 'pipenv install --pre'
   args:
     chdir: /home/{{name}}/app/{{name}}/
   environment:
