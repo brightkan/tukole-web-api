@@ -53,6 +53,7 @@ class ODFTermination(TimeStampedModel):
     user = models.ForeignKey(to=User, on_delete=models.CASCADE)
     ports = models.IntegerField(null=True, blank=True)
     client = models.CharField(max_length=255, null=True, blank=True)
+    cores = models.CharField(max_length=255, null=True, blank=True)
     label = models.CharField(max_length=255, null=True, blank=True)
 
 

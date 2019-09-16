@@ -154,7 +154,7 @@ class ODFInstallationSerializer(serializers.ModelSerializer):
 class ODFTerminationSerializer(serializers.ModelSerializer):
     class Meta:
         model = ODFTermination
-        fields = ('id', 'site', 'user', 'created', 'ports', 'client', 'label')
+        fields = ('id', 'site', 'user', 'created', 'ports', 'client', 'label', 'cores')
 
 
 class DuctInstallationSerializer(serializers.ModelSerializer):
