@@ -74,7 +74,7 @@ class Site(TimeStampedModel):
             p.save()
 
     def __str__(self):
-        return self.id
+        return str(self.id)
 
 
 class SiteImage(TimeStampedModel):
@@ -84,6 +84,7 @@ class SiteImage(TimeStampedModel):
     lat = models.DecimalField(max_digits=22, decimal_places=16, null=True, blank=True)
     long = models.DecimalField(max_digits=22, decimal_places=16, null=True, blank=True)
     status = models.CharField(choices=status_choices, max_length=255)
+    user = models.ForeignKey(to=User, on_delete=models.CASCADE, null=True, blank=True)
 
 
 class SiteDocument(TimeStampedModel):

@@ -2,6 +2,7 @@ from rest_framework import serializers
 
 from api.models.siteroles import Siterole
 from api.models.sites import Site, SiteImage, SiteDocument, SitePIP, SitePower
+from api.serializers.users import UserSerializer
 
 
 class SiteSerializer(serializers.ModelSerializer):
@@ -121,9 +122,14 @@ class SiteUserRoleSerializer(serializers.ModelSerializer):
 
 
 class SiteImageSerializer(serializers.ModelSerializer):
+    def to_representation(self, instance):
+        return_data = super().to_representation(instance)
+        return_data['user'] = UserSerializer(instance.user).data
+        return return_data
+
     class Meta:
         model = SiteImage
-        fields = ('id', 'site', 'image', 'status', 'created', 'modified', 'long', 'lat')
+        fields = ('id', 'site', 'image', 'status', 'created', 'modified', 'long', 'lat', 'user')
 
 
 class SiteDocumentSerializer(serializers.ModelSerializer):

@@ -19,6 +19,7 @@ from api.models import (
     SiteWorkStatus,
     FleetCheckListItemResult,
     UsedMaterial,
+    SiteImage,
 )
 from api.models.fleet_types import FleetType
 from api.models.fleets import UserFleetAssignment
@@ -57,3 +58,4 @@ admin.site.register(UserPerformanceMetric)
 admin.site.register(Metric)
 admin.site.register(SiteWorkStatus)
 admin.site.register(RepairTicket)
+admin.site.register(SiteImage)
