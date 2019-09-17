@@ -6,4 +6,4 @@ from api.models.reinstallation import ReInstallation
 class ReInstallationSerializer(serializers.ModelSerializer):
     class Meta:
         model = ReInstallation
-        fields = ('id', 'site', 'material', 'type', 'amount', 'user', 'created', 'fm_approved')
+        fields = ('id', 'site', 'type', 'amount', 'user', 'created', 'fm_approved')
