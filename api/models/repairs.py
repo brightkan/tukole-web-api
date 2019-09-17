@@ -54,3 +54,4 @@ class RepairTicket(TimeStampedModel):
     requisition_required = models.BooleanField(null=True, blank=True)
     repairs_started = models.BooleanField(null=True, blank=True)
     repairs_verified = models.BooleanField(null=True, blank=True)
+    actual_damage = models.CharField(max_length=255, null=True, blank=True)
