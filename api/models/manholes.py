@@ -2,6 +2,7 @@ from django.db import models
 from model_utils.models import TimeStampedModel
 
 from api.models import Site, User
+from api.models.tools import Tool
 
 
 class ManHole(TimeStampedModel):
@@ -55,6 +56,11 @@ class ODFTermination(TimeStampedModel):
     client = models.CharField(max_length=255, null=True, blank=True)
     cores = models.CharField(max_length=255, null=True, blank=True)
     label = models.CharField(max_length=255, null=True, blank=True)
+
+
+class ODFTerminationTool(TimeStampedModel):
+    odf_termination = models.ForeignKey(to=ODFTermination, null=True, blank=True, on_delete=models.CASCADE)
+    tool = models.ForeignKey(to=Tool, null=True, blank=True, on_delete=models.CASCADE)
 
 
 class DuctInstallation(TimeStampedModel):

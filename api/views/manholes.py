@@ -1,4 +1,7 @@
 import csv
+from copy import deepcopy
+
+from api.models.tools import Tool
 
 try:
     from StringIO import StringIO
@@ -23,7 +26,7 @@ from api.models.manholes import (
     DuctInstallation,
     CableInstallation,
     Trunking,
-)
+    ODFTerminationTool)
 from api.serializers.manholes import (
     ManHoleSerializer,
     ManHoleLoginSerializer,
@@ -250,6 +253,21 @@ class ODFTerminationViewSet(viewsets.ModelViewSet):
     serializer_class = ODFTerminationSerializer
     filter_backends = (DjangoFilterBackend,)
     filter_fields = ('user', 'site')
+
+    def create(self, request, *args, **kwargs):
+        data = deepcopy(request.data)
+        tools_ids = data.pop('tools')
+        site = data.pop('site')
+        user = data.pop('user')
+        data['site_id'] = site
+        data['user_id'] = user
+        tools_ids = tools_ids.split(',')
+        odf_termination = ODFTermination.objects.create(**data)
+        tools = Tool.objects.filter(id__in=tools_ids)
+        objs = (ODFTerminationTool(tool=i, odf_termination=odf_termination) for i in tools)
+        ODFTerminationTool.objects.bulk_create(objs=objs)
+        data = ODFTerminationSerializer(odf_termination).data
+        return Response(data=data, status=HTTP_200_OK)
 
 
 class DuctInstallationViewSet(viewsets.ModelViewSet):

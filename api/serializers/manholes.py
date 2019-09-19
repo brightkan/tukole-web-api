@@ -8,7 +8,9 @@ from api.models.manholes import (
     DuctInstallation,
     CableInstallation,
     Trunking,
-)
+    ODFTerminationTool)
+from api.models.tools import Tool
+from api.serializers.tools import ToolSerializer
 
 
 class ManHoleSerializer(serializers.ModelSerializer):
@@ -152,9 +154,20 @@ class ODFInstallationSerializer(serializers.ModelSerializer):
 
 
 class ODFTerminationSerializer(serializers.ModelSerializer):
+
+    def to_representation(self, instance):
+        return_json = super().to_representation(instance)
+        tools_ids = ODFTerminationTool.objects.filter(odf_termination=instance).values_list('tool__id', flat=True)
+        tools_ids = list(tools_ids)
+        tools = Tool.objects.filter(id__in=tools_ids)
+        return_json['tools'] = ToolSerializer(tools, many=True).data
+        return return_json
+
+    tools = serializers.CharField(write_only=True)
+
     class Meta:
         model = ODFTermination
-        fields = ('id', 'site', 'user', 'created', 'ports', 'client', 'label', 'cores')
+        fields = ('id', 'site', 'user', 'created', 'ports', 'client', 'label', 'cores', 'tools')
 
 
 class DuctInstallationSerializer(serializers.ModelSerializer):
