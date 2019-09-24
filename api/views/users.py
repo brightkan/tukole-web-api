@@ -105,7 +105,7 @@ class UserViewSet(ModelViewSet):
         email_activation_ = UserEmailActivation.objects.filter(email=user.email).last()
         user_workspace = UserWorkSpace.objects.filter(user_id=user.id).last()
         send_invite_email.delay(
-            user.id, email_activation_.token, self.request.user.id, user_workspace.workspace
+            user.id, email_activation_.token, self.request.user.id, user_workspace.workspace.id
         )
         user_data = UserSerializer(user).data
         return Response(data=user_data, status=HTTP_200_OK)
