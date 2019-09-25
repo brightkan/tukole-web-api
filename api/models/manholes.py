@@ -47,6 +47,13 @@ class ODFInstallation(TimeStampedModel):
     user = models.ForeignKey(to=User, on_delete=models.CASCADE)
     number_of_odf_installed = models.IntegerField(null=True, blank=True)
     size_of_odf = models.CharField(max_length=255, null=True, blank=True)
+    type_of_odfs = models.CharField(max_length=255, null=True, blank=True)
+    type_of_connectors = models.CharField(max_length=255, null=True, blank=True)
+    odf_ports_terminated = models.CharField(max_length=255, null=True, blank=True)
+    odf_ports_link = models.CharField(max_length=255, null=True, blank=True)
+    number_of_fiber_cables_terminated = models.CharField(max_length=255, null=True, blank=True)
+    odf_install_confirmed = models.BooleanField(default=False)
+    odf_labelled_confirmed = models.BooleanField(default=False)
 
 
 class ODFTermination(TimeStampedModel):

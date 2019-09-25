@@ -154,7 +154,7 @@ class SiteDocumentSerializer(serializers.ModelSerializer):
 class SitePIPSerializer(serializers.ModelSerializer):
     class Meta:
         model = SitePIP
-        fields = ('id', 'site', 'task', 'start', 'end', 'created', 'modified')
+        fields = ('id', 'site', 'task', 'start', 'end', 'pip_upload', 'created', 'modified')
 
 
 class SitePowerSerializer(serializers.ModelSerializer):

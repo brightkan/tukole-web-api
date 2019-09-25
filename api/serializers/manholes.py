@@ -150,7 +150,20 @@ class HandHoleInstallationSerializer(serializers.ModelSerializer):
 class ODFInstallationSerializer(serializers.ModelSerializer):
     class Meta:
         model = ODFInstallation
-        fields = ('id', 'site', 'user', 'created', 'size_of_odf', 'number_of_odf_installed')
+        fields = ('id',
+                  'site',
+                  'user',
+                  'created',
+                  'size_of_odf',
+                  'number_of_odf_installed',
+                  'type_of_odfs',
+                  'type_of_connectors',
+                  'odf_ports_terminated',
+                  'odf_ports_link',
+                  'number_of_fiber_cables_terminated',
+                  'odf_install_confirmed',
+                  'odf_labelled_confirmed',
+                  )
 
 
 class ODFTerminationSerializer(serializers.ModelSerializer):

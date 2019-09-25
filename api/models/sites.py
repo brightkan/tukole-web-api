@@ -96,6 +96,7 @@ class SiteDocument(TimeStampedModel):
 class SitePIP(TimeStampedModel):
     site = models.ForeignKey(to=Site, on_delete=models.CASCADE)
     task = models.CharField(max_length=255, null=True, blank=True)
+    pip_upload = models.FileField(upload_to='sitedocuments/pip_uploads', null=True, blank=True)
     start = models.DateTimeField()
     end = models.DateTimeField()
 
