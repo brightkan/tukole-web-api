@@ -261,7 +261,7 @@ class ODFTerminationViewSet(viewsets.ModelViewSet):
         user = data.pop('user')
         data['site_id'] = site
         data['user_id'] = user
-        tools_ids = tools_ids.split(',')
+        tools_ids = tools_ids if type(tools_ids) is list else tools_ids.split(',')
         odf_termination = ODFTermination.objects.create(**data)
         tools = Tool.objects.filter(id__in=tools_ids)
         objs = (ODFTerminationTool(tool=i, odf_termination=odf_termination) for i in tools)
