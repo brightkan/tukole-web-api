@@ -173,7 +173,7 @@ class ODFTerminationSerializer(serializers.ModelSerializer):
         tools_ids = ODFTerminationTool.objects.filter(odf_termination=instance).values_list('tool__id', flat=True)
         tools_ids = list(tools_ids)
         tools = Tool.objects.filter(id__in=tools_ids)
-        return_json['tools'] = ToolSerializer(tools, many=True).data
+        return_json['tools_object'] = ToolSerializer(tools, many=True).data
         return return_json
 
     tools = serializers.CharField(write_only=True)
