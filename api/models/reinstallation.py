@@ -1,7 +1,7 @@
 from django.db import models
 from model_utils.models import TimeStampedModel
 
-from api.models import Material, Site, User
+from api.models import Site, User
 
 
 class ReInstallation(TimeStampedModel):

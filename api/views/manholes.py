@@ -26,7 +26,8 @@ from api.models.manholes import (
     DuctInstallation,
     CableInstallation,
     Trunking,
-    ODFTerminationTool)
+    ODFTerminationTool,
+)
 from api.serializers.manholes import (
     ManHoleSerializer,
     ManHoleLoginSerializer,
@@ -257,13 +258,10 @@ class ODFTerminationViewSet(viewsets.ModelViewSet):
     def create(self, request, *args, **kwargs):
         data = deepcopy(request.data)
         tools_ids = data.pop('tools')
-        site = data.pop('site')
-        user = data.pop('user')
-        local_id_ = data.pop('local_id')
-        data['site_id'] = site
-        data['user_id'] = user
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        odf_termination = serializer.save()
         tools_ids = tools_ids if type(tools_ids) is list else tools_ids.split(',')
-        odf_termination = ODFTermination.objects.create(**data)
         tools = Tool.objects.filter(id__in=tools_ids)
         objs = (ODFTerminationTool(tool=i, odf_termination=odf_termination) for i in tools)
         ODFTerminationTool.objects.bulk_create(objs=objs)

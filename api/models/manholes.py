@@ -66,7 +66,9 @@ class ODFTermination(TimeStampedModel):
 
 
 class ODFTerminationTool(TimeStampedModel):
-    odf_termination = models.ForeignKey(to=ODFTermination, null=True, blank=True, on_delete=models.CASCADE)
+    odf_termination = models.ForeignKey(
+        to=ODFTermination, null=True, blank=True, on_delete=models.CASCADE
+    )
     tool = models.ForeignKey(to=Tool, null=True, blank=True, on_delete=models.CASCADE)
 
 

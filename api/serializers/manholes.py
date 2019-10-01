@@ -8,7 +8,8 @@ from api.models.manholes import (
     DuctInstallation,
     CableInstallation,
     Trunking,
-    ODFTerminationTool)
+    ODFTerminationTool,
+)
 from api.models.tools import Tool
 from api.serializers.tools import ToolSerializer
 
@@ -150,37 +151,37 @@ class HandHoleInstallationSerializer(serializers.ModelSerializer):
 class ODFInstallationSerializer(serializers.ModelSerializer):
     class Meta:
         model = ODFInstallation
-        fields = ('id',
-                  'site',
-                  'user',
-                  'created',
-                  'size_of_odf',
-                  'number_of_odf_installed',
-                  'type_of_odfs',
-                  'type_of_connectors',
-                  'odf_ports_terminated',
-                  'odf_ports_link',
-                  'number_of_fiber_cables_terminated',
-                  'odf_install_confirmed',
-                  'odf_labelled_confirmed',
-                  )
+        fields = (
+            'id',
+            'site',
+            'user',
+            'created',
+            'size_of_odf',
+            'number_of_odf_installed',
+            'type_of_odfs',
+            'type_of_connectors',
+            'odf_ports_terminated',
+            'odf_ports_link',
+            'number_of_fiber_cables_terminated',
+            'odf_install_confirmed',
+            'odf_labelled_confirmed',
+        )
 
 
 class ODFTerminationSerializer(serializers.ModelSerializer):
-
     def to_representation(self, instance):
         return_json = super().to_representation(instance)
-        tools_ids = ODFTerminationTool.objects.filter(odf_termination=instance).values_list('tool__id', flat=True)
+        tools_ids = ODFTerminationTool.objects.filter(odf_termination=instance).values_list(
+            'tool__id', flat=True
+        )
         tools_ids = list(tools_ids)
         tools = Tool.objects.filter(id__in=tools_ids)
         return_json['tools_object'] = ToolSerializer(tools, many=True).data
         return return_json
 
-    tools = serializers.CharField(write_only=True)
-
     class Meta:
         model = ODFTermination
-        fields = ('id', 'site', 'user', 'created', 'ports', 'client', 'label', 'cores', 'tools')
+        fields = ('id', 'site', 'user', 'created', 'ports', 'client', 'label', 'cores')
 
 
 class DuctInstallationSerializer(serializers.ModelSerializer):
