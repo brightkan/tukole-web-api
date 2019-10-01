@@ -259,6 +259,7 @@ class ODFTerminationViewSet(viewsets.ModelViewSet):
         tools_ids = data.pop('tools')
         site = data.pop('site')
         user = data.pop('user')
+        local_id_ = data.pop('local_id')
         data['site_id'] = site
         data['user_id'] = user
         tools_ids = tools_ids if type(tools_ids) is list else tools_ids.split(',')
