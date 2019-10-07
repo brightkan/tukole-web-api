@@ -20,6 +20,7 @@ class SurveyResult(TimeStampedModel):
         User, on_delete=models.CASCADE, null=True, blank=True, related_name="surveyresult_surveyor"
     )
     acceptStatus = models.BooleanField(default=False)
+    description = models.TextField(default=False)
 
     def number_of_comments(self):
         from api.models.survey_result_comments import SurveyResultComment

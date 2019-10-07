@@ -15,4 +15,5 @@ class SurveyResultSerializer(serializers.ModelSerializer):
             'acceptStatus',
             'number_of_comments',
             'created',
+            'description',
         )
