@@ -91,6 +91,7 @@ class User(AbstractEmailUser, TimeStampedModel):
         ('technician', 'Technician'),
         ('workshop_supervisor', 'Workshop Supervisor'),
         ('management', 'Management'),
+        ('super_administrator', 'Super Administrator'),
     )
     type = models.CharField(max_length=150, choices=user_types)
     role = models.CharField(max_length=150, choices=role_choices, null=True, blank=True)
