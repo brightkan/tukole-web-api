@@ -131,6 +131,7 @@ class SiteUserRoleSerializer(serializers.ModelSerializer):
             'site_usd_rate',
             'user_role',
             'site_type',
+            'site_is_being_worked',
         )
 
 
