@@ -36,13 +36,13 @@ class RepairTicketViewSet(viewsets.ModelViewSet):
     def create(self, request, *args, **kwargs):
         human_uuid = request.data['humanUuid']
 
-        if request.data['object_type'] == 'fleet':
+        if request.data['type'] == 'fleet':
             if Fleet.objects.filter(humanUuid__icontains=human_uuid).exists():
                 return super().create(request, *args, **kwargs)
-        elif request.data['object_type'] == 'machine':
+        elif request.data['type'] == 'machine':
             if Machinery.objects.filter(humanUuid__icontains=human_uuid).exists():
                 return super().create(request, *args, **kwargs)
-        elif request.data['object_type'] == 'tool':
+        elif request.data['type'] == 'tool':
             if Tool.objects.filter(humanUuid__icontains=human_uuid).exists():
                 return super().create(request, *args, **kwargs)
         else:
