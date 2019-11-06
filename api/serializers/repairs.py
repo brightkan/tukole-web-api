@@ -29,7 +29,7 @@ class RepairTicketSerializer(serializers.ModelSerializer):
                 return machine.id
             return ""
         elif object_type == 'tool':
-            tool = Tool.objects.filter(humanUuid__icontains=human_uuid)
+            tool = Tool.objects.filter(humanUuid__icontains=human_uuid).first()
             if tool:
                 return tool.id
             return ""
