@@ -9,7 +9,7 @@ from api.serializers.users import UserSerializer
 class MetricSerializer(ModelSerializer):
     class Meta:
         model = Metric
-        fields = ('id', 'team', 'action', 'min_time', 'max_time', 'created', 'points')
+        fields = ('id', 'team', 'action', 'created', 'type')
 
 
 class UserPerformanceMetricSerializer(ModelSerializer):
