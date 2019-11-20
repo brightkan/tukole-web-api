@@ -6,11 +6,12 @@ from rest_framework.status import HTTP_200_OK
 from rest_framework.viewsets import ModelViewSet
 
 from api.models import Metric, UserPerformanceMetric
+from api.models.metrics import MetricResult, UserMetricLog
 from api.serializers.metrics import (
     MetricSerializer,
     UserPerformanceMetricSerializer,
     GetPointFromMetricSerializer,
-)
+    MetricResultSerializer, UserMetricLogSerializer)
 
 
 class MetricViewSet(ModelViewSet):
@@ -46,3 +47,19 @@ class UserPerformanceMetricViewSet(ModelViewSet):
     queryset = UserPerformanceMetric.objects.all()
     filter_backends = (DjangoFilterBackend,)
     filter_fields = ('user', 'metric', 'site')
+
+
+class MetricResultViewSet(ModelViewSet):
+    permission_classes = (IsAuthenticated,)
+    serializer_class = MetricResultSerializer
+    queryset = MetricResult.objects.all()
+    filter_backends = (DjangoFilterBackend,)
+    filter_fields = ('user', 'metric')
+
+
+class UserMetricLogViewSet(ModelViewSet):
+    permission_classes = (IsAuthenticated,)
+    serializer_class = UserMetricLogSerializer
+    queryset = UserMetricLog.objects.all()
+    filter_backends = (DjangoFilterBackend,)
+    filter_fields = ('user', 'metric')

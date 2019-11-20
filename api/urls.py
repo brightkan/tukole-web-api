@@ -33,7 +33,7 @@ from api.views.manholes import (
     TrunkingViewSet,
 )
 from api.views.materials import MaterialViewSet, UsedMaterialViewSet
-from api.views.metrics import MetricViewSet, UserPerformanceMetricViewSet
+from api.views.metrics import MetricViewSet, UserPerformanceMetricViewSet, MetricResultViewSet, UserMetricLogViewSet
 from api.views.notifications import NotificationViewset as myapp_notifications_views
 from api.views.reinstallation import ReInstallationViewSet
 from api.views.repairs import RepairHistoryViewSet, RepairTicketViewSet
@@ -121,6 +121,8 @@ router.register(r'trips', TripViewSet, base_name='trips')
 router.register(r'machinery_types', myapp_machinery_types_views)
 router.register(r'metrics', MetricViewSet, base_name="metrics")
 router.register(r'usermetrics', UserPerformanceMetricViewSet, base_name="user-metric")
+router.register(r'metricresult', MetricResultViewSet, base_name="user-metric-result")
+router.register(r'usermetricslog', UserMetricLogViewSet, base_name="user-metric-log")
 router.register(r'manholes', ManHoleViewSet, base_name="man-holes")
 router.register(r'manholeduration', ManHoleDurationViewSet, base_name="man-assignments")
 router.register(r'manholesassignment', ManHoleAssignmentViewSet, base_name="man-assignments")

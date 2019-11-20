@@ -2,6 +2,7 @@ from rest_framework import serializers
 from rest_framework.serializers import ModelSerializer
 
 from api.models import Metric, UserPerformanceMetric
+from api.models.metrics import MetricResult, UserMetricLog
 from api.serializers.sites import SiteSerializer
 from api.serializers.users import UserSerializer
 
@@ -15,14 +16,13 @@ class MetricSerializer(ModelSerializer):
 class UserPerformanceMetricSerializer(ModelSerializer):
     def to_representation(self, instance):
         data = super().to_representation(instance)
-        data['site'] = SiteSerializer(instance.site).data
         data['user'] = UserSerializer(instance.user).data
         data['metric'] = MetricSerializer(instance.metric).data
         return data
 
     class Meta:
         model = UserPerformanceMetric
-        fields = ('id', 'user', 'site', 'metric', 'points', 'created')
+        fields = ('id', 'user', 'metric_result', 'points', 'created')
 
 
 class GetPointFromMetricSerializer(serializers.Serializer):
@@ -30,3 +30,15 @@ class GetPointFromMetricSerializer(serializers.Serializer):
     action = serializers.CharField()
     min_time = serializers.CharField()
     max_time = serializers.CharField()
+
+
+class MetricResultSerializer(ModelSerializer):
+    class Meta:
+        model = MetricResult
+        fields = ('id', 'metric', 'start_time', 'end_time', 'time', 'created')
+
+
+class UserMetricLogSerializer(ModelSerializer):
+    class Meta:
+        model = UserMetricLog
+        fields = ('id', 'user', 'metric', 'start_time', 'end_time', 'created')
