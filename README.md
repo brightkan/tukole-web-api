@@ -5,7 +5,7 @@
   Clone repo
 
   ```
-  $ git clone git@bitbucket.org:enockmudde/tukole-web-app.git
+  $ git clone https://github.com/brightkan/tukole-web-api.git
   ```
 
   Install [pipenv](https://pypi.org/project/pipenv/)
