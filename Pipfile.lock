@@ -25,10 +25,12 @@
         },
         "ansible": {
             "hashes": [
-                "sha256:6d855ead966c1a24a7d583ddcea8dd9e1f6edab3207390b647149351e113eb38"
+                "sha256:d1e2941087e7778df34af14d2271d16f17ce2dbf03f01043162fb11a0a2708cc"
             ],
             "index": "pypi",
-            "version": "==2.7.6"
+            dependabot/pip/ansible-2.7.12
+            "version": "==2.7.12"
+
         },
         "bcrypt": {
             "hashes": [
